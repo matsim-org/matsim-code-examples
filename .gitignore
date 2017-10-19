@@ -20,6 +20,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
 /target/
+/bin/
+
+# various erratic outputs created by matsim that we don't want to commit:
+/pop.xml.gz
 /test/output/
 /output/
