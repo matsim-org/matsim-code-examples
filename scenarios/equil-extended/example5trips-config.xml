@@ -4,11 +4,11 @@
 <config>
 
 	<module name="network">
-		<param name="inputNetworkFile" value="../../../../examples/scenarios/equil/network.xml" />
+		<param name="inputNetworkFile" value="network.xml" />
 	</module>
 
 	<module name="plans">
-		<param name="inputPlansFile" value="../../../../examples/scenarios/equil/plans100trips.xml" />
+		<param name="inputPlansFile" value="plans100trips.xml" />
 	</module>
 
 	<module name="controler">

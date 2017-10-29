@@ -9,6 +9,7 @@
 
 	<module name="network">
 		<param name="inputNetworkFile" value="network.xml" />
+		<param name="laneDefinitionsFile" value="laneDefinitions_v2.0.xml" />
 	</module>
 
 	<module name="plans">
@@ -19,14 +20,18 @@
 		<param name="outputDirectory" value="./output/example" />
 		<param name="firstIteration" value="0" />
 		<param name="lastIteration" value="10" />
+		<param name="mobsim" value="qsim" />
+		<param name="snapshotFormat" value="" />
+		<param name="enableLinkToLinkRouting" value="true" />
 	</module>
 
 	<module name="qsim">
 		<!-- "start/endTime" of MobSim (00:00:00 == take earliest activity time/ run as long as active vehicles exist) -->
 		<param name="startTime" value="00:00:00" />
 		<param name="endTime" value="00:00:00" />
+		<!--<param name="useLanes" value="true" />-->
 	
-		<param name = "snapshotperiod"	value = "00:00:00"/> <!-- 00:00:00 means NO snapshot writing -->
+		<param name = "snapshotperiod"	value = "00:01:00"/> <!-- 00:00:00 means NO snapshot writing -->
 	</module>
 
 	<module name="planCalcScore">
@@ -62,6 +67,10 @@
 
 		<param name="ModuleProbability_2" value="0.1" />
 		<param name="Module_2" value="ReRoute" />
+	</module>
+	
+	<module name="travelTimeCalculator" >
+		<param name="calculateLinkToLinkTravelTimes" value="true" />
 	</module>
 
 </config>
