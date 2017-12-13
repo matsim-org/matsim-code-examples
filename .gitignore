@@ -28,3 +28,8 @@ hs_err_pid*
 /pop.xml.gz
 /test/output/
 /output/
+
+
+# IntelliJ Files
+*.iml
+.idea
