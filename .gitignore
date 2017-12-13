@@ -33,3 +33,8 @@ hs_err_pid*
 # IntelliJ Files
 *.iml
 .idea
+
+# eclipse files
+.classpath
+.settings
+.project
