@@ -14,6 +14,7 @@
     </properties>
 
     <repositories>
+      <!--Note that in general repositories are not transitive, so they need to be repeated at every level where needed.-->
 		<repository>
 			<!-- Geotools is not on Maven central -->
 			<id>osgeo</id>
@@ -40,8 +41,8 @@
 
 	<dependencies>
 
-	  <!--MATSim core:-->
 		<dependency>
+		  <!--MATSim core:-->
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
  			<!--<version>0.9.0</version>-->
@@ -49,8 +50,8 @@
 			<version>0.10.0-SNAPSHOT</version>
 		</dependency>
 
-		<!--MATSim test infrastructure.  Note that this is not transitive.-->
 		<dependency>
+		  <!--MATSim test infrastructure.  Not transitive.-->
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<type>test-jar</type>
