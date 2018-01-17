@@ -45,9 +45,7 @@
 		  <!--MATSim core:-->
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
- 			<!--<version>0.9.0</version>-->
-			<!--<version>0.10.0-nov17</version>-->
-			<version>0.10.0-SNAPSHOT</version>
+ 			<version>0.9.0</version>
 		</dependency>
 
 		<dependency>
@@ -55,9 +53,7 @@
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<type>test-jar</type>
- 			<!--<version>0.9.0</version>-->
-			<!--<version>0.10.0-nov17</version>-->
-			<version>0.10.0-SNAPSHOT</version>
+ 			<version>0.9.0</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -65,14 +61,12 @@
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>minibus</artifactId>
-<!-- 			<version>0.9.0</version>
- -->			<version>0.10.0-SNAPSHOT</version>
+			<version>0.9.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>otfvis</artifactId>
-<!-- 			<version>0.9.0</version>
- -->			<version>0.10.0-SNAPSHOT</version>
+			<version>0.9.0</version>
 		</dependency>
 
 		<!-- Include the JUnit testing library -->
@@ -85,17 +79,17 @@
 		<dependency>
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim-examples</artifactId>
-			<version>0.10.0-SNAPSHOT</version>
+			<version>0.9.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>taxi</artifactId>
-			<version>0.10.0-SNAPSHOT</version>
+			<version>0.9.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>av</artifactId>
-			<version>0.10.0-SNAPSHOT</version>
+			<version>0.9.0</version>
 		</dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
