@@ -41,20 +41,18 @@
 
 	<dependencies>
 
+		<!--MATSim core:-->
 		<dependency>
-		  <!--MATSim core:-->
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
- 			<version>0.9.0</version>
+			<version>0.9.0</version>
 		</dependency>
 
+		<!--MATSim examples:-->
 		<dependency>
-		  <!--MATSim test infrastructure.  Not transitive.-->
 			<groupId>org.matsim</groupId>
-			<artifactId>matsim</artifactId>
-			<type>test-jar</type>
- 			<version>0.9.0</version>
-			<scope>test</scope>
+			<artifactId>matsim-examples</artifactId>
+			<version>0.9.0</version>
 		</dependency>
 
 		<!-- Include some MATSim extensions -->
@@ -68,19 +66,6 @@
 			<artifactId>otfvis</artifactId>
 			<version>0.9.0</version>
 		</dependency>
-
-		<!-- Include the JUnit testing library -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.matsim</groupId>
-			<artifactId>matsim-examples</artifactId>
-			<version>0.9.0</version>
-		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>taxi</artifactId>
@@ -91,18 +76,25 @@
 			<artifactId>av</artifactId>
 			<version>0.9.0</version>
 		</dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jre8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+
+		<!-- Include the JUnit testing library. not transitive -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--MATSim test infrastructure.  Not transitive.-->
+		<dependency>
+			<groupId>org.matsim</groupId>
+			<artifactId>matsim</artifactId>
+			<type>test-jar</type>
+			<version>0.9.0</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>
