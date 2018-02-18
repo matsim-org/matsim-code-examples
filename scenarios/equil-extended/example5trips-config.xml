@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v1.dtd">
+<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd">
 <!-- This is a fairly minimal config file; see console or logfile output for more options. -->
 <config>
 
@@ -25,19 +25,37 @@
 	</module>
 
 	<module name="planCalcScore" >
-		<param name="activityType_0"            value="dummy" />
-		<param name="activityTypicalDuration_0" value="12:00:00" />
+		<parameterset type="scoringParameters" >
+			<parameterset type="activityParams" >
+				<param name="activityType" value="dummy" />
+				<param name="scoringThisActivityAtAll" value="false" />
+			</parameterset>
+			<parameterset type="modeParams" >
+				<param name="constant" value="0.0" />
+				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="-6.0" />
+				<param name="mode" value="car" />
+				<param name="monetaryDistanceRate" value="0.0" />
+			</parameterset>
+			<!--The following needs to be defined to avoid a null pointer exception.  Probably a bug.  But I don't want to go back to 0.9.x to fix such things. kai, feb'18-->
+			<parameterset type="modeParams" >
+				<param name="mode" value="pt" />
+			</parameterset>
+		</parameterset>
 	</module>
 
 	<module name="strategy">
 		<param name="maxAgentPlanMemorySize" value="5" /> <!-- 0 means unlimited -->
 
-		<param name="ModuleProbability_1" value="0.9" />
-		<param name="Module_1" value="ChangeExpBeta" />
+		<parameterset type="strategysettings" >
+			<param name="strategyName" value="ChangeExpBeta" />
+			<param name="weight" value="0.9" />
+		</parameterset>
+		<parameterset type="strategysettings" >
+			<param name="strategyName" value="ReRoute" />
+			<param name="weight" value="0.1" />
+		</parameterset>
 
-		<param name="ModuleProbability_2" value="0.1" />
-		<param name="Module_2" value="ReRoute" />
-<!-- 		<param name="ModuleDisableAfterIteration_2" value="50" /> -->
 	</module>
 
 
