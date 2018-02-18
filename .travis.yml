@@ -5,9 +5,8 @@ addons:
     packages:
       - oracle-java8-installer  # https://github.com/travis-ci/travis-ci/issues/3259
 script:
-  - mvn package -B -Dmatsim.preferLocalDtds=true 
+  - mvn package -B -Dmatsim.preferLocalDtds=true -Dmaven.test.redirectTestOutputToFile
 # --fail-at-end
-# -Dmaven.test.redirectTestOutputToFile 
 env:
   global:
     - MAVEN_OPTS="-Xmx2g"
