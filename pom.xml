@@ -45,9 +45,9 @@
 		<dependency>
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
- 			<version>0.10.0</version>
+ 			<!--<version>0.10.0</version>-->
 			<!--<version>0.11.0-apr17</version>-->
-			<!--<version>0.11.0-SNAPSHOT</version>-->
+			<version>0.11.0-SNAPSHOT</version>
 		</dependency>
 
 		<!--MATSim examples:-->
@@ -55,9 +55,9 @@
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<type>test-jar</type>
- 			<version>0.10.0</version>
+ 			<!--<version>0.10.0</version>-->
 			<!--<version>0.11.0-apr17</version>-->
-			<!--<version>0.11.0-SNAPSHOT</version>-->
+			<version>0.11.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -65,39 +65,39 @@
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>minibus</artifactId>
- 			<version>0.10.0</version>
+ 			<!--<version>0.10.0</version>-->
 			<!--<version>0.11.0-apr17</version>-->
-			<!--<version>0.11.0-SNAPSHOT</version>-->
+			<version>0.11.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>otfvis</artifactId>
- 			<version>0.10.0</version>
+ 			<!--<version>0.10.0</version>-->
 			<!--<version>0.11.0-apr17</version>-->
-			<!--<version>0.11.0-SNAPSHOT</version>-->
+			<version>0.11.0-SNAPSHOT</version>
 		</dependency>
 
 		<!--MATSim test infrastructure.  Not transitive.-->
 		<dependency>
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim-examples</artifactId>
- 			<version>0.10.0</version>
+ 			<!--<version>0.10.0</version>-->
 			<!--<version>0.11.0-apr17</version>-->
-			<!--<version>0.11.0-SNAPSHOT</version>-->
+			<version>0.11.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>taxi</artifactId>
- 			<version>0.10.0</version>
+ 			<!--<version>0.10.0</version>-->
 			<!--<version>0.11.0-apr17</version>-->
-			<!--<version>0.11.0-SNAPSHOT</version>-->
+			<version>0.11.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>av</artifactId>
- 			<version>0.10.0</version>
+ 			<!--<version>0.10.0</version>-->
 			<!--<version>0.11.0-apr17</version>-->
-			<!--<version>0.11.0-SNAPSHOT</version>-->
+			<version>0.11.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Include the JUnit testing library -->
