@@ -45,56 +45,69 @@
 		<dependency>
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
-			<version>0.9.0</version>
+ 			<version>0.10.0</version>
+			<!--<version>0.11.0-apr17</version>-->
+			<!--<version>0.11.0-SNAPSHOT</version>-->
 		</dependency>
 
 		<!--MATSim examples:-->
 		<dependency>
 			<groupId>org.matsim</groupId>
-			<artifactId>matsim-examples</artifactId>
-			<version>0.9.0</version>
+			<artifactId>matsim</artifactId>
+			<type>test-jar</type>
+ 			<version>0.10.0</version>
+			<!--<version>0.11.0-apr17</version>-->
+			<!--<version>0.11.0-SNAPSHOT</version>-->
+			<scope>test</scope>
 		</dependency>
 
 		<!-- Include some MATSim extensions -->
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>minibus</artifactId>
-			<version>0.9.0</version>
+ 			<version>0.10.0</version>
+			<!--<version>0.11.0-apr17</version>-->
+			<!--<version>0.11.0-SNAPSHOT</version>-->
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>otfvis</artifactId>
-			<version>0.9.0</version>
+ 			<version>0.10.0</version>
+			<!--<version>0.11.0-apr17</version>-->
+			<!--<version>0.11.0-SNAPSHOT</version>-->
+		</dependency>
+
+		<!--MATSim test infrastructure.  Not transitive.-->
+		<dependency>
+			<groupId>org.matsim</groupId>
+			<artifactId>matsim-examples</artifactId>
+ 			<version>0.10.0</version>
+			<!--<version>0.11.0-apr17</version>-->
+			<!--<version>0.11.0-SNAPSHOT</version>-->
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>taxi</artifactId>
-			<version>0.9.0</version>
+ 			<version>0.10.0</version>
+			<!--<version>0.11.0-apr17</version>-->
+			<!--<version>0.11.0-SNAPSHOT</version>-->
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>av</artifactId>
-			<version>0.9.0</version>
+ 			<version>0.10.0</version>
+			<!--<version>0.11.0-apr17</version>-->
+			<!--<version>0.11.0-SNAPSHOT</version>-->
 		</dependency>
 
-		<!-- Include the JUnit testing library. not transitive -->
+		<!-- Include the JUnit testing library -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!--MATSim test infrastructure.  Not transitive.-->
-		<dependency>
-			<groupId>org.matsim</groupId>
-			<artifactId>matsim</artifactId>
-			<type>test-jar</type>
-			<version>0.9.0</version>
-			<scope>test</scope>
-		</dependency>
-
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -128,30 +141,6 @@
 					</execution>
 				</executions>
 			</plugin>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jvmTarget>1.8</jvmTarget>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -189,6 +178,7 @@
                 </configuration>
             </plugin>
         </plugins>
+		
 	</build>
 	<profiles>
 		<profile>

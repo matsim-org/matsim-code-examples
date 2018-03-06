@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/matsim-org/matsim-code-examples.svg?branch=0.9.x)](https://travis-ci.org/matsim-org/matsim-code-examples)
+[![Build Status](https://travis-ci.org/matsim-org/matsim-code-examples.svg?branch=0.10.x)](https://travis-ci.org/matsim-org/matsim-code-examples)
 
 # matsim-code-examples
 A repository containing code examples around MATSim
