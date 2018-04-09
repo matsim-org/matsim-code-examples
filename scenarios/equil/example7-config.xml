@@ -21,7 +21,7 @@
   ~  * *********************************************************************** */
   -->
 
-<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v1.dtd">
+<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd">
 <!-- This is a fairly minimal config file; see console or logfile output for more options. -->
 <config>
 
@@ -34,7 +34,7 @@
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="./output/example7" />
+		<param name="outputDirectory" value="./output/example" />
 		<param name="firstIteration" value="0" />
 		<param name="lastIteration" value="10" />
 		<param name="eventsFileFormat" value="xml" />
