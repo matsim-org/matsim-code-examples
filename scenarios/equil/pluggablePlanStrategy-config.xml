@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v1.dtd">
+<!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd">
 <config>
 
 	<module name="global">
@@ -16,7 +16,8 @@
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="./output/pluggable-plan-strategy" />
+		<!--<param name="outputDirectory" value="./output/pluggable-plan-strategy" />-->
+		<param name="outputDirectory" value="./output/example" />
 		<param name="overwriteFiles" value="deleteDirectoryIfExists" />
 		<param name="firstIteration" value="0" />
 		<param name="lastIteration" value="1" />
