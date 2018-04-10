@@ -3,7 +3,7 @@ package tutorial.scoring.example16customscoring;
 import org.matsim.api.core.v01.events.Event;
 import org.matsim.core.scoring.SumScoringFunction;
 
-final class RainScoring implements SumScoringFunction.ArbitraryEventScoring {
+public final class RainScoring implements SumScoringFunction.ArbitraryEventScoring {
 	private double score;
 
 	@Override

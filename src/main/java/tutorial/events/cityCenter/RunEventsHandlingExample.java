@@ -1,9 +1,10 @@
 /* *********************************************************************** *
  * project: org.matsim.*
+ * EventsReader
  *                                                                         *
  * *********************************************************************** *
  *                                                                         *
- * copyright       : (C) 2015 by the members listed in the COPYING,        *
+ * copyright       : (C) 2009 by the members listed in the COPYING,        *
  *                   LICENSE and WARRANTY file.                            *
  * email           : info at matsim dot org                                *
  *                                                                         *
@@ -16,41 +17,51 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package tutorial.programming.example07ControlerListener;
+package tutorial.events.cityCenter;
 
-import static org.junit.Assert.fail;
+import org.matsim.api.core.v01.Id;
+import org.matsim.core.api.experimental.events.EventsManager;
+import org.matsim.core.events.EventsUtils;
+import org.matsim.core.events.MatsimEventsReader;
 
-import java.io.File;
 
-import org.junit.Test;
-import org.matsim.core.utils.io.IOUtils;
-import org.matsim.core.utils.io.UncheckedIOException;
-import tutorial.zzother.example07ControlerListener.RunControlerListenerExample;
 
-public class ControlerListenerExampleTest {
+
+/**
+ * This class contains a main method to call 
+ *  event handlers using post-processing
+ * 
+ * @author jbischoff
+ */
+public class RunEventsHandlingExample {
+
 	
-	/**
-	 * Test method for {@link RunControlerListenerExample#main(java.lang.String[])}.
-	 */
-	@SuppressWarnings("static-method")
-	@Test
-	public final void testMain() {
-		
-		final String pathname = "./output/example/";
-		try {
-			IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
-		} catch ( UncheckedIOException ee ) {
-			// (normally, the directory should NOT be there initially.  It might, however, be there if someone ran the main class in some other way,
-			// and did not remove the directory afterwards.)
-		}
-		
-		try {
-			RunControlerListenerExample.main(null);
-		} catch ( Exception ee ) {
-			ee.printStackTrace();
-			fail( "Got an exception while running subpopulation example: "+ee ) ;
-		}
+	
+	public static void main(String[] args) {
 
-		IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
+		//path to events file
+		String inputFile = "output/nullfall/ITERS/it.50/50.events.xml.gz";
+
+		//create an event object
+		EventsManager events = EventsUtils.createEventsManager();
+
+		//create the handler and add it
+		CityCenterEventEnterHandler cityCenterEventEnterHandler = new CityCenterEventEnterHandler();
+
+		//add the links here that you want to monitor
+		cityCenterEventEnterHandler.addLinkId(Id.createLinkId(28112));
+		
+		
+		events.addHandler(cityCenterEventEnterHandler);
+
+
+        //create the reader and read the file
+		MatsimEventsReader reader = new MatsimEventsReader(events);
+		reader.readFile(inputFile);
+		
+		System.out.println(cityCenterEventEnterHandler.getVehiclesInCityCenter());
+		
+		System.out.println("Events file read!");
 	}
+
 }

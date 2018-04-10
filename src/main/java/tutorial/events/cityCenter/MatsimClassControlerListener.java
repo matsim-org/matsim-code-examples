@@ -1,9 +1,10 @@
 /* *********************************************************************** *
  * project: org.matsim.*
+ * RunEmissionToolOffline.java
  *                                                                         *
  * *********************************************************************** *
  *                                                                         *
- * copyright       : (C) 2015 by the members listed in the COPYING,        *
+ * copyright       : (C) 2009 by the members listed in the COPYING,        *
  *                   LICENSE and WARRANTY file.                            *
  * email           : info at matsim dot org                                *
  *                                                                         *
@@ -16,41 +17,28 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package tutorial.programming.example07ControlerListener;
+package tutorial.events.cityCenter;
+import org.matsim.core.controler.events.IterationEndsEvent;
+import org.matsim.core.controler.events.StartupEvent;
+import org.matsim.core.controler.listener.IterationEndsListener;
+import org.matsim.core.controler.listener.StartupListener;
+/**
+ * @author jbischoff
+ * A basic Controler Listener used in the MATSim class at TU Berlin.
+ */
+public class MatsimClassControlerListener implements StartupListener, IterationEndsListener {
 
-import static org.junit.Assert.fail;
-
-import java.io.File;
-
-import org.junit.Test;
-import org.matsim.core.utils.io.IOUtils;
-import org.matsim.core.utils.io.UncheckedIOException;
-import tutorial.zzother.example07ControlerListener.RunControlerListenerExample;
-
-public class ControlerListenerExampleTest {
-	
-	/**
-	 * Test method for {@link RunControlerListenerExample#main(java.lang.String[])}.
-	 */
-	@SuppressWarnings("static-method")
-	@Test
-	public final void testMain() {
-		
-		final String pathname = "./output/example/";
-		try {
-			IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
-		} catch ( UncheckedIOException ee ) {
-			// (normally, the directory should NOT be there initially.  It might, however, be there if someone ran the main class in some other way,
-			// and did not remove the directory afterwards.)
-		}
-		
-		try {
-			RunControlerListenerExample.main(null);
-		} catch ( Exception ee ) {
-			ee.printStackTrace();
-			fail( "Got an exception while running subpopulation example: "+ee ) ;
-		}
-
-		IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
+	MyEventHandler myEventHandler;
+	 
+	@Override
+	public void notifyStartup(StartupEvent event) {
+		myEventHandler = new MyEventHandler(); 
+		event.getServices().getEvents().addHandler(myEventHandler);
 	}
+
+	@Override
+	public void notifyIterationEnds(IterationEndsEvent event) {
+		myEventHandler.printPersonWithHighestWorkingTime();
+	}
+
 }

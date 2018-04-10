@@ -24,7 +24,7 @@ import java.io.File;
 import org.junit.Test;
 import org.matsim.core.utils.io.IOUtils;
 
-import tutorial.programming.leastCostPath.RunLeastCostPathCalculatorExample;
+import tutorial.router.leastCostPath.RunLeastCostPathCalculatorExample;
 
 /**
  * @author  jbischoff

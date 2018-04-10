@@ -16,31 +16,8 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package tutorial.programming.example18MultipleSubpopulations;
-
-import static org.junit.Assert.*;
-
-import org.junit.Test;
-import tutorial.population.example18MultipleSubpopulations.RunSubpopulationsExample;
-
 /**
  * @author nagel
  *
  */
-public class SubpopulationsExampleTest {
-
-	/**
-	 * Test method for {@link RunSubpopulationsExample#main(java.lang.String[])}.
-	 */
-	@SuppressWarnings("static-method")
-	@Test
-	public final void testMain() {
-		try {
-			RunSubpopulationsExample.main(null);
-		} catch ( Exception ee ) {
-			ee.printStackTrace();
-			fail( "Got an exception while running subpopulation example: "+ee ) ;
-		}
-	}
-
-}
+package tutorial.population.streaming;

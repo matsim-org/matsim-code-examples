@@ -1,9 +1,10 @@
 /* *********************************************************************** *
  * project: org.matsim.*
+ * RunEmissionToolOffline.java
  *                                                                         *
  * *********************************************************************** *
  *                                                                         *
- * copyright       : (C) 2015 by the members listed in the COPYING,        *
+ * copyright       : (C) 2009 by the members listed in the COPYING,        *
  *                   LICENSE and WARRANTY file.                            *
  * email           : info at matsim dot org                                *
  *                                                                         *
@@ -16,41 +17,24 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package tutorial.programming.example07ControlerListener;
+package tutorial.router.leastCostPath;
 
-import static org.junit.Assert.fail;
+import org.matsim.api.core.v01.network.Network;
+import org.matsim.core.router.util.LeastCostPathCalculator;
+import org.matsim.core.router.util.LeastCostPathCalculatorFactory;
+import org.matsim.core.router.util.TravelDisutility;
+import org.matsim.core.router.util.TravelTime;
 
-import java.io.File;
+/**
+ * @author jbischoff
+ *
+ */
+public class MatsimClassLeastCostPathCalculatorFactory implements LeastCostPathCalculatorFactory {
 
-import org.junit.Test;
-import org.matsim.core.utils.io.IOUtils;
-import org.matsim.core.utils.io.UncheckedIOException;
-import tutorial.zzother.example07ControlerListener.RunControlerListenerExample;
-
-public class ControlerListenerExampleTest {
-	
-	/**
-	 * Test method for {@link RunControlerListenerExample#main(java.lang.String[])}.
-	 */
-	@SuppressWarnings("static-method")
-	@Test
-	public final void testMain() {
-		
-		final String pathname = "./output/example/";
-		try {
-			IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
-		} catch ( UncheckedIOException ee ) {
-			// (normally, the directory should NOT be there initially.  It might, however, be there if someone ran the main class in some other way,
-			// and did not remove the directory afterwards.)
-		}
-		
-		try {
-			RunControlerListenerExample.main(null);
-		} catch ( Exception ee ) {
-			ee.printStackTrace();
-			fail( "Got an exception while running subpopulation example: "+ee ) ;
-		}
-
-		IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
+	@Override
+	public LeastCostPathCalculator createPathCalculator(Network network,
+			TravelDisutility travelCosts, TravelTime travelTimes) {
+		return new MatsimClassDijkstra(network,null,null);
 	}
+
 }

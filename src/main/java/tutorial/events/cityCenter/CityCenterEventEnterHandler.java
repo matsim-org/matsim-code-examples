@@ -1,9 +1,10 @@
 /* *********************************************************************** *
  * project: org.matsim.*
+ * RunEmissionToolOffline.java
  *                                                                         *
  * *********************************************************************** *
  *                                                                         *
- * copyright       : (C) 2015 by the members listed in the COPYING,        *
+ * copyright       : (C) 2009 by the members listed in the COPYING,        *
  *                   LICENSE and WARRANTY file.                            *
  * email           : info at matsim dot org                                *
  *                                                                         *
@@ -16,41 +17,47 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package tutorial.programming.example07ControlerListener;
+package tutorial.events.cityCenter;
 
-import static org.junit.Assert.fail;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.File;
+import org.matsim.api.core.v01.Id;
+import org.matsim.api.core.v01.events.LinkEnterEvent;
+import org.matsim.api.core.v01.events.handler.LinkEnterEventHandler;
+import org.matsim.api.core.v01.network.Link;
+import org.matsim.vehicles.Vehicle;
 
-import org.junit.Test;
-import org.matsim.core.utils.io.IOUtils;
-import org.matsim.core.utils.io.UncheckedIOException;
-import tutorial.zzother.example07ControlerListener.RunControlerListenerExample;
+/**
+ * An event handler to determine if a vehicle has driven over a certain set of links.
+ * 
+ * @author jbischoff
+ */
+public class CityCenterEventEnterHandler implements LinkEnterEventHandler {
 
-public class ControlerListenerExampleTest {
 	
-	/**
-	 * Test method for {@link RunControlerListenerExample#main(java.lang.String[])}.
-	 */
-	@SuppressWarnings("static-method")
-	@Test
-	public final void testMain() {
-		
-		final String pathname = "./output/example/";
-		try {
-			IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
-		} catch ( UncheckedIOException ee ) {
-			// (normally, the directory should NOT be there initially.  It might, however, be there if someone ran the main class in some other way,
-			// and did not remove the directory afterwards.)
-		}
-		
-		try {
-			RunControlerListenerExample.main(null);
-		} catch ( Exception ee ) {
-			ee.printStackTrace();
-			fail( "Got an exception while running subpopulation example: "+ee ) ;
-		}
-
-		IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
+	List<Id<Vehicle>> agentsInCityCenter = new ArrayList<>();
+	List<Id<Link>> cityCenterLinks = new ArrayList<>();
+	
+	@Override
+	public void reset(int iteration) {
+		this.agentsInCityCenter.clear();
 	}
+
+	@Override
+	public void handleEvent(LinkEnterEvent event) {
+		if (this.cityCenterLinks.contains(event.getLinkId()))
+		{
+		this.agentsInCityCenter.add(event.getVehicleId());
+		}
+	}
+	public void addLinkId(Id<Link> linkId){
+		this.cityCenterLinks.add(linkId);
+	}
+
+	public List<Id<Vehicle>> getVehiclesInCityCenter() {
+		return agentsInCityCenter;
+	}
+
+	
 }

@@ -3,7 +3,7 @@
  *                                                                         *
  * *********************************************************************** *
  *                                                                         *
- * copyright       : (C) 2015 by the members listed in the COPYING,        *
+ * copyright       : (C) 2014 by the members listed in the COPYING,     *
  *                   LICENSE and WARRANTY file.                            *
  * email           : info at matsim dot org                                *
  *                                                                         *
@@ -16,41 +16,15 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package tutorial.programming.example07ControlerListener;
 
-import static org.junit.Assert.fail;
-
-import java.io.File;
-
-import org.junit.Test;
-import org.matsim.core.utils.io.IOUtils;
-import org.matsim.core.utils.io.UncheckedIOException;
-import tutorial.zzother.example07ControlerListener.RunControlerListenerExample;
-
-public class ControlerListenerExampleTest {
-	
-	/**
-	 * Test method for {@link RunControlerListenerExample#main(java.lang.String[])}.
-	 */
-	@SuppressWarnings("static-method")
-	@Test
-	public final void testMain() {
-		
-		final String pathname = "./output/example/";
-		try {
-			IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
-		} catch ( UncheckedIOException ee ) {
-			// (normally, the directory should NOT be there initially.  It might, however, be there if someone ran the main class in some other way,
-			// and did not remove the directory afterwards.)
-		}
-		
-		try {
-			RunControlerListenerExample.main(null);
-		} catch ( Exception ee ) {
-			ee.printStackTrace();
-			fail( "Got an exception while running subpopulation example: "+ee ) ;
-		}
-
-		IOUtils.deleteDirectoryRecursively(new File(pathname).toPath());
-	}
-}
+/**
+ * Demonstrating where and how to set the different parameters for parallelisation:
+ * <ul>
+ * 		<li> mobility simulation (qsim);
+ * 		<li> replanning and;
+ * 		<li> event handling.
+ * </ul>
+ * 
+ * @author jwjoubert
+ */
+package tutorial.config.example17Parallelisation;
