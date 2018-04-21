@@ -91,6 +91,8 @@ public class RunWithinDayReplanningAgentExample {
 							@Override
 							public void insertAgentsIntoMobsim() {
 								final Id<Link> startLinkId = (Id<Link>) (sc.getNetwork().getLinks().keySet().toArray())[0];
+								// (replace by meaningful link ID)
+								
 								final MobsimVehicle veh = new QVehicle(new VehicleImpl(Id.create("testVehicle", Vehicle.class), basicVehicleType));
 								qsim.addParkedVehicle(veh, startLinkId);
 								qsim.insertAgentIntoMobsim(new MyAgent(sc, ev, qsim, startLinkId, veh));
