@@ -25,18 +25,33 @@
 	</module>
 
 	<module name="planCalcScore" >
-		<param name="activityType_0"            value="dummy" />
-		<param name="activityTypicalDuration_0" value="12:00:00" />
+		<parameterset type="scoringParameters">
+			<parameterset type="modeParams">
+				<param name="mode" value="car"/>
+			</parameterset>
+			<parameterset type="modeParams">
+				<param name="mode" value="pt"/>
+			</parameterset>
+			<parameterset type="activityParams">
+				<param name="activityType"    value="dummy" /> <!-- home -->
+				<param name="typicalDuration" value="12:00:00" />
+			</parameterset>
+		</parameterset>
 	</module>
 
 	<module name="strategy">
 		<param name="maxAgentPlanMemorySize" value="5" /> <!-- 0 means unlimited -->
 
-		<param name="ModuleProbability_1" value="0.9" />
-		<param name="Module_1" value="ChangeExpBeta" />
+		<parameterset type="strategysettings">
+			<param name="strategyName" value="ChangeExpBeta"/>
+			<param name="weight" value="0.9"/>
+		</parameterset>
 
-		<param name="ModuleProbability_2" value="0.1" />
-		<param name="Module_2" value="ReRoute" />
+		<parameterset type="strategysettings">
+			<param name="strategyName" value="ReRoute"/>
+			<param name="weight" value="0.1"/>
+		</parameterset>
+
 <!-- 		<param name="ModuleDisableAfterIteration_2" value="50" /> -->
 	</module>
 
