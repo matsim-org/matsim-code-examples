@@ -33,10 +33,20 @@
 	</module>
 
 	<module name="planCalcScore">
+
+		<parameterset type="scoringParameters">
 		<param name="lateArrival" value="-18" />
 		<param name="performing" value="+6" />
-		<param name="traveling" value="-6" />
-		
+
+			<parameterset type="modeParams">
+				<param name="mode" value="car"/>
+				<param name="marginalUtilityOfTraveling_util_hr" value="-6.0" />
+			</parameterset>
+
+			<parameterset type="modeParams">
+				<param name="mode" value="pt"/>
+			</parameterset>
+
 		<parameterset type="activityParams" ><!-- home -->
 			<param name="activityType" value="h" />
 			<param name="minimalDuration" value="08:00:00" />
@@ -59,7 +69,7 @@
 			<param name="mode" value="bicycle" />
 			<param name="monetaryDistanceRate" value="0.0" />
 		</parameterset>
-		
+		</parameterset>
 	</module>
 	
 	<module name="planscalcroute" >
@@ -73,11 +83,15 @@
 	<module name="strategy">
 		<param name="maxAgentPlanMemorySize" value="5" /> <!-- 0 means unlimited -->
 
-		<param name="ModuleProbability_1" value="0.9" />
-		<param name="Module_1" value="BestScore" />
+		<parameterset type="strategysettings">
+			<param name="strategyName" value="BestScore"/>
+			<param name="weight" value="0.9"/>
+		</parameterset>
 
-		<param name="ModuleProbability_2" value="0.1" />
-		<param name="Module_2" value="ReRoute" />
+		<parameterset type="strategysettings">
+			<param name="strategyName" value="ReRoute"/>
+			<param name="weight" value="0.1"/>
+		</parameterset>
 	</module>
 	
 	<module name="travelTimeCalculator" >

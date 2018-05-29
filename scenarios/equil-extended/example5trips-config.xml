@@ -25,21 +25,16 @@
 	</module>
 
 	<module name="planCalcScore" >
-		<parameterset type="scoringParameters" >
-			<parameterset type="activityParams" >
-				<param name="activityType" value="dummy" />
-				<param name="scoringThisActivityAtAll" value="false" />
+		<parameterset type="scoringParameters">
+			<parameterset type="modeParams">
+				<param name="mode" value="car"/>
 			</parameterset>
-			<parameterset type="modeParams" >
-				<param name="constant" value="0.0" />
-				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="-6.0" />
-				<param name="mode" value="car" />
-				<param name="monetaryDistanceRate" value="0.0" />
+			<parameterset type="modeParams">
+				<param name="mode" value="pt"/>
 			</parameterset>
-			<!--The following needs to be defined to avoid a null pointer exception.  Probably a bug.  But I don't want to go back to 0.9.x to fix such things. kai, feb'18-->
-			<parameterset type="modeParams" >
-				<param name="mode" value="pt" />
+			<parameterset type="activityParams">
+				<param name="activityType"    value="dummy" /> <!-- home -->
+				<param name="typicalDuration" value="12:00:00" />
 			</parameterset>
 		</parameterset>
 	</module>
@@ -47,15 +42,17 @@
 	<module name="strategy">
 		<param name="maxAgentPlanMemorySize" value="5" /> <!-- 0 means unlimited -->
 
-		<parameterset type="strategysettings" >
-			<param name="strategyName" value="ChangeExpBeta" />
-			<param name="weight" value="0.9" />
-		</parameterset>
-		<parameterset type="strategysettings" >
-			<param name="strategyName" value="ReRoute" />
-			<param name="weight" value="0.1" />
+		<parameterset type="strategysettings">
+			<param name="strategyName" value="ChangeExpBeta"/>
+			<param name="weight" value="0.9"/>
 		</parameterset>
 
+		<parameterset type="strategysettings">
+			<param name="strategyName" value="ReRoute"/>
+			<param name="weight" value="0.1"/>
+		</parameterset>
+
+<!-- 		<param name="ModuleDisableAfterIteration_2" value="50" /> -->
 	</module>
 
 
