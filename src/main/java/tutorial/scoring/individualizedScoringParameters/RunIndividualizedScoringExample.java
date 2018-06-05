@@ -2,7 +2,10 @@ package tutorial.scoring.individualizedScoringParameters;
 
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
+import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
+import org.matsim.core.scoring.functions.CharyparNagelScoringFunctionFactory;
+import org.matsim.core.scoring.functions.ScoringParametersForPerson;
 import org.matsim.core.utils.io.IOUtils;
 import org.matsim.examples.ExamplesUtils;
 
@@ -15,7 +18,13 @@ public class RunIndividualizedScoringExample {
 		config.controler().setOutputDirectory( "output/exampleIndividualScores/");
 
 		final Controler controler = new Controler( config );
-		controler.addOverridingModule( new ExampleIndividualizedScoringFunctionModule() );
+		controler.addOverridingModule(new AbstractModule() {
+			@Override
+			public void install() {
+			    bindScoringFunctionFactory().to(CharyparNagelScoringFunctionFactory.class);
+			    bind(ScoringParametersForPerson.class).to(ExampleIndividualizedScoringParametersPerPerson.class);
+			}
+		});
 		controler.run();
 	}
 }
