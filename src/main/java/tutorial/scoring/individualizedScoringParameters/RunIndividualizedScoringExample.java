@@ -9,7 +9,7 @@ import org.matsim.examples.ExamplesUtils;
 /**
  * @author thibautd
  */
-public class RunExampleIndividualizedScoring {
+public class RunIndividualizedScoringExample {
 	public static void main(String... args) {
 		final Config config = ConfigUtils.loadConfig(IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml"));
 		config.controler().setOutputDirectory( "output/exampleIndividualScores/");
