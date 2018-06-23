@@ -37,7 +37,6 @@ import org.matsim.core.controler.OutputDirectoryLogging;
 import org.matsim.core.router.MainModeIdentifier;
 import org.matsim.core.router.MainModeIdentifierImpl;
 import org.matsim.core.router.RoutingModule;
-import org.matsim.core.router.TripRouter;
 import org.matsim.core.scenario.ScenarioUtils;
 import org.matsim.facilities.ActivityFacility;
 import org.matsim.facilities.ActivityOption;
@@ -75,7 +74,7 @@ public class RunTeleportationMobsimWithCustomRoutingExample {
 			@Override
 			public void install() {
 				addRoutingModuleBinding(MyRoutingModule.TELEPORTATION_MAIN_MODE).toProvider(
-						new MyRoutingModuleProvider(
+						new MyRoutingModule.Provider(
 								// the module uses the trip router for the PT part.
 								// This allows to automatically adapt to user settings,
 								// including if they are specified at a later stage

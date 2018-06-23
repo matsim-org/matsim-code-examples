@@ -22,13 +22,11 @@ package tutorial.router.example13MultiStageTripRouting;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.inject.Provider;
-import org.matsim.api.core.v01.TransportMode;
+import org.matsim.api.core.v01.population.Activity;
 import org.matsim.api.core.v01.population.Activity;
 import org.matsim.api.core.v01.population.Leg;
 import org.matsim.api.core.v01.population.Person;
 import org.matsim.api.core.v01.population.PlanElement;
-import org.matsim.api.core.v01.population.PopulationFactory;
 import org.matsim.api.core.v01.population.PopulationFactory;
 import org.matsim.api.core.v01.population.Route;
 import org.matsim.core.population.routes.RouteFactories;
@@ -37,6 +35,7 @@ import org.matsim.core.router.RoutingModule;
 import org.matsim.core.router.StageActivityTypes;
 import org.matsim.core.router.StageActivityTypesImpl;
 import org.matsim.core.router.TripRouter;
+import org.matsim.facilities.ActivityFacility;
 import org.matsim.facilities.Facility;
 
 /**
@@ -51,7 +50,7 @@ public class MyRoutingModule implements RoutingModule {
 
 	public static final String TELEPORTATION_MAIN_MODE = "myTeleportationMainMode";
 
-	private final Provider<RoutingModule> routingDelegate;
+	private final com.google.inject.Provider<RoutingModule> routingDelegate;
 	private final PopulationFactory populationFactory;
 	private final RouteFactories modeRouteFactory;
 	private final Facility station;
@@ -69,7 +68,7 @@ public class MyRoutingModule implements RoutingModule {
 			// of the TripRouter done later in the initialization process (delegation).
 			// Using TripRouter may also lead to infinite loops, if two  modes
 			// calling each other (though I cannot think in any actual mode with this risk).
-			final Provider<RoutingModule> routingDelegate,
+			final com.google.inject.Provider<RoutingModule> routingDelegate,
 			final PopulationFactory populationFactory,
 			final Facility station) {
 		this.routingDelegate = routingDelegate;
@@ -129,6 +128,24 @@ public class MyRoutingModule implements RoutingModule {
 		stageTypes.addActivityTypes( new StageActivityTypesImpl( STAGE ) );
 
 		return stageTypes;
+	}
+	
+	public static class Provider implements com.google.inject.Provider<RoutingModule> {
+	
+		private com.google.inject.Provider<RoutingModule> tripRouterProvider;
+		private PopulationFactory populationFactory;
+		private ActivityFacility teleport;
+	
+		public Provider(com.google.inject.Provider<RoutingModule> tripRouterProvider, PopulationFactory populationFactory, ActivityFacility teleport) {
+			this.tripRouterProvider = tripRouterProvider;
+			this.populationFactory = populationFactory;
+			this.teleport = teleport;
+		}
+	
+		@Override
+		public RoutingModule get() {
+			return new MyRoutingModule(tripRouterProvider, populationFactory, teleport);
+		}
 	}
 }
 

@@ -33,7 +33,7 @@ import org.matsim.vehicles.Vehicle;
  * @author jbischoff
  * This example teaches how to modify a transit schedule. More precisely, it modifies the headway of a given line.
  */
-public class TransitScheduleModifier {
+public class RunTransitScheduleModifierExample {
 
 	public static void main(String[] args) {
 		Scenario scenario = ScenarioUtils.loadScenario(ConfigUtils.loadConfig("input/hapt/config.xml"));

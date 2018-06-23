@@ -131,7 +131,7 @@ public class RunCustomScoringExample {
 
 		// It starts raining on link 1 at 7:30.
 		private boolean rainingAt(double time, Id<Link> linkId) {
-			if (time > (7.5 * 60.0 * 60.0) && linkId.toString().equals("1")) {
+			if (time > (7.5 * 60.0 * 60.0) && time < 8.*3600. && linkId.toString().equals("1")) {
 				return true;
 			} else {
 				return false;
