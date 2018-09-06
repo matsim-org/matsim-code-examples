@@ -69,7 +69,7 @@
 		</parameterset>
 
 		<parameterset type="strategysettings">
-			<param name="strategyName" value="MyPlanStrategyProvider"/>
+			<param name="strategyName" value="org.matsim.codeexamples.strategies.pluggablePlanStrategyFromFile.MyPlanStrategyProvider"/>
 			<param name="weight" value="0.1"/>
 		</parameterset>
 
