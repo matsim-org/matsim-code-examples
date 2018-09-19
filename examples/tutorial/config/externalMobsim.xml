@@ -1,8 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v1.dtd"
 	[
-		<!ENTITY INPUTBASE    "../../equil">
-		<!ENTITY OUTPUTBASE   "./output/externalMobsim">
+		<!ENTITY INPUTBASE    "../../../scenarios/equil">
 	]
 >
 <config>
@@ -21,13 +20,13 @@
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="&OUTPUTBASE;" />
+		<param name="outputDirectory" value="./output/example" />
 		<param name="firstIteration" value="0" />
 		<param name="lastIteration" value="1" />
 	</module>
 
-	<module name="simulation">
-		<param name="externalExe" value="java -jar ../../external/mobsim.jar" />
+	<module name="externalMobsim">
+		<param name="externalExe" value="java -jar examples/tutorial/config/mobsim.jar" />
 	</module>
 
 	<module name="planCalcScore">

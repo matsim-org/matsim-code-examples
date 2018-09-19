@@ -1,8 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v1.dtd"
 	[
-		<!ENTITY INPUTBASE    "../../equil">
-		<!ENTITY OUTPUTBASE   "./output/example">
+		<!ENTITY INPUTBASE    "../../../scenarios/equil">
 	]
 >
 <config>
@@ -21,7 +20,7 @@
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="&OUTPUTBASE;" />
+		<param name="outputDirectory" value="./output/example" />
 		<param name="firstIteration" value="0" />
 		<param name="lastIteration" value="1" />
 		<param name="snapshotFormat"	value = "otfvis"/> <!-- otfvis, googleearth, transims -->
@@ -64,7 +63,7 @@
 
 		<param name="ModuleProbability_2" value="0.1" />
 		<param name="Module_2" value="ExternalModule" />
-		<param name="ModuleExePath_2" value="java -jar ../../external/replanning.jar" />
+		<param name="ModuleExePath_2" value="java -jar examples/tutorial/config/replanning.jar" />
 	</module>
 
 </config>
