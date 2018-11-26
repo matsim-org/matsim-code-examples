@@ -11,6 +11,7 @@
 
     <properties>
         <kotlin.version>1.2.0</kotlin.version>
+		<matsim.version>0.11.0-SNAPSHOT</matsim.version>
     </properties>
 
     <repositories>
@@ -45,9 +46,7 @@
 		<dependency>
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
- 			<!--<version>0.10.0</version>-->
-			<!--<version>0.11.0-apr17</version>-->
-			<version>0.11.0-SNAPSHOT</version>
+			<version>${matsim.version}</version>
 		</dependency>
 
 		<!-- to get MatsimTestUtils -->
@@ -55,56 +54,42 @@
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<type>test-jar</type>
- 			<!--<version>0.10.0</version>-->
-			<!--<version>0.11.0-apr17</version>-->
-			<version>0.11.0-SNAPSHOT</version>
+			<version>${matsim.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!--to get ExamplesUtils:-->
+		<dependency>
+			<groupId>org.matsim</groupId>
+			<artifactId>matsim-examples</artifactId>
+			<version>${matsim.version}</version>
 		</dependency>
 
 		<!-- Include some MATSim extensions -->
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>minibus</artifactId>
- 			<!--<version>0.10.0</version>-->
-			<!--<version>0.11.0-apr17</version>-->
-			<version>0.11.0-SNAPSHOT</version>
+			<version>${matsim.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>otfvis</artifactId>
- 			<!--<version>0.10.0</version>-->
-			<!--<version>0.11.0-apr17</version>-->
-			<version>0.11.0-SNAPSHOT</version>
+			<version>${matsim.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>roadpricing</artifactId>
- 			<!--<version>0.10.0</version>-->
-			<!--<version>0.11.0-apr17</version>-->
-			<version>0.11.0-SNAPSHOT</version>
-		</dependency>
-
-		<!--MATSim test infrastructure.  Not transitive.-->
-		<dependency>
-			<groupId>org.matsim</groupId>
-			<artifactId>matsim-examples</artifactId>
- 			<!--<version>0.10.0</version>-->
-			<!--<version>0.11.0-apr17</version>-->
-			<version>0.11.0-SNAPSHOT</version>
+			<version>${matsim.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>taxi</artifactId>
- 			<!--<version>0.10.0</version>-->
-			<!--<version>0.11.0-apr17</version>-->
-			<version>0.11.0-SNAPSHOT</version>
+			<version>${matsim.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>av</artifactId>
- 			<!--<version>0.10.0</version>-->
-			<!--<version>0.11.0-apr17</version>-->
-			<version>0.11.0-SNAPSHOT</version>
+			<version>${matsim.version}</version>
 		</dependency>
 
 		<!-- Include the JUnit testing library -->
