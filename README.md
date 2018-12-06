@@ -9,3 +9,7 @@ A repository containing code examples around MATSim
 
 The default branch is the current release. 
 The current release is 0.10.x, so the default branch of this project here is 0.10.x. Once we release 0.11.x, 0.10.x should remain in place, but the default branch should be moved to 0.11.x. The hope is that we get somewhat more stable links in q&a, because if someone browses on github, (s)he will do this in the default branch, and thus in most cases copy/paste that default branch link into the q&a.
+
+### Issue Tracker
+
+You can use the [issue tracker](https://github.com/matsim-org/matsim-code-examples/issues) for MATSim related questions. Since this is a community service, feel free to participate and also post answers!
