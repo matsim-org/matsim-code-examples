@@ -11,7 +11,7 @@
 
     <properties>
         <kotlin.version>1.2.0</kotlin.version>
-		<matsim.version>0.11.0-SNAPSHOT</matsim.version>
+	<matsim.version>0.11.0-SNAPSHOT</matsim.version>
     </properties>
 
     <repositories>
