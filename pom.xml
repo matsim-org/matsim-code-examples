@@ -10,7 +10,10 @@
 	<description>MATSim code example</description>
 
     <properties>
-        <kotlin.version>1.2.0</kotlin.version>
+	<!--weekly "release" (recommended):-->
+	<!--<matsim.version>0.11.0-2019w01-SNAPSHOT</matsim.version>-->
+
+	<!--development head:-->
 	<matsim.version>0.11.0-SNAPSHOT</matsim.version>
     </properties>
 
