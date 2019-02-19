@@ -13,7 +13,8 @@ The current release is 0.10.x, so the default branch of this project here is 0.1
 ### Issue Tracker
 
 You can use the [issue tracker](https://github.com/matsim-org/matsim-code-examples/issues) for MATSim related questions. Before opening a new issue, also check out the "closed" section - perhaps your question has already been answered.
-If you have troubles with a specific simulation run, *please* add the relevant parts of the log file to your question!
+Please keep things in English.
+If you have troubles with a specific simulation run, *please* add the relevant parts of the log file to your question! 
 
 Since this is a community service, feel free to participate and also post answers!
 
