@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.matsim</groupId>
@@ -9,16 +9,16 @@
 	<name>MATSim code example</name>
 	<description>MATSim code example</description>
 
-    <properties>
-	<!--weekly "release" (recommended):-->
-	<!--<matsim.version>0.11.0-2019w01-SNAPSHOT</matsim.version>-->
+	<properties>
+		<!--weekly "release" (recommended):-->
+		<!--<matsim.version>0.11.0-2019w01-SNAPSHOT</matsim.version>-->
 
-	<!--development head:-->
-	<matsim.version>0.11.0-SNAPSHOT</matsim.version>
-    </properties>
+		<!--development head:-->
+		<matsim.version>0.11.0-SNAPSHOT</matsim.version>
+	</properties>
 
-    <repositories>
-      <!--Note that in general repositories are not transitive, so they need to be repeated at every level where needed.-->
+	<repositories>
+		<!--Note that in general repositories are not transitive, so they need to be repeated at every level where needed.-->
 		<repository>
 			<!-- Geotools is not on Maven central -->
 			<id>osgeo</id>
@@ -31,17 +31,17 @@
 			<url>https://dl.bintray.com/matsim/matsim</url>
 		</repository>
 		<repository>
-		  <!-- For MATSim monthly snapshots: -->
-		  <id>bintray-matsim-eth-matsim</id>
-		  <name>bintray</name>
-		  <url>https://dl.bintray.com/matsim-eth/matsim</url>
+			<!-- For MATSim monthly snapshots: -->
+			<id>bintray-matsim-eth-matsim</id>
+			<name>bintray</name>
+			<url>https://dl.bintray.com/matsim-eth/matsim</url>
 		</repository>
- 		<repository>
-		  <!-- For MATSim snapshots: -->
-		  <id>ojo-snapshots</id>
-		  <url>http://oss.jfrog.org/libs-snapshot</url>
-		</repository>	
-	</repositories>	
+		<repository>
+			<!-- For MATSim snapshots: -->
+			<id>ojo-snapshots</id>
+			<url>http://oss.jfrog.org/libs-snapshot</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 
@@ -94,7 +94,7 @@
 			<artifactId>av</artifactId>
 			<version>${matsim.version}</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>freight</artifactId>
 			<version>${matsim.version}</version>
@@ -107,17 +107,17 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>
-            <plugin>
-			  <groupId>org.apache.maven.plugins</groupId>
-			  <artifactId>maven-eclipse-plugin</artifactId>
-			  <configuration>
-			    <downloadSources>true</downloadSources>
-			    <downloadJavadocs>true</downloadJavadocs>
-			  </configuration>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -141,44 +141,44 @@
 					</execution>
 				</executions>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                    <showWarnings>false</showWarnings>
-                    <showDeprecation>false</showDeprecation>
-                    <encoding>UTF-8</encoding>
-                    <!-- configure initial and maximal memory for compiling -->
-                    <fork>true</fork>
-                    <meminitial>128m</meminitial>
-                    <maxmem>512m</maxmem>
-                    <compilerArguments>
-                        <Xmaxwarns>4000</Xmaxwarns>
-                        <Xmaxerrs>100</Xmaxerrs>
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-        </plugins>
-		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>testCompile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+					<showWarnings>false</showWarnings>
+					<showDeprecation>false</showDeprecation>
+					<encoding>UTF-8</encoding>
+					<!-- configure initial and maximal memory for compiling -->
+					<fork>true</fork>
+					<meminitial>128m</meminitial>
+					<maxmem>512m</maxmem>
+					<compilerArguments>
+						<Xmaxwarns>4000</Xmaxwarns>
+						<Xmaxerrs>100</Xmaxerrs>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+		</plugins>
+
 	</build>
 	<profiles>
 		<profile>

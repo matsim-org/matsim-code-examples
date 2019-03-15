@@ -87,6 +87,8 @@
 	
 	<module name="travelTimeCalculator" >
 		<param name="calculateLinkToLinkTravelTimes" value="true" />
+		<param name="separateModes" value="false" />
+		<!--(separateModes=true currently not implemented for link2link routing, although it should not be difficult to do that.)-->
 	</module>
 
 </config>
