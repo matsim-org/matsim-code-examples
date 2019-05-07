@@ -103,6 +103,18 @@
 			<version>${matsim.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+
 		<!-- Include the JUnit testing library -->
 		<dependency>
 			<groupId>junit</groupId>
