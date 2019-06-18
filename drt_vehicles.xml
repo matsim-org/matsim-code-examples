@@ -1,0 +1,14 @@
+<!DOCTYPE vehicles SYSTEM "http://matsim.org/files/dtd/dvrp_vehicles_v1.dtd">
+
+<vehicles>
+	<vehicle id="DRT-0" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-1" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-2" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-3" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-4" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-5" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-6" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-7" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-8" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+	<vehicle id="DRT-9" start_link="0-1" t_0="0.0" t_1="129600.0" capacity="4"/>
+</vehicles>
