@@ -46,9 +46,6 @@ public class ExamplesByConfigfileTest {
 		Collection<Object[]> filesToRun = new ArrayList<>();
 
 		filesToRun.add(new Object [] {"scenarios/equil/config.xml"});
-		// yy commented out because output ends up in "./output" instead of "./output/examples", and thus the input dir is not cleaned by the
-		// command below.  Should be changed, but are we destroying something if we do? kai, mar'17
-		
 		filesToRun.add(new Object [] {"scenarios/equil/example1-config.xml"});
 		filesToRun.add(new Object [] {"scenarios/equil/example2-config.xml"});
 		filesToRun.add(new Object [] {"scenarios/equil/example5-config.xml"});

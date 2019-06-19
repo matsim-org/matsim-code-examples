@@ -66,6 +66,7 @@ public class RunWithinDayReplanningAgentExample {
 //		config.network().setInputFile("scenarios/siouxfalls/network-wo-dummy-node.xml") ;
 		config.network().setInputFile(networkUrl.toString());
 		config.controler().setLastIteration(0) ;
+		config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
 		config.qsim().setEndTime(26.*3600) ;
 		config.qsim().setSnapshotStyle( QSimConfigGroup.SnapshotStyle.queue ) ;
 		config.controler().setOverwriteFileSetting(OverwriteFileSetting.deleteDirectoryIfExists);
@@ -92,7 +93,7 @@ public class RunWithinDayReplanningAgentExample {
 							public void insertAgentsIntoMobsim() {
 								final Id<Link> startLinkId = (Id<Link>) (sc.getNetwork().getLinks().keySet().toArray())[0];
 								// (replace by meaningful link ID)
-								
+
 								final MobsimVehicle veh = new QVehicle(new VehicleImpl(Id.create("testVehicle", Vehicle.class), basicVehicleType));
 								qsim.addParkedVehicle(veh, startLinkId);
 								qsim.insertAgentIntoMobsim(new MyAgent(sc, ev, qsim, startLinkId, veh));
