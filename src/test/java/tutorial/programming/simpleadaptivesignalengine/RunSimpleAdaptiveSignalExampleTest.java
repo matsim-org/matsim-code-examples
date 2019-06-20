@@ -47,7 +47,7 @@ public class RunSimpleAdaptiveSignalExampleTest {
 		final String expected = testUtils.getClassInputDirectory() + "output_events.xml.gz";
 		final String actual = testUtils.getOutputDirectory() + "output_events.xml.gz";
 		
-		int result = EventsFileComparator.compare(expected, actual);
+		EventsFileComparator.Result result = EventsFileComparator.compare(expected, actual );
 		// matsim-0.10.x returns an enum here, which is more expressive. kai, feb'18
 		
 //		Assert.assertEquals("different event files",

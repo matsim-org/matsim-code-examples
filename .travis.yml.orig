@@ -1,0 +1,21 @@
+language: java
+
+jdk: openjdk11
+
+script:
+  - mvn package -B -Dmatsim.preferLocalDtds=true -Dmaven.test.redirectTestOutputToFile
+# --fail-at-end
+<<<<<<< HEAD
+||||||| merged common ancestors
+# -Dmaven.test.redirectTestOutputToFile 
+=======
+
+>>>>>>> 0.9.x
+env:
+  global:
+    - MAVEN_OPTS="-Xmx2g"
+
+cache:
+  directories:
+  - $HOME/.m2
+

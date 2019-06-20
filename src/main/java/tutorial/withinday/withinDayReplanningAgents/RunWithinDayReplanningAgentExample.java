@@ -32,6 +32,7 @@ import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.groups.QSimConfigGroup;
 import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
+import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
 import org.matsim.core.gbl.MatsimRandom;
 import org.matsim.core.mobsim.framework.AgentSource;
@@ -66,7 +67,7 @@ public class RunWithinDayReplanningAgentExample {
 //		config.network().setInputFile("scenarios/siouxfalls/network-wo-dummy-node.xml") ;
 		config.network().setInputFile(networkUrl.toString());
 		config.controler().setLastIteration(0) ;
-		config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
+		config.controler().setOverwriteFileSetting( OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists );
 		config.qsim().setEndTime(26.*3600) ;
 		config.qsim().setSnapshotStyle( QSimConfigGroup.SnapshotStyle.queue ) ;
 		config.controler().setOverwriteFileSetting(OverwriteFileSetting.deleteDirectoryIfExists);
