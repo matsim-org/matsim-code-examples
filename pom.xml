@@ -146,17 +146,18 @@
 		</dependency>
 
 		<!-- Include SBB MATSim Extensions local version: -->
-		<dependency>
-			<groupId>ch.sbb</groupId>
-			<artifactId>matsim-sbb-extensions</artifactId>
-			<version>11.3-SNAPSHOT</version>
-		</dependency>
+		<!--<dependency>-->
+		<!--	<groupId>ch.sbb</groupId>-->
+		<!--	<artifactId>matsim-sbb-extensions</artifactId>-->
+		<!--	<version>11.3-SNAPSHOT</version>-->
+		<!--</dependency>-->
+
 		<!-- Include SBB MATSim Extensions from jitpack: -->
-<!--		<dependency>-->
-<!--			<groupId>com.github.SchweizerischeBundesbahnen</groupId>-->
-<!--			<artifactId>matsim-sbb-extensions</artifactId>-->
-<!--			<version>v11.2</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.github.SchweizerischeBundesbahnen</groupId>
+			<artifactId>matsim-sbb-extensions</artifactId>
+			<version>v11.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
