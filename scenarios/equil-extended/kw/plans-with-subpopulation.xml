@@ -3,17 +3,11 @@
 
 <population>
 
-	<attributes>
-		<attribute name="coordinateReferenceSystem" class="java.lang.String" >Atlantis</attribute>
-	</attributes>
 
 
 <!-- ====================================================================== -->
 
 	<person id="reroute_0">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -32,9 +26,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_1">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -53,9 +44,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_10">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -74,9 +62,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_11">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -95,9 +80,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_12">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -116,9 +98,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_13">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -137,9 +116,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_14">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -158,9 +134,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_15">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -179,9 +152,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_16">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -200,9 +170,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_17">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -221,9 +188,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_18">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -242,9 +206,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_19">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -263,9 +224,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_2">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -284,9 +242,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_20">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -305,9 +260,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_21">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -326,9 +278,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_22">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -347,9 +296,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_23">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -368,9 +314,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_24">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -389,9 +332,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_25">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -410,9 +350,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_26">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -431,9 +368,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_27">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -452,9 +386,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_28">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -473,9 +404,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_29">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -494,9 +422,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_3">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -515,9 +440,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_30">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -536,9 +458,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_31">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -557,9 +476,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_32">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -578,9 +494,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_33">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -599,9 +512,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_34">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -620,9 +530,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_35">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -641,9 +548,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_36">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -662,9 +566,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_37">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -683,9 +584,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_38">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -704,9 +602,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_39">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -725,9 +620,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_4">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -746,9 +638,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_40">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -767,9 +656,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_41">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -788,9 +674,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_42">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -809,9 +692,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_43">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -830,9 +710,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_44">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -851,9 +728,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_45">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -872,9 +746,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_46">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -893,9 +764,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_47">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -914,9 +782,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_48">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -935,9 +800,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_49">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -956,9 +818,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_5">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -977,9 +836,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_50">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -998,9 +854,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_51">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1019,9 +872,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_52">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1040,9 +890,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_53">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1061,9 +908,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_54">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1082,9 +926,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_55">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1103,9 +944,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_56">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1124,9 +962,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_57">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1145,9 +980,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_58">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1166,9 +998,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_59">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1187,9 +1016,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_6">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1208,9 +1034,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_60">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1229,9 +1052,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_61">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1250,9 +1070,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_62">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1271,9 +1088,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_63">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1292,9 +1106,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_64">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1313,9 +1124,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_65">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1334,9 +1142,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_66">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1355,9 +1160,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_67">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1376,9 +1178,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_68">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1397,9 +1196,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_69">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1418,9 +1214,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_7">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1439,9 +1232,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_70">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1460,9 +1250,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_71">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1481,9 +1268,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_72">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1502,9 +1286,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_73">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1523,9 +1304,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_74">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1544,9 +1322,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_75">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1565,9 +1340,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_76">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1586,9 +1358,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_77">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1607,9 +1376,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_78">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1628,9 +1394,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_79">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1649,9 +1412,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_8">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1670,9 +1430,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_80">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1691,9 +1448,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_81">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1712,9 +1466,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_82">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1733,9 +1484,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_83">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1754,9 +1502,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_84">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1775,9 +1520,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_85">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1796,9 +1538,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_86">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1817,9 +1556,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_87">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1838,9 +1574,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_88">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1859,9 +1592,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_89">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1880,9 +1610,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_9">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1901,9 +1628,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_90">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1922,9 +1646,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_91">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1943,9 +1664,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_92">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1964,9 +1682,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_93">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -1985,9 +1700,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_94">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2006,9 +1718,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_95">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2027,9 +1736,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_96">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2048,9 +1754,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_97">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2069,9 +1772,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_98">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2090,9 +1790,6 @@
 <!-- ====================================================================== -->
 
 	<person id="reroute_99">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >reroute</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2111,9 +1808,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_0">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2132,9 +1826,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_1">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2153,9 +1844,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_10">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2174,9 +1862,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_11">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2195,9 +1880,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_12">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2216,9 +1898,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_13">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2237,9 +1916,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_14">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2258,9 +1934,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_15">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2279,9 +1952,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_16">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2300,9 +1970,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_17">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2321,9 +1988,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_18">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2342,9 +2006,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_19">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2363,9 +2024,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_2">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2384,9 +2042,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_20">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2405,9 +2060,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_21">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2426,9 +2078,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_22">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2447,9 +2096,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_23">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2468,9 +2114,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_24">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2489,9 +2132,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_25">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2510,9 +2150,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_26">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2531,9 +2168,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_27">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2552,9 +2186,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_28">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2573,9 +2204,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_29">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2594,9 +2222,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_3">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2615,9 +2240,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_30">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2636,9 +2258,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_31">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2657,9 +2276,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_32">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2678,9 +2294,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_33">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2699,9 +2312,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_34">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2720,9 +2330,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_35">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2741,9 +2348,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_36">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2762,9 +2366,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_37">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2783,9 +2384,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_38">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2804,9 +2402,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_39">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2825,9 +2420,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_4">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2846,9 +2438,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_40">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2867,9 +2456,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_41">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2888,9 +2474,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_42">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2909,9 +2492,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_43">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2930,9 +2510,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_44">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2951,9 +2528,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_45">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2972,9 +2546,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_46">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -2993,9 +2564,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_47">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3014,9 +2582,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_48">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3035,9 +2600,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_49">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3056,9 +2618,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_5">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3077,9 +2636,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_50">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3098,9 +2654,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_51">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3119,9 +2672,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_52">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3140,9 +2690,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_53">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3161,9 +2708,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_54">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3182,9 +2726,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_55">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3203,9 +2744,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_56">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3224,9 +2762,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_57">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3245,9 +2780,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_58">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3266,9 +2798,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_59">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3287,9 +2816,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_6">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3308,9 +2834,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_60">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3329,9 +2852,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_61">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3350,9 +2870,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_62">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3371,9 +2888,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_63">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3392,9 +2906,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_64">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3413,9 +2924,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_65">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3434,9 +2942,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_66">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3455,9 +2960,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_67">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3476,9 +2978,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_68">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3497,9 +2996,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_69">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3518,9 +3014,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_7">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3539,9 +3032,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_70">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3560,9 +3050,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_71">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3581,9 +3068,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_72">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3602,9 +3086,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_73">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3623,9 +3104,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_74">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3644,9 +3122,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_75">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3665,9 +3140,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_76">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3686,9 +3158,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_77">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3707,9 +3176,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_78">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3728,9 +3194,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_79">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3749,9 +3212,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_8">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3770,9 +3230,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_80">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3791,9 +3248,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_81">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3812,9 +3266,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_82">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3833,9 +3284,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_83">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3854,9 +3302,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_84">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3875,9 +3320,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_85">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3896,9 +3338,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_86">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3917,9 +3356,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_87">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3938,9 +3374,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_88">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3959,9 +3392,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_89">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -3980,9 +3410,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_9">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4001,9 +3428,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_90">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4022,9 +3446,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_91">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4043,9 +3464,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_92">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4064,9 +3482,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_93">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4085,9 +3500,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_94">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4106,9 +3518,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_95">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4127,9 +3536,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_96">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4148,9 +3554,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_97">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4169,9 +3572,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_98">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
@@ -4190,9 +3590,6 @@
 <!-- ====================================================================== -->
 
 	<person id="time_99">
-		<attributes>
-			<attribute name="subpopulation" class="java.lang.String" >time</attribute>
-		</attributes>
 		<plan selected="yes">
 			<activity type="h" x="-20000.0" y="0.0" end_time="06:00:00" >
 			</activity>
