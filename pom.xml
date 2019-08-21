@@ -157,7 +157,7 @@
 		<dependency>
 			<groupId>com.github.vsp-gleich</groupId>
 			<artifactId>matsim-sbb-extensions</artifactId>
-			<version>11.3-vsp-2019-07-24</version>
+			<version>11.5-vsp-2019-08-19</version>
 		</dependency>
 	</dependencies>
 
