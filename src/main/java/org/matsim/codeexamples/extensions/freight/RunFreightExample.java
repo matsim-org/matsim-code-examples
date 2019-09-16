@@ -162,9 +162,9 @@ public class RunFreightExample {
 
 			carrier.setSelectedPlan(newPlan) ;
 
-			//Plot of jesprit solution
-			Plotter plotter = new Plotter(vrp,solution);
-			plotter.plot(config.controler().getOutputDirectory()+ "/jsprit_solution_" + carrier.getId().toString() +".png", carrier.getId().toString());
+			//Plot of jsprit solution - need fix since new (and different) version of JFreeChart in MATSim -> 1.5.0, while  jsprit-analysis use 1.0.19) (jul19)
+			//Plotter plotter = new Plotter(vrp,solution);
+			//plotter.plot(config.controler().getOutputDirectory()+ "/jsprit_solution_" + carrier.getId().toString() +".png", carrier.getId().toString());
 
 			//Print results in console
 			//SolutionPrinter.print(vrp,solution,Print.VERBOSE);
