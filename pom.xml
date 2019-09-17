@@ -179,8 +179,17 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>org.matsim.gui.MATSimGUI</mainClass>
+							<mainClass>org.matsim.codeexamples.gui.MATSimGUI</mainClass>
+
+							<!--	https://stackoverflow.com/questions/7051603/jai-vendorname-null-->
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>
+						<manifestEntries>
+							<!--	https://stackoverflow.com/questions/7051603/jai-vendorname-null-->
+							<Specification-Vendor>org.matsim</Specification-Vendor>
+							<Implementation-Vendor>org.matsim</Implementation-Vendor>
+						</manifestEntries>
 					</archive>
 				</configuration>
 				<executions>
@@ -256,34 +265,34 @@
 					</dependency>
 			</dependencies>
 		</profile>
-		<profile>
-			<id>release</id>
-			<build>
-				<defaultGoal>assembly:assembly</defaultGoal>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<artifactId>maven-assembly-plugin</artifactId>
-							<configuration>
-								<descriptors>
-									<descriptor>src/main/assembly/assembly-release.xml</descriptor>
-								</descriptors>
-							</configuration>
-						</plugin>
-						<plugin>
-							<artifactId>maven-jar-plugin</artifactId>
-							<configuration>
-								<archive>
-									<manifest>
-										<addClasspath>true</addClasspath>
-										<classpathPrefix>libs/</classpathPrefix>
-									</manifest>
-								</archive>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
+<!--		<profile>-->
+<!--			<id>release</id>-->
+<!--			<build>-->
+<!--				<defaultGoal>assembly:assembly</defaultGoal>-->
+<!--				<pluginManagement>-->
+<!--					<plugins>-->
+<!--						<plugin>-->
+<!--							<artifactId>maven-assembly-plugin</artifactId>-->
+<!--							<configuration>-->
+<!--								<descriptors>-->
+<!--									<descriptor>src/main/assembly/assembly-release.xml</descriptor>-->
+<!--								</descriptors>-->
+<!--							</configuration>-->
+<!--						</plugin>-->
+<!--						<plugin>-->
+<!--							<artifactId>maven-jar-plugin</artifactId>-->
+<!--							<configuration>-->
+<!--								<archive>-->
+<!--									<manifest>-->
+<!--										<addClasspath>true</addClasspath>-->
+<!--										<classpathPrefix>libs/</classpathPrefix>-->
+<!--									</manifest>-->
+<!--								</archive>-->
+<!--							</configuration>-->
+<!--						</plugin>-->
+<!--					</plugins>-->
+<!--				</pluginManagement>-->
+<!--			</build>-->
+<!--		</profile>-->
 	</profiles>
 </project>
