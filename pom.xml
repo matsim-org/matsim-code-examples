@@ -58,6 +58,12 @@
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<version>${matsim.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- to get MatsimTestUtils -->
@@ -65,6 +71,12 @@
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<type>test-jar</type>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
 			<version>${matsim.version}</version>
 			<scope>test</scope>
 		</dependency>
@@ -132,12 +144,20 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- Include SBB MATSim Extensions -->
+
+		<!-- Include SBB MATSim Extensions local version: -->
+<!--		<dependency>-->
+<!--			<groupId>ch.sbb</groupId>-->
+<!--			<artifactId>matsim-sbb-extensions</artifactId>-->
+<!--			<version>11.3-SNAPSHOT</version>-->
+<!--		</dependency>-->
+
+		<!-- Include SBB MATSim Extensions from jitpack: -->
+		<!-- Note that this will also pick up the local version if that local version has com.github.XXX as groupId!-->
 		<dependency>
-   			<groupId>com.github.SchweizerischeBundesbahnen</groupId>
-   			<artifactId>matsim-sbb-extensions</artifactId>
-   			<version>v11.2</version>
+			<groupId>com.github.vsp-gleich</groupId>
+			<artifactId>matsim-sbb-extensions</artifactId>
+			<version>11.5-vsp-2019-08-19</version>
 		</dependency>
 	</dependencies>
 
@@ -159,8 +179,17 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>org.matsim.gui.MATSimGUI</mainClass>
+							<mainClass>org.matsim.codeexamples.gui.MATSimGUI</mainClass>
+
+							<!--	https://stackoverflow.com/questions/7051603/jai-vendorname-null-->
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>
+						<manifestEntries>
+							<!--	https://stackoverflow.com/questions/7051603/jai-vendorname-null-->
+							<Specification-Vendor>org.matsim</Specification-Vendor>
+							<Implementation-Vendor>org.matsim</Implementation-Vendor>
+						</manifestEntries>
 					</archive>
 				</configuration>
 				<executions>
@@ -236,34 +265,34 @@
 					</dependency>
 			</dependencies>
 		</profile>
-		<profile>
-			<id>release</id>
-			<build>
-				<defaultGoal>assembly:assembly</defaultGoal>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<artifactId>maven-assembly-plugin</artifactId>
-							<configuration>
-								<descriptors>
-									<descriptor>src/main/assembly/assembly-release.xml</descriptor>
-								</descriptors>
-							</configuration>
-						</plugin>
-						<plugin>
-							<artifactId>maven-jar-plugin</artifactId>
-							<configuration>
-								<archive>
-									<manifest>
-										<addClasspath>true</addClasspath>
-										<classpathPrefix>libs/</classpathPrefix>
-									</manifest>
-								</archive>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
+<!--		<profile>-->
+<!--			<id>release</id>-->
+<!--			<build>-->
+<!--				<defaultGoal>assembly:assembly</defaultGoal>-->
+<!--				<pluginManagement>-->
+<!--					<plugins>-->
+<!--						<plugin>-->
+<!--							<artifactId>maven-assembly-plugin</artifactId>-->
+<!--							<configuration>-->
+<!--								<descriptors>-->
+<!--									<descriptor>src/main/assembly/assembly-release.xml</descriptor>-->
+<!--								</descriptors>-->
+<!--							</configuration>-->
+<!--						</plugin>-->
+<!--						<plugin>-->
+<!--							<artifactId>maven-jar-plugin</artifactId>-->
+<!--							<configuration>-->
+<!--								<archive>-->
+<!--									<manifest>-->
+<!--										<addClasspath>true</addClasspath>-->
+<!--										<classpathPrefix>libs/</classpathPrefix>-->
+<!--									</manifest>-->
+<!--								</archive>-->
+<!--							</configuration>-->
+<!--						</plugin>-->
+<!--					</plugins>-->
+<!--				</pluginManagement>-->
+<!--			</build>-->
+<!--		</profile>-->
 	</profiles>
 </project>
