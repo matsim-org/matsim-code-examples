@@ -157,7 +157,9 @@
 		<dependency>
 			<groupId>com.github.vsp-gleich</groupId>
 			<artifactId>matsim-sbb-extensions</artifactId>
-			<version>11.5-vsp-2019-08-19</version>
+<!--			<version>11.5-vsp-2019-08-19</version>-->
+<!--			<version>11.3-vsp-2019-08-14</version>-->
+			<version>0.10.2-minibus4</version>
 		</dependency>
 	</dependencies>
 
