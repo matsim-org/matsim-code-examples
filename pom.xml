@@ -146,18 +146,18 @@
 		</dependency>
 
 		<!-- Include SBB MATSim Extensions local version: -->
-<!--		<dependency>-->
-<!--			<groupId>ch.sbb</groupId>-->
-<!--			<artifactId>matsim-sbb-extensions</artifactId>-->
-<!--			<version>11.3-SNAPSHOT</version>-->
-<!--		</dependency>-->
+		<!-- <dependency>
+			<groupId>com.github.vsp-gleich</groupId>
+			<artifactId>matsim-sbb-extensions</artifactId>
+			<version>11.6-vsp-2019-SNAPSHOT</version>
+		</dependency>-->
 
 		<!-- Include SBB MATSim Extensions from jitpack: -->
 		<!-- Note that this will also pick up the local version if that local version has com.github.XXX as groupId!-->
 		<dependency>
 			<groupId>com.github.vsp-gleich</groupId>
 			<artifactId>matsim-sbb-extensions</artifactId>
-			<version>11.5-vsp-2019-08-19</version>
+			<version>11.6-vsp-2019-09-20b</version>
 		</dependency>
 	</dependencies>
 
