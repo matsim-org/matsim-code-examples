@@ -46,6 +46,7 @@ class CustomMobSimAgent implements MobsimDriverAgent {
     private MDPState prevState = null;
     private Id<Link> prevAction = null;
     private double prevReward = 0.0;
+    private State state = State.LEG;
     private List<Experience> experiences = new ArrayList<Experience>();
 
     CustomMobSimAgent(Policy policy,
@@ -81,7 +82,7 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
     @Override
     public State getState() {
-        return MobsimAgent.State.LEG ;
+        return state;
     }
 
     @Override
@@ -101,7 +102,7 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
     @Override
     public void setStateToAbort(double now) {
-        throw new UnsupportedOperationException() ;
+        this.state = State.ABORT;
     }
 
     @Override
