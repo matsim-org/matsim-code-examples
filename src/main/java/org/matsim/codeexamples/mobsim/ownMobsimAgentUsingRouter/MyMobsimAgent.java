@@ -132,6 +132,7 @@ class MyMobsimAgent implements MobsimDriverAgent {
 			if ( cnt== idx ) {
 				return link.getId() ;
 			}
+			cnt++;
 		}
 		throw new RuntimeException("should not happen");
 	}

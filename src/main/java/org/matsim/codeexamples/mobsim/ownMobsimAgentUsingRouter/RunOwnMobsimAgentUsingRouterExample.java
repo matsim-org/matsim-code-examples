@@ -49,7 +49,7 @@ import com.google.inject.Provider;
 public class RunOwnMobsimAgentUsingRouterExample {
 
 	public static void main(String[] args) {
-		final Controler controler = new Controler("examples/tutorial/config/example5-config.xml") ;
+		final Controler controler = new Controler("scenarios/equil/example5-config.xml") ;
 		controler.addOverridingModule(new AbstractModule() {
 			@Override
 			public void install() {
