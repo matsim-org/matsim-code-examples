@@ -42,6 +42,11 @@ public class RunMDPExample {
 
         final Controler controler = new Controler(scenario);
 
+        final StateMonitor stateMonitor  = new StateMonitor();
+
+        controler.getEvents().addHandler(stateMonitor);
+
+
         controler.addOverridingModule(new AbstractModule() {
 
             @Override
@@ -52,24 +57,36 @@ public class RunMDPExample {
                     @Inject EventsManager eventsManager;
                     @Override
                     public Mobsim get() {
+
                         final QSim qsim = new QSimBuilder(getConfig()).useDefaults().build(scenario, eventsManager);
+
                         qsim.addAgentSource(new AgentSource() {
                             @Override
                             public void insertAgentsIntoMobsim() {
-                                final Id<Link> startingLinkId = Id.createLinkId(1);
-                                final Id<Vehicle> vehicleId = Id.create("myVeh", Vehicle.class);
-                                final VehicleType vehType = VehicleUtils.getDefaultVehicleType();
-                                final VehiclesFactory vehiclesFactory = VehicleUtils.getFactory();
-                                final Vehicle vehicle = vehiclesFactory.createVehicle(vehicleId,vehType);
-                                final QVehicle qveh =  new QVehicleImpl(vehicle);
+                                for(int i = 1; i <= 1;i++) {
+                                    final Id<Link> startingLinkId = Id.createLinkId(i);
+                                    final Id<Vehicle> vehicleId = Id.create("myVeh"+String.valueOf(i), Vehicle.class);
+                                    final VehicleType vehType = VehicleUtils.getDefaultVehicleType();
+                                    final VehiclesFactory vehiclesFactory = VehicleUtils.getFactory();
+                                    final Vehicle vehicle = vehiclesFactory.createVehicle(vehicleId, vehType);
+                                    final QVehicle qveh = new QVehicleImpl(vehicle);
 
-                                qsim.addParkedVehicle(qveh,startingLinkId);
+                                    qsim.addParkedVehicle(qveh, startingLinkId);
 
-                                IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer());
+                                    IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer());
 
-                                MobsimAgent ag = new CustomMobSimAgent(iPolicy,qsim.getSimTimer(),sc,vehicleId,startingLinkId);
+                                    String agentName = "MyAgent"+String.valueOf(i);
 
-                                qsim.insertAgentIntoMobsim(ag);
+                                    MobsimAgent ag = new CustomMobSimAgent(iPolicy,
+                                                                          qsim.getSimTimer(),
+                                                                          sc,
+                                                                          vehicleId,
+                                                                          startingLinkId,
+                                                                          agentName,
+                                                                          stateMonitor);
+
+                                    qsim.insertAgentIntoMobsim(ag);
+                                }
 
                             }
                         });

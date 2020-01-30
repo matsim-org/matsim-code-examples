@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IPolicy {
 
-    public Id<Link> getBestOutgoingLink(MDPState mdpState);
+    public Id<Link> getBestOutgoingLink(MDPState mdpState, Id<Link> currentLink);
 
     public void updatePolicy(List<Experience> experiences);
 }

@@ -23,9 +23,9 @@ public class Policy implements IPolicy {
     }
 
     @Override
-    public Id<Link> getBestOutgoingLink(MDPState mdpState) {
+    public Id<Link> getBestOutgoingLink(MDPState mdpState, Id<Link> currentLink) {
         //currently it is random
-        Object[] outLinks = this.scenario.getNetwork().getLinks().get(mdpState.getCurrentLinkId()).getToNode().getOutLinks().keySet().toArray();
+        Object[] outLinks = this.scenario.getNetwork().getLinks().get(currentLink).getToNode().getOutLinks().keySet().toArray();
         int idx = MatsimRandom.getRandom().nextInt(outLinks.length) ;
         if ( this.mobsimTimer.getTimeOfDay() < 24.*3600 ) {
             return (Id<Link>) outLinks[idx];

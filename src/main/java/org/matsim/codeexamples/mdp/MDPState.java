@@ -1,33 +1,23 @@
 package org.matsim.codeexamples.mdp;
 
 
-import org.matsim.api.core.v01.Id;
-import org.matsim.api.core.v01.network.Link;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MDPState {
 
-    private Id<Link> currentLinkId;
+    private List<Integer> stateVector = new ArrayList<>();
 
-    private Id<Link> destinationLinkId;
-
-    public MDPState(Id<Link> currentLinkId, Id<Link> destinationLinkId) {
-        this.currentLinkId = currentLinkId;
-        this.destinationLinkId = destinationLinkId;
+    public MDPState(List<Integer> stateVector) {
+        for(Integer i: stateVector) {
+            this.stateVector.add(i);
+        }
     }
 
-    public Id<Link> getCurrentLinkId() {
-        return currentLinkId;
+    public List<Integer> getStateVector() {
+        return this.stateVector;
     }
 
-    public void setCurrentLinkId(Id<Link> currentLinkId) {
-        this.currentLinkId = currentLinkId;
-    }
 
-    public Id<Link> getDestinationLinkId() {
-        return destinationLinkId;
-    }
-
-    public void setDestinationLinkId(Id<Link> destinationLinkId) {
-        this.destinationLinkId = destinationLinkId;
-    }
 }

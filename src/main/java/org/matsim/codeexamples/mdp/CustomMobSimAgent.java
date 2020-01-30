@@ -1,5 +1,6 @@
 package org.matsim.codeexamples.mdp;
 
+import org.jfree.util.Log;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
@@ -11,6 +12,7 @@ import org.matsim.codeexamples.mdp.Policy;
 import org.matsim.core.mobsim.framework.MobsimAgent;
 import org.matsim.core.mobsim.framework.MobsimDriverAgent;
 import org.matsim.core.mobsim.framework.MobsimTimer;
+import org.matsim.core.mobsim.qsim.QSim;
 import org.matsim.core.mobsim.qsim.interfaces.MobsimVehicle;
 import org.matsim.facilities.Facility;
 import org.matsim.vehicles.Vehicle;
@@ -48,21 +50,27 @@ class CustomMobSimAgent implements MobsimDriverAgent {
     private double prevReward = 0.0;
     private State state = State.LEG;
     private List<Experience> experiences = new ArrayList<Experience>();
+    private final StateMonitor stateMonitor;
 
     CustomMobSimAgent(IPolicy iPolicy,
                       MobsimTimer mobsimTimer,
                       Scenario scenario,
                       Id<Vehicle> plannedVehicleId,
-                      Id<Link> startingLinkId) {
-        this.id = Id.createPersonId( "MyMobsimAgent") ;
-        this.iPolicy = iPolicy ;
-        this.mobsimTimer = mobsimTimer ;
-        this.scenario = scenario ;
-        this.linkId = startingLinkId ;
-        this.destinationLinkId = getRandomLink() ;
-        this.plannedVehicleId = plannedVehicleId;
+                      Id<Link> startingLinkId,
+                      String agentName,
+                      StateMonitor stateMonitor) {
 
-        log.info("Starting Link: " + startingLinkId + " Destination Link Id " + destinationLinkId);
+        this.id = Id.createPersonId(agentName);
+        this.iPolicy = iPolicy;
+        this.mobsimTimer = mobsimTimer;
+        this.scenario = scenario;
+        this.linkId = startingLinkId;
+        this.destinationLinkId = getRandomLink();
+        this.plannedVehicleId = plannedVehicleId;
+        this.stateMonitor =  stateMonitor;
+
+        log.info("Number of links: " + this.scenario.getNetwork().getLinks().size());
+
     }
 
     @Override
@@ -128,7 +136,8 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
 
     private MDPState getCurrentMDPState() {
-        MDPState state = new MDPState(this.linkId, this.destinationLinkId);
+        MDPState state = new MDPState(this.stateMonitor.getState());
+        log.info("Current State : "+ state.getStateVector());
         return state;
     }
 
@@ -140,7 +149,6 @@ class CustomMobSimAgent implements MobsimDriverAgent {
     }
 
     private void addToExperiences() {
-        log.info("Adding to experience");
         if(this.prevState == null) {
             return;
         }
@@ -151,12 +159,17 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
     @Override
     public Id<Link> chooseNextLinkId() {
-        log.info("Current Link Id: " + this.getCurrentLinkId());
-        log.info("Choosing next link Id");
-        addToExperiences(); // collect experience to be used for training
-        Id<Link> nextLink = iPolicy.getBestOutgoingLink(getCurrentMDPState());
 
-        log.info("Chose link: " + nextLink);
+        log.info("Agent Id: " + this.id + " Current Link Id: " + this.getCurrentLinkId());
+
+        log.info("Agent Id: " + this.id+" Choosing next link Id");
+
+        addToExperiences(); // collect experience to be used for training
+
+        Id<Link> nextLink = iPolicy.getBestOutgoingLink(getCurrentMDPState(), this.linkId);
+
+        log.info("Agent Id: "+this.id+" Chose link: " + nextLink);
+
         this.prevAction = nextLink;
         this.prevState = getCurrentMDPState();
         this.prevReward = getLastActionReward();
