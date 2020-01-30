@@ -36,7 +36,7 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
     private Id<Vehicle> plannedVehicleId;
     private Id<Person> id;
-    private Policy policy;
+    private IPolicy iPolicy;
     private Id<Link> linkId;
     private MobsimVehicle vehicle;
     private MobsimTimer mobsimTimer;
@@ -49,13 +49,13 @@ class CustomMobSimAgent implements MobsimDriverAgent {
     private State state = State.LEG;
     private List<Experience> experiences = new ArrayList<Experience>();
 
-    CustomMobSimAgent(Policy policy,
+    CustomMobSimAgent(IPolicy iPolicy,
                       MobsimTimer mobsimTimer,
                       Scenario scenario,
                       Id<Vehicle> plannedVehicleId,
                       Id<Link> startingLinkId) {
         this.id = Id.createPersonId( "MyMobsimAgent") ;
-        this.policy = policy ;
+        this.iPolicy = iPolicy ;
         this.mobsimTimer = mobsimTimer ;
         this.scenario = scenario ;
         this.linkId = startingLinkId ;
@@ -154,7 +154,7 @@ class CustomMobSimAgent implements MobsimDriverAgent {
         log.info("Current Link Id: " + this.getCurrentLinkId());
         log.info("Choosing next link Id");
         addToExperiences(); // collect experience to be used for training
-        Id<Link> nextLink = this.policy.getBestOutgoingLink(getCurrentMDPState());
+        Id<Link> nextLink = iPolicy.getBestOutgoingLink(getCurrentMDPState());
 
         log.info("Chose link: " + nextLink);
         this.prevAction = nextLink;

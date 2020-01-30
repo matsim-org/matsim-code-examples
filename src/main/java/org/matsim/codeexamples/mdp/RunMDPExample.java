@@ -65,9 +65,9 @@ public class RunMDPExample {
 
                                 qsim.addParkedVehicle(qveh,startingLinkId);
 
-                                Policy policy = new Policy(null, sc, qsim.getSimTimer());
+                                IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer());
 
-                                MobsimAgent ag = new CustomMobSimAgent(policy,qsim.getSimTimer(),sc,vehicleId,startingLinkId);
+                                MobsimAgent ag = new CustomMobSimAgent(iPolicy,qsim.getSimTimer(),sc,vehicleId,startingLinkId);
 
                                 qsim.insertAgentIntoMobsim(ag);
 
