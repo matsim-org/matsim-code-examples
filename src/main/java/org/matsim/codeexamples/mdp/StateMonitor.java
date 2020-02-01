@@ -4,6 +4,7 @@ import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.events.*;
 import org.matsim.api.core.v01.network.Link;
+import org.matsim.core.controler.events.IterationEndsEvent;
 import org.matsim.core.events.handler.BasicEventHandler;
 
 import java.util.ArrayList;
@@ -52,7 +53,6 @@ public class StateMonitor implements BasicEventHandler {
 
         if ( arrivalMode.equals( TransportMode.car ) ) {
             if ( nVehs.get( linkId ) != null ) {
-                if(linkId == null) return;
                 Integer val = nVehs.get( linkId ) ;
                 if(val == 0) return;
                 val = val - 1;
@@ -67,6 +67,9 @@ public class StateMonitor implements BasicEventHandler {
 
     @Override
     public void reset(int iteration) {
+        log.info("New iteration starting. Resetting state vector");
+        //reset state
+        nVehs.clear();
 
     }
 

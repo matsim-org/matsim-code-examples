@@ -36,7 +36,7 @@ public class RunMDPExample {
         URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");
         config = ConfigUtils.loadConfig(url);
         config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
-        config.controler().setLastIteration(0);
+        config.controler().setLastIteration(2);
 
         Scenario scenario = ScenarioUtils.loadScenario(config);
 
@@ -44,7 +44,10 @@ public class RunMDPExample {
 
         final StateMonitor stateMonitor  = new StateMonitor();
 
+        StateTransitionCalculator stateTransitionCalculator = new StateTransitionCalculator();
+
         controler.getEvents().addHandler(stateMonitor);
+        controler.getEvents().addHandler(stateTransitionCalculator);
 
 
         controler.addOverridingModule(new AbstractModule() {
