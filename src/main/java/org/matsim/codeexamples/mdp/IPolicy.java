@@ -11,4 +11,6 @@ public interface IPolicy {
     public Id<Link> getBestOutgoingLink(MDPState mdpState, Id<Link> currentLink);
 
     public void updatePolicy(List<Experience> experiences);
+
+    public void addReward(double reward);
 }

@@ -136,16 +136,19 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
 
     private MDPState getCurrentMDPState() {
-        MDPState state = new MDPState(this.stateMonitor.getState());
+        MDPState state = new MDPState(this.stateMonitor.getState(), getCurrentLinkId(),mobsimTimer.getTimeOfDay());
         log.info("Current State : "+ state.getStateVector());
         return state;
     }
 
     private double getLastActionReward() {
+
+        double reward = -1.0;
         if(this.linkId.equals(this.destinationLinkId)) {
-            return 10.0;
+            reward = 10.0;
         }
-        return -1.0;
+        this.iPolicy.addReward(reward);
+        return reward;
     }
 
     private void addToExperiences() {
@@ -164,7 +167,7 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
         log.info("Agent Id: " + this.id+" Choosing next link Id");
 
-        addToExperiences(); // collect experience to be used for training
+        //addToExperiences(); // collect experience to be used for training
 
         Id<Link> nextLink = iPolicy.getBestOutgoingLink(getCurrentMDPState(), this.linkId);
 

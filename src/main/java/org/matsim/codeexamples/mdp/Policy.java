@@ -3,10 +3,10 @@ package org.matsim.codeexamples.mdp;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
-import org.matsim.core.gbl.MatsimRandom;
 import org.matsim.core.mobsim.framework.MobsimTimer;
 import org.matsim.core.router.TripRouter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Policy implements IPolicy {
@@ -16,26 +16,44 @@ public class Policy implements IPolicy {
 
     private MobsimTimer mobsimTimer;
 
-    public Policy(TripRouter router, Scenario scenario, MobsimTimer mobsimTimer) {
+    private ActorCriticInterface actorCriticInterface;
+
+    public Policy(TripRouter router,
+                  Scenario scenario,
+                  MobsimTimer mobsimTimer,
+                  ActorCriticInterface actorCriticInterface) {
         this.router = router;
         this.scenario = scenario;
         this.mobsimTimer = mobsimTimer;
+        this.actorCriticInterface = actorCriticInterface;
     }
 
     @Override
     public Id<Link> getBestOutgoingLink(MDPState mdpState, Id<Link> currentLink) {
-        //currently it is random
         Object[] outLinks = this.scenario.getNetwork().getLinks().get(currentLink).getToNode().getOutLinks().keySet().toArray();
-        int idx = MatsimRandom.getRandom().nextInt(outLinks.length) ;
-        if ( this.mobsimTimer.getTimeOfDay() < 24.*3600 ) {
-            return (Id<Link>) outLinks[idx];
+        List<Integer> outgoingLinks = new ArrayList<Integer>();
+        if (mobsimTimer.getTimeOfDay() >= 24*3600) {
+            return null;
         }
-        return null;
+        for(Object obj : outLinks) {
+            String strLink = ((Id<Link>) obj).toString();
+            int link = Integer.valueOf(strLink);
+            outgoingLinks.add(link);
+        }
+        if(outgoingLinks.size() == 0) return null;
+        int action = actorCriticInterface.getAction(mdpState.getStateVector(),outgoingLinks);
+        Id<Link> chosenLink = Id.createLinkId(action + 1);
+        return chosenLink;
 
     }
 
     @Override
     public void updatePolicy(List<Experience> experiences) {
-        throw new RuntimeException("Not implemented yet");
+       actorCriticInterface.updateModels();
+    }
+
+    @Override
+    public void addReward(double reward) {
+        actorCriticInterface.addReward(reward);
     }
 }

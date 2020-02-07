@@ -44,6 +44,7 @@ class RunOwnMoneyScoringExample {
 		// ---
 
 		final Controler controler = new Controler( scenario );
+
 		controler.addOverridingModule(new AbstractModule() {
 			@Override
 			public void install() {

@@ -36,7 +36,7 @@ public class RunMDPExample {
         URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");
         config = ConfigUtils.loadConfig(url);
         config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
-        config.controler().setLastIteration(2);
+        config.controler().setLastIteration(1);
 
         Scenario scenario = ScenarioUtils.loadScenario(config);
 
@@ -49,6 +49,12 @@ public class RunMDPExample {
         controler.getEvents().addHandler(stateMonitor);
         controler.getEvents().addHandler(stateTransitionCalculator);
 
+        ActorCriticInterface actorCriticInterface = new ActorCriticInterface();
+        actorCriticInterface.initializeModels(25,23);
+
+        final ModelUpdateMonitor modelUpdateMonitor = new ModelUpdateMonitor(actorCriticInterface);
+
+        controler.getEvents().addHandler(modelUpdateMonitor);
 
         controler.addOverridingModule(new AbstractModule() {
 
@@ -76,7 +82,8 @@ public class RunMDPExample {
 
                                     qsim.addParkedVehicle(qveh, startingLinkId);
 
-                                    IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer());
+
+                                    IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer(),actorCriticInterface );
 
                                     String agentName = "MyAgent"+String.valueOf(i);
 
