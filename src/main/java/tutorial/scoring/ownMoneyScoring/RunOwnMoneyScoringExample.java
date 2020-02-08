@@ -41,7 +41,7 @@ class RunOwnMoneyScoringExample {
 			person.getAttributes().putAttribute(NET_INCOME_PER_MONTH, 500. + MatsimRandom.getRandom().nextDouble() * 4000. ) ;
 		}
 
-		// ---
+		// ---3
 
 		final Controler controler = new Controler( scenario );
 

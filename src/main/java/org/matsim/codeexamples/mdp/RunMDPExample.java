@@ -50,7 +50,8 @@ public class RunMDPExample {
         controler.getEvents().addHandler(stateTransitionCalculator);
 
         ActorCriticInterface actorCriticInterface = new ActorCriticInterface();
-        actorCriticInterface.initializeModels(25,23);
+        //State includes number of vehicles in 23 links, work, home, the current link id and time of day.
+        actorCriticInterface.initializeModels(27,23);
 
         final ModelUpdateMonitor modelUpdateMonitor = new ModelUpdateMonitor(actorCriticInterface);
 

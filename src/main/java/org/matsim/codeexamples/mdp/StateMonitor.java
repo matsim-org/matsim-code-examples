@@ -23,6 +23,42 @@ public class StateMonitor implements BasicEventHandler {
     public void handleEvent(Event event) {
         Id<Link> linkId = null ;
 
+        if(event instanceof ActivityStartEvent) {
+            String activityType = ((ActivityStartEvent)event).getActType();
+           if(activityType.equals("h")) {
+               linkId = Id.createLinkId(24); // assign link id 24 if it is home
+           }
+           else if(activityType.equals("w")) {
+               linkId = Id.createLinkId(25); // assign link id 25 if it is work
+           }
+
+           if(nVehs.get(linkId) == null) {
+               nVehs.put(linkId,0);
+           }
+           int n = nVehs.get(linkId);
+           n += 1;
+           nVehs.put(linkId,n);
+           return;
+        }
+
+        if(event instanceof ActivityEndEvent) {
+            String activityType = ((ActivityEndEvent)event).getActType();
+            if(activityType.equals("h")) {
+                linkId = Id.createLinkId(24); // assign link id 24 if it is home
+            }
+            else if(activityType.equals("w")) {
+                linkId = Id.createLinkId(25); // assign link id 25 if it is work
+            }
+
+            if(nVehs.get(linkId) == null) {
+               return;
+            }
+            int n = nVehs.get(linkId);
+            n -= 1;
+            nVehs.put(linkId,n);
+            return;
+        }
+
         if ( event instanceof LinkEnterEvent ) {
             linkId = ((LinkEnterEvent) event).getLinkId() ;
         } else if ( event instanceof VehicleEntersTrafficEvent ) {
@@ -76,7 +112,7 @@ public class StateMonitor implements BasicEventHandler {
     public List<Integer> getState() {
         List<Integer> stateVector = new ArrayList<>();
 
-        for(int i = 1;i <= 23;i++) {
+        for(int i = 1;i <= 25;i++) {
             Id<Link> linkId = Id.createLinkId(i);
             if(nVehs.get(linkId) == null) {
                 stateVector.add(0);
