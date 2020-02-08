@@ -1,4 +1,4 @@
-package org.matsim.codeexamples.mdp;
+package org.matsim.codeexamples.mdp.event.handlers;
 
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.events.Event;
@@ -52,7 +52,6 @@ public class StateTransitionCalculator implements BasicEventHandler {
         if(linkTransition.getFromLinkId() != null && linkTransition.getToLinkId() != null) {
             int i = Integer.valueOf(linkTransition.getFromLinkId().toString()) - 1;
             int j = Integer.valueOf(linkTransition.getToLinkId().toString()) - 1;
-            log.info("Updating state transition matrix for fromLink = " + (i+1) + " and toLink = " + (j+1));
             transitionCount[i][j] += 1;
         }
     }
@@ -66,6 +65,7 @@ public class StateTransitionCalculator implements BasicEventHandler {
         if(event instanceof LinkEnterEvent) {
             toLink = ( (LinkEnterEvent)event).getLinkId();
             vehicleId = ((LinkEnterEvent)event).getVehicleId();
+            log.info("PROCESSING VEHICLE ID: "+((LinkEnterEvent) event).getVehicleId());
             if(lastKnownTransition.get(vehicleId) == null) {
                 lastKnownTransition.put(vehicleId, new LinkTransition());
             }

@@ -4,6 +4,10 @@ package org.matsim.codeexamples.mdp;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
+import org.matsim.api.core.v01.population.*;
+import org.matsim.codeexamples.mdp.event.handlers.CustomScoring;
+import org.matsim.codeexamples.mdp.event.handlers.StateMonitor;
+import org.matsim.codeexamples.mdp.event.handlers.StateTransitionCalculator;
 import org.matsim.core.api.experimental.events.EventsManager;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
@@ -26,9 +30,11 @@ import org.matsim.vehicles.VehiclesFactory;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import java.net.URL;
-import java.util.Collection;
+import java.util.logging.Logger;
 
 public class RunMDPExample {
+
+    private static Logger log = Logger.getLogger("RunMDPExample");
 
     public static void main(String[] args) {
         Config config = null;
@@ -40,22 +46,29 @@ public class RunMDPExample {
 
         Scenario scenario = ScenarioUtils.loadScenario(config);
 
+
         final Controler controler = new Controler(scenario);
 
         final StateMonitor stateMonitor  = new StateMonitor();
 
         StateTransitionCalculator stateTransitionCalculator = new StateTransitionCalculator();
 
+        CustomScoring customScoring = new CustomScoring();
+
         controler.getEvents().addHandler(stateMonitor);
         controler.getEvents().addHandler(stateTransitionCalculator);
 
         ActorCriticInterface actorCriticInterface = new ActorCriticInterface();
         //State includes number of vehicles in 23 links, work, home, the current link id and time of day.
+
         actorCriticInterface.initializeModels(27,23);
 
         final ModelUpdateMonitor modelUpdateMonitor = new ModelUpdateMonitor(actorCriticInterface);
 
         controler.getEvents().addHandler(modelUpdateMonitor);
+
+        controler.getEvents().addHandler(customScoring);
+
 
         controler.addOverridingModule(new AbstractModule() {
 
@@ -81,7 +94,9 @@ public class RunMDPExample {
                                     final Vehicle vehicle = vehiclesFactory.createVehicle(vehicleId, vehType);
                                     final QVehicle qveh = new QVehicleImpl(vehicle);
 
+
                                     qsim.addParkedVehicle(qveh, startingLinkId);
+
 
 
                                     IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer(),actorCriticInterface );
@@ -96,6 +111,24 @@ public class RunMDPExample {
                                                                           agentName,
                                                                           stateMonitor);
 
+                                    PopulationFactory populationFactory = sc.getPopulation().getFactory();
+
+                                    //CREATE CORRESPONDING PERSON OBJECT FOR THE AGENT
+                                    Person person = populationFactory.createPerson(ag.getId());
+                                    Plan plan = populationFactory.createPlan();
+
+                                    //Copy selected plan of person id 1 to our plan
+                                    copyPlans(plan,sc.getPopulation().getPersons().get(Id.createPersonId(1)).getSelectedPlan());
+
+                                    plan.setPerson(person);
+                                    person.addPlan(plan);
+                                    person.setSelectedPlan(plan);
+
+//                                    //ADD IT TO POPULATION
+//                                    sc.getPopulation().addPerson(person);
+
+                                    ((CustomMobSimAgent)ag).setPerson(person);
+
                                     qsim.insertAgentIntoMobsim(ag);
                                 }
 
@@ -109,6 +142,18 @@ public class RunMDPExample {
         });
 
         controler.run();
+
+    }
+
+    private static void copyPlans(Plan destPlan, Plan srcPlan) {
+        for(PlanElement planElement: srcPlan.getPlanElements()) {
+            if(planElement instanceof Activity) {
+                destPlan.addActivity((Activity)planElement);
+            }
+            if(planElement instanceof  Leg) {
+                destPlan.addLeg((Leg)planElement);
+            }
+        }
 
     }
 }
