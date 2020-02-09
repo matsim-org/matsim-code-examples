@@ -22,6 +22,7 @@ public class CustomScoring implements BasicEventHandler {
         }
     }
 
+
     @Override
     public void reset(int iteration) {
 

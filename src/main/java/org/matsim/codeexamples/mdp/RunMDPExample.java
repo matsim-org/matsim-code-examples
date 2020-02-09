@@ -69,7 +69,6 @@ public class RunMDPExample {
 
         controler.getEvents().addHandler(customScoring);
 
-
         controler.addOverridingModule(new AbstractModule() {
 
             @Override
