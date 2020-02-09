@@ -12,7 +12,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 lr = 0.0001
 
-DIRECTORY = "/Users/luckysonkhaidem/matsim/matsim-code-examples/models"
+DIRECTORY = "/Users/ankitanand/matsim/matsim-code-examples/models"
 PORT = 8080
 HOST = "localhost"
 

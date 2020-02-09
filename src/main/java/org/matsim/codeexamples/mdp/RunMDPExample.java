@@ -125,7 +125,7 @@ public class RunMDPExample {
                                     person.setSelectedPlan(plan);
 
 //                                    //ADD IT TO POPULATION
-//                                    sc.getPopulation().addPerson(person);
+                                    sc.getPopulation().addPerson(person);
 
                                     ((CustomMobSimAgent)ag).setPerson(person);
 
@@ -144,7 +144,7 @@ public class RunMDPExample {
         controler.run();
 
     }
-
+//final ScoringParameters params = new ScoringParameters.Builder(scenario, person.getId()).build();
     private static void copyPlans(Plan destPlan, Plan srcPlan) {
         for(PlanElement planElement: srcPlan.getPlanElements()) {
             if(planElement instanceof Activity) {
