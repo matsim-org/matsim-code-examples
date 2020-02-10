@@ -7,12 +7,19 @@ from torch.distributions import Categorical
 from flask import Flask, jsonify, request
 import json
 import numpy as np
+from os.path import dirname
+from matplotlib import pyplot as plt
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 lr = 0.0001
 
-DIRECTORY = "/Users/ankitanand/matsim/matsim-code-examples/models"
+CURRENT_DIR = dirname(os.path.abspath("."))
+DIRECTORY = dirname(dirname(dirname(dirname(dirname(dirname(CURRENT_DIR))))))
+PLOT_DIRECTORY = os.path.join(DIRECTORY,"plots")
+DIRECTORY = os.path.join(DIRECTORY,"models")
+
+
 PORT = 8080
 HOST = "localhost"
 
@@ -24,9 +31,9 @@ class Actor(nn.Module):
         super(Actor, self).__init__()
         self.state_size = state_size
         self.action_size = action_size
-        self.linear1 = nn.Linear(self.state_size, 128)
-        self.linear2 = nn.Linear(128, 256)
-        self.linear3 = nn.Linear(256, self.action_size)
+        self.linear1 = nn.Linear(self.state_size, 32)
+        self.linear2 = nn.Linear(32, 64)
+        self.linear3 = nn.Linear(64, self.action_size)
 
     def forward(self, state):
         output = F.relu(self.linear1(state))
@@ -42,9 +49,9 @@ class Critic(nn.Module):
         super(Critic, self).__init__()
         self.state_size = state_size
         self.action_size = action_size
-        self.linear1 = nn.Linear(self.state_size, 128)
-        self.linear2 = nn.Linear(128, 256)
-        self.linear3 = nn.Linear(256, 1)
+        self.linear1 = nn.Linear(self.state_size, 32)
+        self.linear2 = nn.Linear(32, 64)
+        self.linear3 = nn.Linear(64, 1)
 
     def forward(self, state):
         output = F.relu(self.linear1(state))
@@ -72,6 +79,7 @@ class ActorCritic:
         self.masks = []
         self.entropy = 0
         self.rewards = []
+        self.cummulative_rewards = []
 
 
     def initialize_models(self, state_size, action_size):
@@ -131,13 +139,15 @@ class ActorCritic:
         l = len(self.rewards) - m
         self.rewards = self.rewards[:len(self.rewards) -l]
 
+        print(self.rewards)
+
         l = len(self.masks) - m
         self.masks = self.masks[:len(self.masks) - l]
 
         l = len(self.log_probs) - m
         self.log_probs = self.log_probs[:len(self.log_probs) - l]
     
-
+        self.cummulative_rewards.append(sum(self.rewards).detach().numpy()[0])
 
         returns = self.compute_returns(self.rewards,self.masks)
 
@@ -224,6 +234,19 @@ def save_models():
         return "Failed: {}".format(e),400
     
     return "Success",200
+
+@app.route("/plot_rewards", methods = ["GET"])
+def plot_rewards():
+    if(not os.path.exists(PLOT_DIRECTORY)):
+        os.mkdir(PLOT_DIRECTORY)
+    file_name = os.path.join(PLOT_DIRECTORY,"plot.png")
+    plt.plot(actor_critic.cummulative_rewards)
+    plt.xlabel("Episodes")
+    plt.ylabel("Cummulative Rewards")
+    plt.savefig(file_name)
+
+    return "Success",200
+
 
 if __name__ == "__main__":
 	app.run(HOST,PORT, debug = True)

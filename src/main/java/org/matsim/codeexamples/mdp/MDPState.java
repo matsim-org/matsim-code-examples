@@ -17,7 +17,10 @@ public class MDPState {
             this.stateVector.add((double)i);
         }
         this.stateVector.add(Double.valueOf(currentLinkId.toString()));
-        this.stateVector.add(timeOfDay/(24*60*60)); //scale
+        //scale time of day
+        timeOfDay = timeOfDay/(24*60*60);
+        timeOfDay = (double)Math.round(timeOfDay * 100000d) / 100000d;
+        this.stateVector.add(timeOfDay);
     }
 
     public List<Double> getStateVector() {

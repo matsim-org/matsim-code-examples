@@ -25,7 +25,6 @@ public class CustomScoreLeg {
     private boolean nextStartPtLegIsFirstOfTrip;
     private boolean currentLegIsPtLeg;
     private double lastActivityEndTime;
-    private Set<String> modesAlreadyConsideredForDailyConstants;
     private static int ccc = 0;
 
     public CustomScoreLeg(ScoringParameters params, Network network) {
@@ -40,36 +39,30 @@ public class CustomScoreLeg {
     protected double calcLegScore(double departureTime, double arrivalTime, Leg leg) {
         double tmpScore = 0.0D;
         double travelTime = arrivalTime - departureTime;
-        ModeUtilityParameters modeParams = (ModeUtilityParameters)this.params.modeParams.get(leg.getMode());
+        /*ModeUtilityParameters modeParams = (ModeUtilityParameters)this.params.modeParams.get(leg.getMode());
         if (modeParams == null) {
             if (!leg.getMode().equals("transit_walk") && !leg.getMode().equals("access_walk") && !leg.getMode().equals("egress_walk")) {
                 throw new RuntimeException("just encountered mode for which no scoring parameters are defined: " + leg.getMode());
             }
 
             modeParams = (ModeUtilityParameters)this.params.modeParams.get("walk");
-        }
+        }*/
 
-        tmpScore += travelTime * modeParams.marginalUtilityOfTraveling_s;
-        if (modeParams.marginalUtilityOfDistance_m != 0.0D || modeParams.monetaryDistanceCostRate != 0.0D) {
-            Route route = leg.getRoute();
-            double dist = route.getDistance();
-            if (Double.isNaN(dist) && ccc < 10) {
-                ++ccc;
-                Logger.getLogger(this.getClass()).warn("distance is NaN. Will make score of this plan NaN. Possible reason: Simulation does not report a distance for this trip. Possible reason for that: mode is teleported and router does not write distance into plan.  Needs to be fixed or these plans will die out.");
-                if (ccc == 10) {
-                    Logger.getLogger(this.getClass()).warn(" Future occurences of this logging statement are suppressed.");
-                }
+        tmpScore += travelTime * (-1);
+
+        Route route = leg.getRoute();
+        double dist = route.getDistance();
+        if (Double.isNaN(dist) && ccc < 10) {
+            ++ccc;
+            Logger.getLogger(this.getClass()).warn("distance is NaN. Will make score of this plan NaN. Possible reason: Simulation does not report a distance for this trip. Possible reason for that: mode is teleported and router does not write distance into plan.  Needs to be fixed or these plans will die out.");
+            if (ccc == 10) {
+                Logger.getLogger(this.getClass()).warn(" Future occurences of this logging statement are suppressed.");
             }
-
-            tmpScore += modeParams.marginalUtilityOfDistance_m * dist;
-            tmpScore += modeParams.monetaryDistanceCostRate * this.params.marginalUtilityOfMoney * dist;
         }
 
-        tmpScore += modeParams.constant;
-        if (!this.modesAlreadyConsideredForDailyConstants.contains(leg.getMode())) {
-            tmpScore += modeParams.dailyUtilityConstant + modeParams.dailyMoneyConstant * this.params.marginalUtilityOfMoney;
-            this.modesAlreadyConsideredForDailyConstants.add(leg.getMode());
-        }
+            tmpScore += (-1) * dist;
+//            tmpScore += (-0.0002) * 1 * dist;
+
 
         return tmpScore;
     }
@@ -82,7 +75,7 @@ public class CustomScoreLeg {
             log.error("dpTime=" + leg.getDepartureTime() + "; ttime=" + leg.getTravelTime() + "; leg=" + leg);
             throw new RuntimeException("score is NaN");
         } else {
-            this.score += legScore;
+            this.score = legScore;
         }
     }
 }

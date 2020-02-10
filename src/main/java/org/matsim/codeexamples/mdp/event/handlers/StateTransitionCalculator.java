@@ -65,7 +65,6 @@ public class StateTransitionCalculator implements BasicEventHandler {
         if(event instanceof LinkEnterEvent) {
             toLink = ( (LinkEnterEvent)event).getLinkId();
             vehicleId = ((LinkEnterEvent)event).getVehicleId();
-            log.info("PROCESSING VEHICLE ID: "+((LinkEnterEvent) event).getVehicleId());
             if(lastKnownTransition.get(vehicleId) == null) {
                 lastKnownTransition.put(vehicleId, new LinkTransition());
             }

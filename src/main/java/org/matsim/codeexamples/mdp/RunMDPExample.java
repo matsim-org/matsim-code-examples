@@ -20,6 +20,7 @@ import org.matsim.core.mobsim.qsim.QSimBuilder;
 import org.matsim.core.mobsim.qsim.qnetsimengine.QVehicle;
 import org.matsim.core.mobsim.qsim.qnetsimengine.QVehicleImpl;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.core.scoring.functions.ScoringParameters;
 import org.matsim.core.utils.io.IOUtils;
 import org.matsim.examples.ExamplesUtils;
 import org.matsim.vehicles.Vehicle;
@@ -42,7 +43,7 @@ public class RunMDPExample {
         URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");
         config = ConfigUtils.loadConfig(url);
         config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
-        config.controler().setLastIteration(1);
+        config.controler().setLastIteration(20);
 
         Scenario scenario = ScenarioUtils.loadScenario(config);
 
@@ -53,21 +54,23 @@ public class RunMDPExample {
 
         StateTransitionCalculator stateTransitionCalculator = new StateTransitionCalculator();
 
-        CustomScoring customScoring = new CustomScoring();
+        final ScoringParameters params = new ScoringParameters.Builder(scenario, Id.createPersonId(1)).build();
+
+        CustomScoreLeg customScoreLeg = new CustomScoreLeg(params,scenario.getNetwork());
+
+        final CustomScoring customScoring = new CustomScoring(null, scenario,null,customScoreLeg);
 
         controler.getEvents().addHandler(stateMonitor);
         controler.getEvents().addHandler(stateTransitionCalculator);
 
         ActorCriticInterface actorCriticInterface = new ActorCriticInterface();
         //State includes number of vehicles in 23 links, work, home, the current link id and time of day.
-
         actorCriticInterface.initializeModels(27,23);
 
         final ModelUpdateMonitor modelUpdateMonitor = new ModelUpdateMonitor(actorCriticInterface);
 
         controler.getEvents().addHandler(modelUpdateMonitor);
 
-        controler.getEvents().addHandler(customScoring);
 
         controler.addOverridingModule(new AbstractModule() {
 
@@ -81,7 +84,8 @@ public class RunMDPExample {
                     public Mobsim get() {
 
                         final QSim qsim = new QSimBuilder(getConfig()).useDefaults().build(scenario, eventsManager);
-
+                        customScoring.setMobsimTimer(qsim.getSimTimer());
+                        customScoring.setTripRouter(controler.getTripRouterProvider().get());
                         qsim.addAgentSource(new AgentSource() {
                             @Override
                             public void insertAgentsIntoMobsim() {
@@ -108,25 +112,26 @@ public class RunMDPExample {
                                                                           vehicleId,
                                                                           startingLinkId,
                                                                           agentName,
-                                                                          stateMonitor);
+                                                                          stateMonitor,
+                                                                          customScoring);
 
-                                    PopulationFactory populationFactory = sc.getPopulation().getFactory();
-
-                                    //CREATE CORRESPONDING PERSON OBJECT FOR THE AGENT
-                                    Person person = populationFactory.createPerson(ag.getId());
-                                    Plan plan = populationFactory.createPlan();
-
-                                    //Copy selected plan of person id 1 to our plan
-                                    copyPlans(plan,sc.getPopulation().getPersons().get(Id.createPersonId(1)).getSelectedPlan());
-
-                                    plan.setPerson(person);
-                                    person.addPlan(plan);
-                                    person.setSelectedPlan(plan);
-
-//                                    //ADD IT TO POPULATION
-                                    sc.getPopulation().addPerson(person);
-
-                                    ((CustomMobSimAgent)ag).setPerson(person);
+//                                    PopulationFactory populationFactory = sc.getPopulation().getFactory();
+//
+//                                    //CREATE CORRESPONDING PERSON OBJECT FOR THE AGENT
+//                                    Person person = populationFactory.createPerson(ag.getId());
+//                                    Plan plan = populationFactory.createPlan();
+//
+//                                    //Copy selected plan of person id 1 to our plan
+//                                    copyPlans(plan,sc.getPopulation().getPersons().get(Id.createPersonId(1)).getSelectedPlan());
+//
+//                                    plan.setPerson(person);
+//                                    person.addPlan(plan);
+//                                    person.setSelectedPlan(plan);
+//
+////                                    //ADD IT TO POPULATION
+////                                    sc.getPopulation().addPerson(person);
+//
+//                                    ((CustomMobSimAgent)ag).setPerson(person);
 
                                     qsim.insertAgentIntoMobsim(ag);
                                 }
@@ -139,11 +144,11 @@ public class RunMDPExample {
 
             }
         });
-
+        controler.getEvents().addHandler(customScoring);
         controler.run();
 
     }
-//final ScoringParameters params = new ScoringParameters.Builder(scenario, person.getId()).build();
+
     private static void copyPlans(Plan destPlan, Plan srcPlan) {
         for(PlanElement planElement: srcPlan.getPlanElements()) {
             if(planElement instanceof Activity) {

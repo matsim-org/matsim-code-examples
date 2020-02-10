@@ -5,6 +5,7 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.api.core.v01.population.Person;
+import org.matsim.codeexamples.mdp.event.handlers.CustomScoring;
 import org.matsim.codeexamples.mdp.event.handlers.StateMonitor;
 import org.matsim.core.mobsim.framework.MobsimDriverAgent;
 import org.matsim.core.mobsim.framework.MobsimTimer;
@@ -46,7 +47,9 @@ class CustomMobSimAgent implements MobsimDriverAgent {
     private State state = State.LEG;
     private List<Experience> experiences = new ArrayList<Experience>();
     private final StateMonitor stateMonitor;
+    private CustomScoring customScoring;
     private Person person;
+    private boolean firstMove = true;
 
     CustomMobSimAgent(IPolicy iPolicy,
                       MobsimTimer mobsimTimer,
@@ -54,7 +57,8 @@ class CustomMobSimAgent implements MobsimDriverAgent {
                       Id<Vehicle> plannedVehicleId,
                       Id<Link> startingLinkId,
                       String agentName,
-                      StateMonitor stateMonitor) {
+                      StateMonitor stateMonitor,
+                      CustomScoring customScoring) {
 
         this.id = Id.createPersonId(agentName);
         this.iPolicy = iPolicy;
@@ -64,6 +68,7 @@ class CustomMobSimAgent implements MobsimDriverAgent {
         this.destinationLinkId = Id.createLinkId(20);
         this.plannedVehicleId = plannedVehicleId;
         this.stateMonitor =  stateMonitor;
+        this.customScoring = customScoring;
 
         log.info("Number of links: " + this.scenario.getNetwork().getLinks().size());
 
@@ -137,12 +142,20 @@ class CustomMobSimAgent implements MobsimDriverAgent {
     }
 
     private double getLastActionReward() {
-        log.info("THE PLAN  is :" + this.person.getSelectedPlan().toString());
-        double reward = -1.0;
+
+        double reward = customScoring.getScore(this.plannedVehicleId) / 100;
         if(this.linkId.equals(this.destinationLinkId)) {
-            reward = 10.0;
+            reward = 0.0;
+            if(this.destinationLinkId.toString().equals("20")) {
+                //link 20 is work. now go home
+                this.destinationLinkId = Id.createLinkId(1);
+            }
+            else{
+                this.destinationLinkId = Id.createLinkId(20);
+            }
         }
         this.iPolicy.addReward(reward);
+        log.info("REWARD IS "+reward);
         return reward;
     }
 
@@ -162,15 +175,16 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
         log.info("Agent Id: " + this.id+" Choosing next link Id");
 
+        if(firstMove == false) {
+            this.prevReward = getLastActionReward();
+        }
         //addToExperiences(); // collect experience to be used for training
 
         Id<Link> nextLink = iPolicy.getBestOutgoingLink(getCurrentMDPState(), this.linkId);
 
         log.info("Agent Id: "+this.id+" Chose link: " + nextLink);
+        firstMove = false;
 
-        this.prevAction = nextLink;
-        this.prevState = getCurrentMDPState();
-        this.prevReward = getLastActionReward();
 
         return nextLink;
     }
