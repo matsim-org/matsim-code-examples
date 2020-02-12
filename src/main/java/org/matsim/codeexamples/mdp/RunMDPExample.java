@@ -8,6 +8,7 @@ import org.matsim.api.core.v01.population.*;
 import org.matsim.codeexamples.mdp.event.handlers.CustomScoring;
 import org.matsim.codeexamples.mdp.event.handlers.StateMonitor;
 import org.matsim.codeexamples.mdp.event.handlers.StateTransitionCalculator;
+import org.matsim.codeexamples.mdp.listeners.MetricCollector;
 import org.matsim.core.api.experimental.events.EventsManager;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
@@ -15,6 +16,9 @@ import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.mobsim.framework.*;
+import org.matsim.core.mobsim.framework.events.MobsimBeforeSimStepEvent;
+import org.matsim.core.mobsim.framework.listeners.MobsimBeforeSimStepListener;
+import org.matsim.core.mobsim.framework.listeners.MobsimListener;
 import org.matsim.core.mobsim.qsim.QSim;
 import org.matsim.core.mobsim.qsim.QSimBuilder;
 import org.matsim.core.mobsim.qsim.qnetsimengine.QVehicle;
@@ -37,17 +41,17 @@ public class RunMDPExample {
 
     private static Logger log = Logger.getLogger("RunMDPExample");
 
+    private static Scenario scenario;
+
     public static void main(String[] args) {
         Config config = null;
 
         URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");
         config = ConfigUtils.loadConfig(url);
         config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
-        config.controler().setLastIteration(20);
+        config.controler().setLastIteration(0);
 
-        Scenario scenario = ScenarioUtils.loadScenario(config);
-
-
+        scenario = ScenarioUtils.loadScenario(config);
         final Controler controler = new Controler(scenario);
 
         final StateMonitor stateMonitor  = new StateMonitor();
@@ -134,6 +138,11 @@ public class RunMDPExample {
 //                                    ((CustomMobSimAgent)ag).setPerson(person);
 
                                     qsim.insertAgentIntoMobsim(ag);
+
+
+
+                                    MetricCollector metricCollector = new MetricCollector(sc);
+                                    qsim.addQueueSimulationListeners(metricCollector);
                                 }
 
                             }
@@ -145,6 +154,8 @@ public class RunMDPExample {
             }
         });
         controler.getEvents().addHandler(customScoring);
+
+
         controler.run();
 
     }

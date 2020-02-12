@@ -41,6 +41,7 @@ public class RunMobsimListenerExample {
 		public void notifyMobsimBeforeSimStep(MobsimBeforeSimStepEvent e) {
 			Logger.getLogger(this.getClass()).info("We are at step " + step + ". Note that this restarts counting at zero in every iteration,"
 					+ " implying that the class is re-instantiated in every iteration.");
+
 			step++ ;
 		}
 
