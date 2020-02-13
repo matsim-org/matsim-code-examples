@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class MetricCollector implements MobsimBeforeSimStepListener {
     private static Logger logger = Logger.getLogger(MetricCollector.class.getName());
     private Scenario scenario;
+    private int step = 1;
 
     public MetricCollector(Scenario scenario) {
         this.scenario = scenario;
@@ -17,6 +18,5 @@ public class MetricCollector implements MobsimBeforeSimStepListener {
 
     @Override
     public void notifyMobsimBeforeSimStep(MobsimBeforeSimStepEvent e) {
-      //PUT CODE HERE
     }
 }

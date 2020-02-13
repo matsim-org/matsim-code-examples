@@ -16,9 +16,6 @@ import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.mobsim.framework.*;
-import org.matsim.core.mobsim.framework.events.MobsimBeforeSimStepEvent;
-import org.matsim.core.mobsim.framework.listeners.MobsimBeforeSimStepListener;
-import org.matsim.core.mobsim.framework.listeners.MobsimListener;
 import org.matsim.core.mobsim.qsim.QSim;
 import org.matsim.core.mobsim.qsim.QSimBuilder;
 import org.matsim.core.mobsim.qsim.qnetsimengine.QVehicle;
@@ -49,7 +46,7 @@ public class RunMDPExample {
         URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");
         config = ConfigUtils.loadConfig(url);
         config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
-        config.controler().setLastIteration(0);
+        config.controler().setLastIteration(10);
 
         scenario = ScenarioUtils.loadScenario(config);
         final Controler controler = new Controler(scenario);
@@ -67,13 +64,13 @@ public class RunMDPExample {
         controler.getEvents().addHandler(stateMonitor);
         controler.getEvents().addHandler(stateTransitionCalculator);
 
-        ActorCriticInterface actorCriticInterface = new ActorCriticInterface();
+//        ActorCriticInterface actorCriticInterface = new ActorCriticInterface();
         //State includes number of vehicles in 23 links, work, home, the current link id and time of day.
-        actorCriticInterface.initializeModels(27,23);
+//        actorCriticInterface.initializeModels(27,23);
 
-        final ModelUpdateMonitor modelUpdateMonitor = new ModelUpdateMonitor(actorCriticInterface);
+//        final ModelUpdateMonitor modelUpdateMonitor = new ModelUpdateMonitor(actorCriticInterface);
 
-        controler.getEvents().addHandler(modelUpdateMonitor);
+//        controler.getEvents().addHandler(modelUpdateMonitor);
 
 
         controler.addOverridingModule(new AbstractModule() {
@@ -106,7 +103,7 @@ public class RunMDPExample {
 
 
 
-                                    IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer(),actorCriticInterface );
+                                    IPolicy iPolicy = new PNPolicy(new PolicyNetworkInterface(), qsim.getSimTimer(), sc);
 
                                     String agentName = "MyAgent"+String.valueOf(i);
 
@@ -154,8 +151,6 @@ public class RunMDPExample {
             }
         });
         controler.getEvents().addHandler(customScoring);
-
-
         controler.run();
 
     }
