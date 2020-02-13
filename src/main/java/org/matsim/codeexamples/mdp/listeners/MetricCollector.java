@@ -37,6 +37,7 @@ public class MetricCollector implements MobsimBeforeSimStepListener {
     private CustomScoring customScoring;
     private List<LinkDataRecord> linkLst = new ArrayList<>();
     private List<ScoreDataRecord> linkScore = new ArrayList<>();
+    private String storageLocation = "/Volumes/HP v236w/";
 
 
     public MetricCollector(StateMonitor stateMonitor, Scenario scenario, CustomScoring customScoring) {
@@ -59,12 +60,12 @@ public class MetricCollector implements MobsimBeforeSimStepListener {
                 LinkDataRecord lnkRecrd = new LinkDataRecord(linkId,vehId,timeStep);
                 linkLst.add(lnkRecrd);
                 String linkData = JSONStringUtil.convertToJSONString(linkLst);
-                File linkFile = new File("/Users/luckysonkhaidem/Desktop/"+linkFileName);
+                File linkFile = new File(storageLocation+linkFileName);
                 PrintWriter out = null;
                 if ( linkFile.exists() && !linkFile.isDirectory() ) {
                     try {
                         Log.info("file appending");
-                        out = new PrintWriter(new FileOutputStream(new File("/Users/luckysonkhaidem/Desktop/"+linkFileName), true));
+                        out = new PrintWriter(new FileOutputStream(new File(storageLocation+linkFileName), true));
                         Log.info("write complete");
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
@@ -73,7 +74,7 @@ public class MetricCollector implements MobsimBeforeSimStepListener {
                 else {
                     try {
                         Log.info("file creating");
-                        out = new PrintWriter("/Users/luckysonkhaidem/Desktop/"+linkFileName);
+                        out = new PrintWriter(storageLocation+linkFileName);
                         Log.info("write complete");
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
@@ -86,11 +87,11 @@ public class MetricCollector implements MobsimBeforeSimStepListener {
                 ScoreDataRecord scoreDataRecord = new ScoreDataRecord(vehicleId.toString(),score,timeStep);
                 linkScore.add(scoreDataRecord);
                 String scoreData = JSONStringUtil.convertToJSONString(linkScore);
-                File scoreFile = new File("/Users/luckysonkhaidem/Desktop/"+scoreFileName);
+                File scoreFile = new File(storageLocation+scoreFileName);
                 if ( scoreFile.exists() && !scoreFile.isDirectory() ) {
                     try {
                         Log.info("file appending");
-                        out = new PrintWriter(new FileOutputStream(new File("/Users/luckysonkhaidem/Desktop/"+scoreFileName), true));
+                        out = new PrintWriter(new FileOutputStream(new File(storageLocation+scoreFileName), true));
                         Log.info("write complete");
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
@@ -99,7 +100,7 @@ public class MetricCollector implements MobsimBeforeSimStepListener {
                 else {
                     try {
                         Log.info("file creating");
-                        out = new PrintWriter("/Users/luckysonkhaidem/Desktop/"+scoreFileName);
+                        out = new PrintWriter(storageLocation+scoreFileName);
                         Log.info("write complete");
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
