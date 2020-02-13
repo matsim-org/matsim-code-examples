@@ -69,11 +69,11 @@ public class RunMDPExample {
 
         ActorCriticInterface actorCriticInterface = new ActorCriticInterface();
         //State includes number of vehicles in 23 links, work, home, the current link id and time of day.
-        actorCriticInterface.initializeModels(27,23);
+//        actorCriticInterface.initializeModels(27,23);
 
         final ModelUpdateMonitor modelUpdateMonitor = new ModelUpdateMonitor(actorCriticInterface);
 
-        controler.getEvents().addHandler(modelUpdateMonitor);
+//        controler.getEvents().addHandler(modelUpdateMonitor);
 
 
         controler.addOverridingModule(new AbstractModule() {
@@ -94,30 +94,30 @@ public class RunMDPExample {
                             @Override
                             public void insertAgentsIntoMobsim() {
                                 for(int i = 1; i <= 1;i++) {
-                                    final Id<Link> startingLinkId = Id.createLinkId(i);
-                                    final Id<Vehicle> vehicleId = Id.create("myVeh"+String.valueOf(i), Vehicle.class);
-                                    final VehicleType vehType = VehicleUtils.getDefaultVehicleType();
-                                    final VehiclesFactory vehiclesFactory = VehicleUtils.getFactory();
-                                    final Vehicle vehicle = vehiclesFactory.createVehicle(vehicleId, vehType);
-                                    final QVehicle qveh = new QVehicleImpl(vehicle);
-
-
-                                    qsim.addParkedVehicle(qveh, startingLinkId);
-
-
-
-                                    IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer(),actorCriticInterface );
-
-                                    String agentName = "MyAgent"+String.valueOf(i);
-
-                                    MobsimAgent ag = new CustomMobSimAgent(iPolicy,
-                                                                          qsim.getSimTimer(),
-                                                                          sc,
-                                                                          vehicleId,
-                                                                          startingLinkId,
-                                                                          agentName,
-                                                                          stateMonitor,
-                                                                          customScoring);
+//                                    final Id<Link> startingLinkId = Id.createLinkId(i);
+//                                    final Id<Vehicle> vehicleId = Id.create("myVeh"+String.valueOf(i), Vehicle.class);
+//                                    final VehicleType vehType = VehicleUtils.getDefaultVehicleType();
+//                                    final VehiclesFactory vehiclesFactory = VehicleUtils.getFactory();
+//                                    final Vehicle vehicle = vehiclesFactory.createVehicle(vehicleId, vehType);
+//                                    final QVehicle qveh = new QVehicleImpl(vehicle);
+//
+//
+//                                    qsim.addParkedVehicle(qveh, startingLinkId);
+//
+//
+//
+//                                    IPolicy iPolicy = new Policy(null, sc, qsim.getSimTimer(),actorCriticInterface );
+//
+//                                    String agentName = "MyAgent"+String.valueOf(i);
+//
+//                                    MobsimAgent ag = new CustomMobSimAgent(iPolicy,
+//                                                                          qsim.getSimTimer(),
+//                                                                          sc,
+//                                                                          vehicleId,
+//                                                                          startingLinkId,
+//                                                                          agentName,
+//                                                                          stateMonitor,
+//                                                                          customScoring);
 
 //                                    PopulationFactory populationFactory = sc.getPopulation().getFactory();
 //
@@ -137,11 +137,11 @@ public class RunMDPExample {
 //
 //                                    ((CustomMobSimAgent)ag).setPerson(person);
 
-                                    qsim.insertAgentIntoMobsim(ag);
+//                                    qsim.insertAgentIntoMobsim(ag);
 
 
 
-                                    MetricCollector metricCollector = new MetricCollector(sc);
+                                    MetricCollector metricCollector = new MetricCollector(stateMonitor,sc,customScoring);
                                     qsim.addQueueSimulationListeners(metricCollector);
                                 }
 
