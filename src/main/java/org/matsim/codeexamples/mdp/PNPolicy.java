@@ -51,8 +51,8 @@ public class PNPolicy implements IPolicy {
         }
         if(currentLink.equals(Id.createLinkId(1))) {
             List<Double> state = new ArrayList<>();
-            state.add(mdpState.getStateVector().get(0)); // Number of vehicles in Link 1
-            state.add(mdpState.getStateVector().get(19)); // NUmber of vehicles in Link 20
+            state.add(mdpState.getStateVector().get(0)/10.0); // Number of vehicles in Link 1
+            state.add(mdpState.getStateVector().get(19)/10.0); // NUmber of vehicles in Link 20
             state.add(mobsimTimer.getTimeOfDay()/60.0); // Time
             List<Double> actionRate = policyNetworkInterface.getAction(state,null);
             int action = sample(actionRate);

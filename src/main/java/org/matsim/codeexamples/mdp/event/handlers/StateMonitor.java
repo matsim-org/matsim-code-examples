@@ -1,11 +1,12 @@
 package org.matsim.codeexamples.mdp.event.handlers;
 
 import org.matsim.api.core.v01.Id;
+import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.events.*;
 import org.matsim.api.core.v01.network.Link;
-import org.matsim.core.controler.events.IterationEndsEvent;
 import org.matsim.core.events.handler.BasicEventHandler;
+import org.matsim.vehicles.Vehicle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,10 @@ import java.util.logging.Logger;
 public class StateMonitor implements BasicEventHandler {
     private static Logger log = Logger.getLogger("StateMonitor");
 
-    Map<Id<Link>,Integer> nVehs = new HashMap<>() ;
+    Map<Id<Link>,Integer> nVehs = new HashMap<>();
+    Map<Id<Vehicle>,Id<Link>> vehLink = new HashMap<>();
+
+
 
     @Override
     public void handleEvent(Event event) {
@@ -27,6 +31,7 @@ public class StateMonitor implements BasicEventHandler {
             String activityType = ((ActivityStartEvent)event).getActType();
            if(activityType.equals("h")) {
                linkId = Id.createLinkId(24); // assign link id 24 if it is home
+
            }
            else if(activityType.equals("w")) {
                linkId = Id.createLinkId(25); // assign link id 25 if it is work
@@ -61,6 +66,9 @@ public class StateMonitor implements BasicEventHandler {
 
         if ( event instanceof LinkEnterEvent ) {
             linkId = ((LinkEnterEvent) event).getLinkId() ;
+            Id<Vehicle> vehicleId = ((LinkEnterEvent) event).getVehicleId();
+            vehLink.put(vehicleId,linkId);
+
         } else if ( event instanceof VehicleEntersTrafficEvent ) {
             linkId = ((VehicleEntersTrafficEvent) event).getLinkId() ;
         }
@@ -124,4 +132,6 @@ public class StateMonitor implements BasicEventHandler {
         }
         return stateVector;
     }
+
+    public Map<Id<Vehicle>, Id<Link>> getVehicleLinkMap(){return this.vehLink;}
 }

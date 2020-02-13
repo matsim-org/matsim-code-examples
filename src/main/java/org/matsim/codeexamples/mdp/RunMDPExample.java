@@ -46,7 +46,7 @@ public class RunMDPExample {
         URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");
         config = ConfigUtils.loadConfig(url);
         config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
-        config.controler().setLastIteration(10);
+        config.controler().setLastIteration(0);
 
         scenario = ScenarioUtils.loadScenario(config);
         final Controler controler = new Controler(scenario);
@@ -90,8 +90,8 @@ public class RunMDPExample {
                         qsim.addAgentSource(new AgentSource() {
                             @Override
                             public void insertAgentsIntoMobsim() {
-                                for(int i = 1; i <= 1;i++) {
-                                    final Id<Link> startingLinkId = Id.createLinkId(i);
+                                for(int i = 1; i <= 70;i++) {
+                                    final Id<Link> startingLinkId = Id.createLinkId(1);
                                     final Id<Vehicle> vehicleId = Id.create("myVeh"+String.valueOf(i), Vehicle.class);
                                     final VehicleType vehType = VehicleUtils.getDefaultVehicleType();
                                     final VehiclesFactory vehiclesFactory = VehicleUtils.getFactory();
@@ -103,7 +103,7 @@ public class RunMDPExample {
 
 
 
-                                    IPolicy iPolicy = new PNPolicy(new PolicyNetworkInterface(), qsim.getSimTimer(), sc);
+                                    IPolicy iPolicy = new PNPolicy(new PolicyNetworkInterface(),qsim.getSimTimer(),sc);
 
                                     String agentName = "MyAgent"+String.valueOf(i);
 
@@ -116,29 +116,10 @@ public class RunMDPExample {
                                                                           stateMonitor,
                                                                           customScoring);
 
-//                                    PopulationFactory populationFactory = sc.getPopulation().getFactory();
-//
-//                                    //CREATE CORRESPONDING PERSON OBJECT FOR THE AGENT
-//                                    Person person = populationFactory.createPerson(ag.getId());
-//                                    Plan plan = populationFactory.createPlan();
-//
-//                                    //Copy selected plan of person id 1 to our plan
-//                                    copyPlans(plan,sc.getPopulation().getPersons().get(Id.createPersonId(1)).getSelectedPlan());
-//
-//                                    plan.setPerson(person);
-//                                    person.addPlan(plan);
-//                                    person.setSelectedPlan(plan);
-//
-////                                    //ADD IT TO POPULATION
-////                                    sc.getPopulation().addPerson(person);
-//
-//                                    ((CustomMobSimAgent)ag).setPerson(person);
 
                                     qsim.insertAgentIntoMobsim(ag);
 
-
-
-                                    MetricCollector metricCollector = new MetricCollector(sc);
+                                    MetricCollector metricCollector = new MetricCollector(stateMonitor,sc,customScoring);
                                     qsim.addQueueSimulationListeners(metricCollector);
                                 }
 

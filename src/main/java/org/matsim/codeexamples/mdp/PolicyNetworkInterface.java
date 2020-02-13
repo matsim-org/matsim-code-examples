@@ -47,7 +47,12 @@ public class PolicyNetworkInterface {
         List<Double> actionRate = new ArrayList<>();
         List<Object> strActionRate = JSONStringUtil.convertStringToList(jsonObject.get("action_rate").toString());
         for(Object strRate: strActionRate) {
-            actionRate.add(Double.valueOf(strRate.toString()));
+            if(strRate.toString().equals("nan")) {
+                actionRate.add(0.0);
+            }
+            else{
+                actionRate.add(Double.valueOf(strRate.toString()));
+            }
         }
         return actionRate;
     }
