@@ -12,7 +12,7 @@
 	</module>
 
 	<module name="plans">
-		<param name="inputPlansFile" value="plans100.xml" />
+		<param name="inputPlansFile" value="plans-minimal.xml" />
 	</module>
 
 	<module name="controler">

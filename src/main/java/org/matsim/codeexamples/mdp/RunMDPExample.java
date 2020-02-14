@@ -72,6 +72,12 @@ public class RunMDPExample {
 
 //        controler.getEvents().addHandler(modelUpdateMonitor);
 
+        Person person = scenario.getPopulation().getPersons().get(Id.createPersonId(1));
+        scenario.getPopulation().getPersons().clear();
+        scenario.getPopulation().addPerson(person);
+
+
+        log.info("THE SIZE OF THE POPULATION IS "+scenario.getPopulation().getPersons().size());
 
         controler.addOverridingModule(new AbstractModule() {
 
@@ -118,7 +124,6 @@ public class RunMDPExample {
 
 
                                     qsim.insertAgentIntoMobsim(ag);
-
                                     MetricCollector metricCollector = new MetricCollector(stateMonitor,sc,customScoring);
                                     qsim.addQueueSimulationListeners(metricCollector);
                                 }

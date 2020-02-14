@@ -6,6 +6,7 @@ import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.codeexamples.mdp.CustomScoreLeg;
+import org.matsim.codeexamples.mdp.DumpRecord;
 import org.matsim.codeexamples.mdp.LinkDataRecord;
 import org.matsim.codeexamples.mdp.ScoreDataRecord;
 import org.matsim.codeexamples.mdp.event.handlers.CustomScoring;
@@ -35,9 +36,8 @@ public class MetricCollector implements MobsimBeforeSimStepListener {
     private String linkFileName;
     private String scoreFileName;
     private CustomScoring customScoring;
-    private List<LinkDataRecord> linkLst = new ArrayList<>();
-    private List<ScoreDataRecord> linkScore = new ArrayList<>();
-    private String storageLocation = "/Volumes/HP v236w/";
+    private List<DumpRecord> dumpRecordsList = new ArrayList<>();
+    private String storageLocation = "/Users/luckysonkhaidem/Desktop/";
 
 
     public MetricCollector(StateMonitor stateMonitor, Scenario scenario, CustomScoring customScoring) {
@@ -57,60 +57,38 @@ public class MetricCollector implements MobsimBeforeSimStepListener {
             for(Id<Vehicle> vehicleId : vehMap.keySet()) {
                 String linkId = vehMap.get(vehicleId).toString();
                 String vehId = vehicleId.toString();
-                LinkDataRecord lnkRecrd = new LinkDataRecord(linkId,vehId,timeStep);
-                linkLst.add(lnkRecrd);
-                String linkData = JSONStringUtil.convertToJSONString(linkLst);
-                File linkFile = new File(storageLocation+linkFileName);
-                PrintWriter out = null;
-                if ( linkFile.exists() && !linkFile.isDirectory() ) {
-                    try {
-                        Log.info("file appending");
-                        out = new PrintWriter(new FileOutputStream(new File(storageLocation+linkFileName), true));
-                        Log.info("write complete");
-                    } catch (FileNotFoundException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                else {
-                    try {
-                        Log.info("file creating");
-                        out = new PrintWriter(storageLocation+linkFileName);
-                        Log.info("write complete");
-                    } catch (FileNotFoundException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                out.append(linkData);
-                out.close();
-
                 double score = customScoring.getScore(vehicleId);
-                ScoreDataRecord scoreDataRecord = new ScoreDataRecord(vehicleId.toString(),score,timeStep);
-                linkScore.add(scoreDataRecord);
-                String scoreData = JSONStringUtil.convertToJSONString(linkScore);
-                File scoreFile = new File(storageLocation+scoreFileName);
-                if ( scoreFile.exists() && !scoreFile.isDirectory() ) {
-                    try {
-                        Log.info("file appending");
-                        out = new PrintWriter(new FileOutputStream(new File(storageLocation+scoreFileName), true));
-                        Log.info("write complete");
-                    } catch (FileNotFoundException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                else {
-                    try {
-                        Log.info("file creating");
-                        out = new PrintWriter(storageLocation+scoreFileName);
-                        Log.info("write complete");
-                    } catch (FileNotFoundException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                out.append(scoreData);
-                out.close();
+                DumpRecord dumpRecord = new DumpRecord(linkId,vehId,e.getSimulationTime(),score);
+                dumpRecordsList.add(dumpRecord);
 
             }
         }
         timeStep= timeStep+1;
+
+        String dumpData = JSONStringUtil.convertToJSONString(dumpRecordsList);
+        File linkFile = new File(storageLocation+linkFileName);
+        PrintWriter out = null;
+        if ( linkFile.exists() && !linkFile.isDirectory() ) {
+            try {
+                Log.info("file appending");
+                out = new PrintWriter(new FileOutputStream(new File(storageLocation+"dump.json")));
+                Log.info("write complete");
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+        else {
+            try {
+                Log.info("file creating");
+                out = new PrintWriter(storageLocation+"dump.json");
+                Log.info("write complete");
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+        out.append(dumpData);
+        out.close();
+
+
     }
 }
