@@ -1,6 +1,7 @@
 package org.matsim.codeexamples.mdp;
 
 
+import com.jogamp.common.util.ArrayHashMap;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
@@ -8,7 +9,6 @@ import org.matsim.api.core.v01.population.*;
 import org.matsim.codeexamples.mdp.event.handlers.CustomScoring;
 import org.matsim.codeexamples.mdp.event.handlers.StateMonitor;
 import org.matsim.codeexamples.mdp.event.handlers.StateTransitionCalculator;
-import org.matsim.codeexamples.mdp.listeners.MetricCollector;
 import org.matsim.core.api.experimental.events.EventsManager;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
@@ -21,7 +21,9 @@ import org.matsim.core.mobsim.qsim.QSimBuilder;
 import org.matsim.core.mobsim.qsim.qnetsimengine.QVehicle;
 import org.matsim.core.mobsim.qsim.qnetsimengine.QVehicleImpl;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.core.scoring.ScoringFunctionFactory;
 import org.matsim.core.scoring.functions.ScoringParameters;
+import org.matsim.core.scoring.functions.ScoringParametersForPerson;
 import org.matsim.core.utils.io.IOUtils;
 import org.matsim.examples.ExamplesUtils;
 import org.matsim.vehicles.Vehicle;
@@ -32,7 +34,10 @@ import org.matsim.vehicles.VehiclesFactory;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
+import  org.matsim.codeexamples.mdp.CustomMobSimAgent;
 
 public class RunMDPExample {
 
@@ -61,8 +66,10 @@ public class RunMDPExample {
 
         final CustomScoring customScoring = new CustomScoring(null, scenario,null,customScoreLeg);
 
+        final Map<String, ScoringParameters> hackStuff = new HashMap<>();
+
         controler.getEvents().addHandler(stateMonitor);
-        controler.getEvents().addHandler(stateTransitionCalculator);
+//        controler.getEvents().addHandler(stateTransitionCalculator);
 
 //        ActorCriticInterface actorCriticInterface = new ActorCriticInterface();
         //State includes number of vehicles in 23 links, work, home, the current link id and time of day.
@@ -84,9 +91,11 @@ public class RunMDPExample {
             @Override
             public void install() {
 
+
                 bindMobsim().toProvider(new Provider<Mobsim>() {
                     @Inject Scenario sc;
                     @Inject EventsManager eventsManager;
+
                     @Override
                     public Mobsim get() {
 
@@ -120,16 +129,25 @@ public class RunMDPExample {
                                                                           startingLinkId,
                                                                           agentName,
                                                                           stateMonitor,
-                                                                          customScoring);
+                                                                          customScoring,
+                                            eventsManager );
 
 
                                     qsim.insertAgentIntoMobsim(ag);
-                                    MetricCollector metricCollector = new MetricCollector(stateMonitor,sc,customScoring);
-                                    qsim.addQueueSimulationListeners(metricCollector);
                                 }
 
                             }
                         });
+
+
+                        ScoringParameters scoringParameters =  new ScoringParameters.Builder(sc,Id.createPersonId(1)).build();
+
+                        MetricCollector metricCollector = new MetricCollector(stateMonitor,
+                                                                            sc,customScoring,
+                                                                            controler.getTripRouterProvider().get(),
+                                                                            qsim.getAgents(),
+                                                                            scoringParameters);
+                        qsim.addQueueSimulationListeners(metricCollector);
                         return qsim;
                     }
                 });

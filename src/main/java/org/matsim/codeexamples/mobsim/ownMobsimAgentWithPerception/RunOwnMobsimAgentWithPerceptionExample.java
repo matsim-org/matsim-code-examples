@@ -64,7 +64,6 @@ public class RunOwnMobsimAgentWithPerceptionExample {
 		if ( args!=null && args.length > 0 && args[0]!=null  ) {
 			config = ConfigUtils.loadConfig(args[0]) ;
 		} else {
-			System.out.print("BEES KNEES");
 			URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");;
 			config = ConfigUtils.loadConfig(url) ;
 			config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
@@ -115,6 +114,7 @@ public class RunOwnMobsimAgentWithPerceptionExample {
 								final MobsimAgent ag = new MyMobsimAgent(guidance, startingLinkId, vehId,
 																				qsim.getSimTimer());
 								qsim.insertAgentIntoMobsim(ag);
+
 								
 							}
 						});

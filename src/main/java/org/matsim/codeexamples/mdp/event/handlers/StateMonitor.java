@@ -5,9 +5,15 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.events.*;
 import org.matsim.api.core.v01.network.Link;
+import org.matsim.codeexamples.mdp.customclasses.ActivityRecord;
+import org.matsim.codeexamples.mdp.utilities.JSONStringUtil;
 import org.matsim.core.events.handler.BasicEventHandler;
 import org.matsim.vehicles.Vehicle;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,12 +22,32 @@ import java.util.logging.Logger;
 
 // Keeps track of the number of vehicles in each road link
 public class StateMonitor implements BasicEventHandler {
+
+
+
+
     private static Logger log = Logger.getLogger("StateMonitor");
 
     Map<Id<Link>,Integer> nVehs = new HashMap<>();
     Map<Id<Vehicle>,Id<Link>> vehLink = new HashMap<>();
+    Map<String,ActivityRecord> activityRecordMapWork = new HashMap<>();
+    Map<String,ActivityRecord> activityRecordMapHome = new HashMap<>();
 
 
+    private void write() throws FileNotFoundException {
+        String hActivityFileRecord = "/Users/luckysonkhaidem/Desktop/hactivity.json";
+        String wActivityFileRecord = "/Users/luckysonkhaidem/Desktop/wactivity.json";
+
+        PrintWriter out = null;
+
+        out = new PrintWriter(new FileOutputStream(new File(hActivityFileRecord)));
+        out.write(JSONStringUtil.convertToJSONString(activityRecordMapHome));
+        out.close();
+
+        out = new PrintWriter(new FileOutputStream(new File(wActivityFileRecord)));
+        out.write(JSONStringUtil.convertToJSONString(activityRecordMapWork));
+        out.close();
+    }
 
     @Override
     public void handleEvent(Event event) {
@@ -29,13 +55,24 @@ public class StateMonitor implements BasicEventHandler {
 
         if(event instanceof ActivityStartEvent) {
             String activityType = ((ActivityStartEvent)event).getActType();
+            String id = ((ActivityStartEvent) event).getPersonId().toString();
+
            if(activityType.equals("h")) {
                linkId = Id.createLinkId(24); // assign link id 24 if it is home
+               if(activityRecordMapHome.get(id) == null) {
+                    activityRecordMapHome.put(id, new ActivityRecord());
+               }
+               activityRecordMapHome.get(id).setStartTime(event.getTime());
 
            }
            else if(activityType.equals("w")) {
                linkId = Id.createLinkId(25); // assign link id 25 if it is work
+               if(activityRecordMapWork.get(id) == null) {
+                   activityRecordMapWork.put(id, new ActivityRecord());
+               }
+               activityRecordMapWork.get(id).setStartTime(event.getTime());
            }
+
 
            if(nVehs.get(linkId) == null) {
                nVehs.put(linkId,0);
@@ -43,16 +80,31 @@ public class StateMonitor implements BasicEventHandler {
            int n = nVehs.get(linkId);
            n += 1;
            nVehs.put(linkId,n);
-           return;
+            try {
+                write();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            return;
         }
 
         if(event instanceof ActivityEndEvent) {
             String activityType = ((ActivityEndEvent)event).getActType();
+            String id = ((ActivityEndEvent) event).getPersonId().toString();
             if(activityType.equals("h")) {
                 linkId = Id.createLinkId(24); // assign link id 24 if it is home
+
+                if(activityRecordMapHome.get(id) == null) {
+                    activityRecordMapHome.put(id, new ActivityRecord());
+                }
+                activityRecordMapHome.get(id).setEndTime(event.getTime());
             }
             else if(activityType.equals("w")) {
                 linkId = Id.createLinkId(25); // assign link id 25 if it is work
+                if(activityRecordMapWork.get(id) == null) {
+                    activityRecordMapWork.put(id, new ActivityRecord());
+                }
+                activityRecordMapWork.get(id).setEndTime(event.getTime());
             }
 
             if(nVehs.get(linkId) == null) {
@@ -61,6 +113,11 @@ public class StateMonitor implements BasicEventHandler {
             int n = nVehs.get(linkId);
             n -= 1;
             nVehs.put(linkId,n);
+            try {
+                write();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             return;
         }
 

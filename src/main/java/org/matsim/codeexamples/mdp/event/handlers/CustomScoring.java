@@ -10,12 +10,16 @@ import org.matsim.api.core.v01.events.handler.VehicleEntersTrafficEventHandler;
 import org.matsim.api.core.v01.events.handler.VehicleLeavesTrafficEventHandler;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.api.core.v01.population.Leg;
+import org.matsim.api.core.v01.population.Person;
 import org.matsim.api.core.v01.population.PlanElement;
 import org.matsim.codeexamples.mdp.CustomScoreLeg;
 import org.matsim.codeexamples.mdp.customclasses.LinkTransition;
 import org.matsim.codeexamples.mdp.customclasses.VehicleRecord;
 import org.matsim.codeexamples.mdp.utilities.JSONStringUtil;
 import org.matsim.core.events.handler.BasicEventHandler;
+import org.matsim.core.mobsim.framework.Mobsim;
+import org.matsim.core.mobsim.framework.MobsimAgent;
+import org.matsim.core.mobsim.framework.MobsimDriverAgent;
 import org.matsim.core.mobsim.framework.MobsimTimer;
 import org.matsim.core.router.LinkWrapperFacility;
 import org.matsim.core.router.TripRouter;
@@ -43,6 +47,14 @@ public class CustomScoring implements BasicEventHandler {
     private Map<Id<Vehicle>, LinkTransition> lastKnownTransitions = new HashMap<>();
     private CustomScoreLeg customScoreLeg;
     private TripRouter tripRouter;
+    private Map<Id<Person>, MobsimAgent> personToAgent;
+    public Map<Id<Person>, MobsimAgent> getPersonToAgent() {
+        return personToAgent;
+    }
+
+    public void setPersonToAgent(Map<Id<Person>, MobsimAgent> personToAgent) {
+        this.personToAgent = personToAgent;
+    }
 
     public CustomScoring(MobsimTimer mobsimTimer, Scenario sc, TripRouter tripRouter, CustomScoreLeg customScoreLeg) {
         this.mobsimTimer = mobsimTimer;
@@ -72,12 +84,15 @@ public class CustomScoring implements BasicEventHandler {
 
     private void processLeaveEvent(Id<Vehicle> vehicleId, Id<Link> fromLink) {
         if(vehicleId.toString().startsWith("myVeh")) {
-            double currentTimeOfDay = mobsimTimer.getTimeOfDay();
 
             if(lastKnownTransitions.get(vehicleId) == null) {
                 lastKnownTransitions.put(vehicleId, new LinkTransition());
             }
 
+            if(lastKnownTransitions.get(vehicleId).getToLinkId() != null) {
+                lastKnownTransitions.get(vehicleId).setArrivalTime(mobsimTimer.getTimeOfDay());
+                updateScore(vehicleId);
+            }
             lastKnownTransitions.get(vehicleId).setFromLinkId(fromLink);
             lastKnownTransitions.get(vehicleId).setDepartureTime(mobsimTimer.getTimeOfDay());
         }
@@ -87,23 +102,19 @@ public class CustomScoring implements BasicEventHandler {
 
     private void processEnterEvent(Id<Vehicle> vehicleId, Id<Link> toLink) {
         if(vehicleId.toString().startsWith("myVeh")) {
-                double currentTimeOfDay = mobsimTimer.getTimeOfDay();
                 if(lastKnownTransitions.get(vehicleId) == null) {
                     lastKnownTransitions.put(vehicleId, new LinkTransition());
                 }
 
                 lastKnownTransitions.get(vehicleId).setToLinkId(toLink);
-                lastKnownTransitions.get(vehicleId).setArrivalTime(mobsimTimer.getTimeOfDay());
-
-                updateScore(vehicleId);
 
         }
     }
 
     private void updateScore(Id<Vehicle> vehicleId) {
         if(lastKnownTransitions.get(vehicleId).getFromLinkId() == null || lastKnownTransitions.get(vehicleId).getToLinkId() == null) return;
-        log.info("LINK TRANSATION : "+ JSONStringUtil.convertToJSONString(lastKnownTransitions.get(vehicleId)));
         double departureTime = lastKnownTransitions.get(vehicleId).getDepartureTime();
+        double travelTime = lastKnownTransitions.get(vehicleId).getArrivalTime() - departureTime;
         String mainMode = TransportMode.car;
         Id<Link> linkId = lastKnownTransitions.get(vehicleId).getFromLinkId();
         Id<Link> destinationLinkId = lastKnownTransitions.get(vehicleId).getToLinkId();
@@ -111,9 +122,7 @@ public class CustomScoring implements BasicEventHandler {
         Facility toFacility = new LinkWrapperFacility(this.sc.getNetwork().getLinks().get(destinationLinkId));
         List<? extends PlanElement> trip = tripRouter.calcRoute(mainMode, fromFacility, toFacility, departureTime, null);
         Leg leg = (Leg) trip.get(0);
-        log.info("DESTINATION: "+destinationLinkId+" ACTUAL DESTINATION "+leg.getRoute().getEndLinkId());
-        log.info("TravelTime is "+leg.getTravelTime());
-        log.info("DISTANCE FROM "+linkId+" TO "+destinationLinkId+" IS " + leg.getRoute().getDistance());
+        leg.setTravelTime(travelTime);
         customScoreLeg.handleLeg(leg);
         scoreForVehicles.put(vehicleId,customScoreLeg.getScore());
     }
@@ -136,17 +145,18 @@ public class CustomScoring implements BasicEventHandler {
         Id<Link> fromLink = null;
         Id<Vehicle> vehicleId = null;
 
-        if(event instanceof LinkEnterEvent) {
-            toLink = ( (LinkEnterEvent)event).getLinkId();
-            vehicleId = ((LinkEnterEvent)event).getVehicleId();
-            processEnterEvent(vehicleId,toLink);
-            return;
-        }
         if(event instanceof LinkLeaveEvent) {
             fromLink = ((LinkLeaveEvent) event).getLinkId();
             vehicleId = ((LinkLeaveEvent) event).getVehicleId();
-            processLeaveEvent(vehicleId,fromLink);
-            return; //no need to update transition matrix on Link Leave event
+            processLeaveEvent(vehicleId, fromLink);
+            return;
+        }
+
+        if(event instanceof LinkEnterEvent) {
+            toLink = ((LinkEnterEvent) event).getLinkId();
+            vehicleId = ((LinkEnterEvent) event).getVehicleId();
+            processEnterEvent(vehicleId,toLink);
+            return;
 
         }
     }

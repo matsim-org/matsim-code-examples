@@ -3,16 +3,22 @@ package org.matsim.codeexamples.mdp;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
+import org.matsim.api.core.v01.events.ActivityEndEvent;
+import org.matsim.api.core.v01.events.ActivityStartEvent;
+import org.matsim.api.core.v01.events.PersonArrivalEvent;
+import org.matsim.api.core.v01.events.PersonDepartureEvent;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.api.core.v01.population.Person;
 import org.matsim.codeexamples.mdp.event.handlers.CustomScoring;
 import org.matsim.codeexamples.mdp.event.handlers.StateMonitor;
+import org.matsim.core.api.experimental.events.EventsManager;
 import org.matsim.core.mobsim.framework.MobsimDriverAgent;
 import org.matsim.core.mobsim.framework.MobsimTimer;
 import org.matsim.core.mobsim.qsim.interfaces.MobsimVehicle;
 import org.matsim.facilities.Facility;
 import org.matsim.vehicles.Vehicle;
 
+import javax.xml.crypto.dom.DOMCryptoContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,12 +50,19 @@ class CustomMobSimAgent implements MobsimDriverAgent {
     private MDPState prevState = null;
     private Id<Link> prevAction = null;
     private double prevReward = 0.0;
-    private State state = State.LEG;
+    private State state = State.ACTIVITY;
     private List<Experience> experiences = new ArrayList<Experience>();
     private final StateMonitor stateMonitor;
     private CustomScoring customScoring;
     private Person person;
-    private boolean firstMove = true;
+    private boolean reachedWork = false;
+    private boolean leaveWork = false;
+    private double activityEndTime = 8*3600;
+    private EventsManager eventsManager;
+    private Id<Link> previousLinkId = null;
+    private double departureTime;
+    private String currentActivityType = "h";
+    private double activityStartTime = 0.0;
 
     CustomMobSimAgent(IPolicy iPolicy,
                       MobsimTimer mobsimTimer,
@@ -58,7 +71,8 @@ class CustomMobSimAgent implements MobsimDriverAgent {
                       Id<Link> startingLinkId,
                       String agentName,
                       StateMonitor stateMonitor,
-                      CustomScoring customScoring) {
+                      CustomScoring customScoring,
+                      EventsManager eventsManager) {
 
         this.id = Id.createPersonId(agentName);
         this.iPolicy = iPolicy;
@@ -69,8 +83,8 @@ class CustomMobSimAgent implements MobsimDriverAgent {
         this.plannedVehicleId = plannedVehicleId;
         this.stateMonitor =  stateMonitor;
         this.customScoring = customScoring;
-
-        log.info("Number of links: " + this.scenario.getNetwork().getLinks().size());
+        this.eventsManager = eventsManager;
+        this.departureTime = mobsimTimer.getTimeOfDay();
 
     }
 
@@ -91,22 +105,65 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
     @Override
     public State getState() {
-        return state;
+        return this.state;
     }
 
     @Override
     public double getActivityEndTime() {
-        return Double.POSITIVE_INFINITY ;
+        return this.activityEndTime;
     }
 
     @Override
     public void endActivityAndComputeNextState(double now) {
-        throw new UnsupportedOperationException() ;
+        eventsManager.processEvent(new PersonDepartureEvent(now,id,this.linkId,getMode()));
+        if(this.linkId.equals(Id.createLinkId(1))) {
+            log.info("LEAVING HOME");
+
+            eventsManager.processEvent(new ActivityEndEvent(now,id,this.linkId,null,"h"));
+            this.state = State.LEG;
+        }
+        else if(this.linkId.equals(Id.createLinkId(20))) {
+            log.info("LEAVING WORK");
+            eventsManager.processEvent(new ActivityEndEvent(now,id,this.linkId,null,"w"));
+            this.leaveWork = true;
+            this.state = State.LEG;
+        }
+    }
+
+    public double getActivityStartTime() {
+        return activityStartTime;
+    }
+
+    public void setActivityStartTime(double activityStartTime) {
+        this.activityStartTime = activityStartTime;
     }
 
     @Override
     public void endLegAndComputeNextState(double now) {
-        throw new UnsupportedOperationException() ;
+        log.info("END LEG");
+        eventsManager.processEvent(new PersonArrivalEvent(now,id,this.linkId,getMode()));
+        if(this.linkId.equals(Id.createLinkId(1))) {
+            this.activityEndTime = Double.POSITIVE_INFINITY;
+            this.state = State.ACTIVITY;
+            eventsManager.processEvent(new ActivityStartEvent(now,id,this.linkId,null,"h"));
+            currentActivityType = "h";
+            activityStartTime = now;
+        }
+        if(this.linkId.equals(Id.createLinkId(20))) {
+            this.activityEndTime = 14*3600;
+            this.state = State.ACTIVITY;
+            eventsManager.processEvent(new ActivityStartEvent(now,id,this.linkId,null,"w"));
+            currentActivityType = "w";
+            activityStartTime = now;
+        }
+    }
+
+    public String getCurrentActivityType() {
+        return currentActivityType;
+    }
+
+    public void setDepartureTime(double departureTime) {
+        this.departureTime = departureTime;
     }
 
     @Override
@@ -135,6 +192,10 @@ class CustomMobSimAgent implements MobsimDriverAgent {
         throw new RuntimeException("not implemented") ;
     }
 
+    public Id<Link> getPreviousLinkId() {
+        return this.previousLinkId;
+    }
+
 
     private MDPState getCurrentMDPState() {
         MDPState state = new MDPState(this.stateMonitor.getState(), getCurrentLinkId(),mobsimTimer.getTimeOfDay());
@@ -142,12 +203,10 @@ class CustomMobSimAgent implements MobsimDriverAgent {
     }
 
     private double getLastActionReward() {
-
         double reward = customScoring.getScore(this.plannedVehicleId) / 100;
         if(this.linkId.equals(this.destinationLinkId)) {
             reward = 0.0;
             if(this.destinationLinkId.toString().equals("20")) {
-                //link 20 is work. now go home
                 this.destinationLinkId = Id.createLinkId(1);
             }
             else{
@@ -155,7 +214,6 @@ class CustomMobSimAgent implements MobsimDriverAgent {
             }
         }
         this.iPolicy.addReward(reward);
-        log.info("REWARD IS "+reward);
         return reward;
     }
 
@@ -163,6 +221,7 @@ class CustomMobSimAgent implements MobsimDriverAgent {
         if(this.prevState == null) {
             return;
         }
+
         Experience experience = new Experience(this.prevState, this.prevAction,this.prevReward,getCurrentMDPState());
         experiences.add(experience);
 
@@ -170,51 +229,34 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
     @Override
     public Id<Link> chooseNextLinkId() {
-
-        log.info("Agent Id: " + this.id + " Current Link Id: " + this.getCurrentLinkId());
-
-        log.info("Agent Id: " + this.id+" Choosing next link Id");
-
-        if(firstMove == false) {
-            this.prevReward = getLastActionReward();
-        }
-        //addToExperiences(); // collect experience to be used for training
-
+        previousLinkId = this.getCurrentLinkId();
         Id<Link> nextLink = iPolicy.getBestOutgoingLink(getCurrentMDPState(), this.linkId);
-
-        log.info("Agent Id: "+this.id+" Chose link: " + nextLink);
-        firstMove = false;
-
-
         return nextLink;
     }
 
     @Override
     public void notifyMoveOverNode(Id<Link> newLinkId) {
+        this.departureTime = mobsimTimer.getTimeOfDay();
         this.linkId = newLinkId ;
     }
 
+
     @Override
     public boolean isWantingToArriveOnCurrentLink() {
-        if ( this.linkId.equals( this.destinationLinkId ) ) {
-            getRandomLink();
+        if(leaveWork == false && this.linkId.equals(Id.createLinkId(20))) {
+            reachedWork = true;
+            return true;
+
         }
-        return false ;
+        if(reachedWork == true && this.linkId.equals(Id.createLinkId(1))) {
+            return true;
+        }
+        return false;
     }
 
-    private Id<Link> getRandomLink() {
-        // if we are at the final destination, select a random new destination:
-        Map<Id<Link>, ? extends Link> links = this.scenario.getNetwork().getLinks() ;
-        int idx = rnd.nextInt(links.size()) ;
-        int cnt = 0 ;
-        for ( Link link : links.values() ) {
-            if ( cnt== idx ) {
-                return link.getId() ;
-            }
-            cnt++;
-        }
 
-        throw new RuntimeException("should not happen");
+    public double getDepartureTime() {
+        return this.departureTime;
     }
 
     @Override
@@ -224,7 +266,6 @@ class CustomMobSimAgent implements MobsimDriverAgent {
 
     @Override
     public MobsimVehicle getVehicle() {
-        log.info("RETURNING VEHICLE");
         return this.vehicle ;
     }
 

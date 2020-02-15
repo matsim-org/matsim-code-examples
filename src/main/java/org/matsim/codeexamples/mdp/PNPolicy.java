@@ -38,7 +38,7 @@ public class PNPolicy implements IPolicy {
 
     @Override
     public Id<Link> getBestOutgoingLink(MDPState mdpState, Id<Link> currentLink) {
-        logger.info("TIME OF DAY IS "+mobsimTimer.getTimeOfDay());
+
         if (mobsimTimer.getTimeOfDay() >= 24*3600) {
             return null;
         }
@@ -60,8 +60,15 @@ public class PNPolicy implements IPolicy {
             if(outgoingLinks.contains(linkChosen)) {
                 return Id.createLinkId(linkChosen);
             }
-            linkChosen = new Random().nextInt(outgoingLinks.size());
+
             return Id.createLinkId(outgoingLinks.get(linkChosen));
+//            if(new Random().nextDouble() <= 0.3) {
+//                return Id.createLinkId(5);
+//            }
+//            else {
+//                int linkChosen = new Random().nextInt(outgoingLinks.size());
+//                return Id.createLinkId(outgoingLinks.get(linkChosen));
+//            }
         } else {
             int linkChosen = new Random().nextInt(outgoingLinks.size());
             return Id.createLinkId(outgoingLinks.get(linkChosen));

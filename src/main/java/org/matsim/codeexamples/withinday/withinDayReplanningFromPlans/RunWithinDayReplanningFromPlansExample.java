@@ -28,17 +28,26 @@ import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.router.util.TravelTime;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.core.utils.io.IOUtils;
+import org.matsim.examples.ExamplesUtils;
 import org.matsim.withinday.trafficmonitoring.WithinDayTravelTime;
 
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
 public class RunWithinDayReplanningFromPlansExample {
 
 	public static void main(String[] args){
-		final Config config = ConfigUtils.loadConfig( "examples/tutorial/programming/veryExperimentalWithinDayReplanning/withinday-config.xml" );
-		final Scenario scenario = ScenarioUtils.createScenario( config );
-		final Controler controler = new Controler( scenario );
+		Config config = null;
+
+		URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");
+		config = ConfigUtils.loadConfig(url);
+		config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
+		config.controler().setLastIteration(0);
+
+		Scenario scenario = ScenarioUtils.loadScenario(config);
+		final Controler controler = new Controler(scenario);
 
 		controler.getConfig().controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.failIfDirectoryExists );
 		// (need to make sure that test fails if it does not get the output directory right! kai, nov'15)

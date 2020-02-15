@@ -48,7 +48,7 @@ public class CustomScoreLeg {
             modeParams = (ModeUtilityParameters)this.params.modeParams.get("walk");
         }*/
 
-        tmpScore += travelTime * (-1);
+//        tmpScore += travelTime * (-0.005);
 
         Route route = leg.getRoute();
         double dist = route.getDistance();
@@ -60,7 +60,7 @@ public class CustomScoreLeg {
             }
         }
 
-            tmpScore += (-1) * dist;
+            tmpScore += (-0.0005) * dist;
 //            tmpScore += (-0.0002) * 1 * dist;
 
 

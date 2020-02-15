@@ -1,6 +1,7 @@
 package org.matsim.codeexamples.mdp.event.handlers;
 
 import org.matsim.api.core.v01.Id;
+import org.matsim.api.core.v01.events.ActivityStartEvent;
 import org.matsim.api.core.v01.events.Event;
 import org.matsim.api.core.v01.events.LinkEnterEvent;
 import org.matsim.api.core.v01.events.LinkLeaveEvent;
@@ -61,6 +62,10 @@ public class StateTransitionCalculator implements BasicEventHandler {
         Id<Link> toLink = null;
         Id<Link> fromLink = null;
         Id<Vehicle> vehicleId = null;
+
+        if(event instanceof ActivityStartEvent) {
+            log.info("ACTIVTY STARTED FOR "+((ActivityStartEvent) event).getPersonId());
+        }
 
         if(event instanceof LinkEnterEvent) {
             toLink = ( (LinkEnterEvent)event).getLinkId();

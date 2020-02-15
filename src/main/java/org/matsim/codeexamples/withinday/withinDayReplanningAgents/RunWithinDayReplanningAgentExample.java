@@ -45,6 +45,7 @@ import org.matsim.core.mobsim.qsim.interfaces.MobsimVehicle;
 import org.matsim.core.mobsim.qsim.interfaces.Netsim;
 import org.matsim.core.mobsim.qsim.qnetsimengine.QVehicle;
 import org.matsim.core.mobsim.qsim.qnetsimengine.QVehicleImpl;
+import org.matsim.core.scenario.ScenarioUtils;
 import org.matsim.core.utils.io.IOUtils;
 import org.matsim.examples.ExamplesUtils;
 import org.matsim.facilities.Facility;
@@ -60,23 +61,17 @@ import java.net.URL;
 public class RunWithinDayReplanningAgentExample {
 
 	public static void main(String[] args) {
+		Config config = null;
 
-		// I want a config out of nothing:
-		Config config = ConfigUtils.createConfig() ;
-
-		// set some config stuff:
-		URL context = ExamplesUtils.getTestScenarioURL("siouxfalls");
-		URL networkUrl = IOUtils.newUrl(context, "network-wo-dummy-node.xml");
-//		config.network().setInputFile("scenarios/siouxfalls/network-wo-dummy-node.xml") ;
-		config.network().setInputFile(networkUrl.toString());
-		config.controler().setLastIteration(0) ;
+		URL url = IOUtils.newUrl(ExamplesUtils.getTestScenarioURL("equil"), "config.xml");
+		config = ConfigUtils.loadConfig(url);
 		config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
-		config.qsim().setEndTime(26.*3600) ;
-		config.qsim().setSnapshotStyle( QSimConfigGroup.SnapshotStyle.queue ) ;
-		config.controler().setOverwriteFileSetting(OverwriteFileSetting.deleteDirectoryIfExists);
-		// base the controler on that:
-		Controler ctrl = new Controler( config ) ;
-		ctrl.addOverridingModule(new AbstractModule() {
+		config.controler().setLastIteration(0);
+
+		Scenario scenario = ScenarioUtils.loadScenario(config);
+		final Controler controler = new Controler(scenario);
+
+		controler.addOverridingModule(new AbstractModule() {
 			@Override
 			public void install() {
 				bindMobsim().toProvider(new Provider<Mobsim>() {
@@ -105,14 +100,14 @@ public class RunWithinDayReplanningAgentExample {
 						});
 
 						// add otfvis live.  Can't do this in core since otfvis is not accessible from there.
-						 OTFClientLive.run(sc.getConfig(), OTFVis.startServerAndRegisterWithQSim(sc.getConfig(), sc, ev, qsim));
+//						 OTFClientLive.run(sc.getConfig(), OTFVis.startServerAndRegisterWithQSim(sc.getConfig(), sc, ev, qsim));
 
 						return qsim;
 					}
 				});
 			}
 		});
-		ctrl.run();
+		controler.run();
 
 	}
 
@@ -136,7 +131,7 @@ class MyAgent implements MobsimDriverAgent {
 	private Id<Person> myId;
 	private State state = State.ACTIVITY;
 	private Netsim netsim;
-	private Id<Link> destinationLinkId = Id.create("dummy", Link.class);
+	private Id<Link> destinationLinkId = Id.createLinkId(20);
 	private Id<Vehicle> plannedVehicleId ;
 
 	private double activityEndTime = 1. ;

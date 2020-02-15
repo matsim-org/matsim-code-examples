@@ -38,12 +38,10 @@ public class PolicyNetworkInterface {
         String url = String.format("%s/%s",BASEURL,GETACTION);
         ClientResponse clientResponse = clientPost(url,parameters);
         if(clientResponse.getStatus() != 200) {
-            logger.info(clientResponse.toString());
             throw new RuntimeException("Failed: " + clientResponse.getStatus());
         }
         String jsonResponse = clientResponse.getEntity(String.class);
         Map<String,Object> jsonObject = JSONStringUtil.convertToMap(jsonResponse);
-        logger.info(jsonObject.toString());
         List<Double> actionRate = new ArrayList<>();
         List<Object> strActionRate = JSONStringUtil.convertStringToList(jsonObject.get("action_rate").toString());
         for(Object strRate: strActionRate) {
