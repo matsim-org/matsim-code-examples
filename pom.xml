@@ -48,10 +48,20 @@
 			<url>http://oss.jfrog.org/libs-snapshot</url>
 		</repository>
 		<repository>
-	  		<!-- For SBB Extension -->
-	  	    <id>jitpack.io</id>
-	  	    <url>https://jitpack.io</url>
-	  	</repository>
+			<!-- For SBB Extension -->
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+		<!-- for dependencies of osm-network-reader -->
+		<repository>
+			<id>topobyte</id>
+			<url>https://mvn.topobyte.de</url>
+		</repository>
+		<!-- for dependencies of osm-network-reader -->
+		<repository>
+			<id>slimjars</id>
+			<url>https://mvn.slimjars.com</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -125,6 +135,11 @@
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>bicycle</artifactId>
+			<version>${matsim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>osm</artifactId>
 			<version>${matsim.version}</version>
 		</dependency>
 
