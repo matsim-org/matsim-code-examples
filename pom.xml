@@ -11,13 +11,13 @@
 
 	<properties>
 		<!--release:-->
-<!--		<matsim.version>11.0</matsim.version>-->
+		<matsim.version>12.0</matsim.version>
 
 		<!--weekly "release" (recommended):-->
 		<!--<matsim.version>0.11.0-2019w01-SNAPSHOT</matsim.version>-->
 
 		<!--development head:-->
-		<matsim.version>12.0-SNAPSHOT</matsim.version>
+<!--		<matsim.version>12.0-SNAPSHOT</matsim.version>-->
 
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
@@ -242,8 +242,8 @@
 					</execution>
 				</executions>
 				<configuration>
-					<source>8</source>
-					<target>8</target>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
 					<showWarnings>false</showWarnings>
 					<showDeprecation>false</showDeprecation>
 					<encoding>UTF-8</encoding>
