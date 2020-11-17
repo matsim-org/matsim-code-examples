@@ -48,11 +48,16 @@
 			<id>ojo-snapshots</id>
 			<url>http://oss.jfrog.org/libs-snapshot</url>
 		</repository>
+		<!-- For SBB Extension -->
 		<repository>
-			<!-- For SBB Extension -->
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
 		</repository>
+		<repository>
+			<id>SBB</id>
+			<url>https://schweizerischebundesbahnen.bintray.com/simba.mvn</url>
+		</repository>
+
 		<!-- for dependencies of osm-network-reader -->
 		<repository>
 			<id>topobyte</id>
