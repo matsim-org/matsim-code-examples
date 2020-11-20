@@ -3,7 +3,7 @@
  *                                                                         *
  * *********************************************************************** *
  *                                                                         *
- * copyright       : (C) 2008 by the members listed in the COPYING,        *
+ * copyright       : (C) 2020 by the members listed in the COPYING,        *
  *                   LICENSE and WARRANTY file.                            *
  * email           : info at matsim dot org                                *
  *                                                                         *
@@ -18,45 +18,33 @@
  * *********************************************************************** */
 package org.matsim.codeexamples.extensions.minibus;
 
-import org.apache.log4j.Logger;
-import org.matsim.api.core.v01.Scenario;
-import org.matsim.contrib.minibus.PConfigGroup;
+import org.junit.Rule;
+import org.junit.Test;
 import org.matsim.contrib.minibus.RunMinibus;
-import org.matsim.contrib.minibus.hook.PModule;
 import org.matsim.core.config.Config;
-import org.matsim.core.config.ConfigUtils;
-import org.matsim.core.controler.Controler;
-import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.core.controler.OutputDirectoryHierarchy;
+import org.matsim.testcases.MatsimTestUtils;
 
-/**
- * @author nagel
- *
- */
-public class RunMinibusExample {
-	private final static Logger log = Logger.getLogger(RunMinibus.class);
+public class RunMinibusTest {
 
-	public static void main(final String[] args) {
+    @Rule
+    public MatsimTestUtils utils = new MatsimTestUtils() ;
 
-		if(args.length == 0){
-			log.info("Arg 1: config.xml is missing.");
-			log.info("Check https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/atlantis/minibus/config.xml for an example.");
-			System.exit(1);
-		}
+    /**
+     * Test method for {@link RunMinibus#main(java.lang.String[])}.
+     */
+    @SuppressWarnings("static-method")
+    @Test
+    public final void testMain() {
+        RunMinibus runner = new RunMinibus( new String[]{"https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/atlantis/minibus/config.xml"} );
 
-		Config config = ConfigUtils.loadConfig( args[0], new PConfigGroup() ) ;
-		
-//		PConfigGroup pConfig = ConfigUtils.addOrGetModule(config, PConfigGroup.GROUP_NAME, PConfigGroup.class ) ;
-//		
-//		pConfig.getCostPerKilometer() ;
+        Config config = runner.getConfig();
 
-		Scenario scenario = ScenarioUtils.loadScenario(config);
+        config.controler().setOutputDirectory( utils.getOutputDirectory() );
+        config.controler().setOverwriteFileSetting( OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists );
 
+        config.controler().setLastIteration( 1 );
 
-		Controler controler = new Controler(scenario);
-		controler.getConfig().controler().setCreateGraphs(false);
-		
-		controler.addOverridingModule(new PModule()) ;
-
-		controler.run();
-	}		
+        runner.run();
+    }
 }
