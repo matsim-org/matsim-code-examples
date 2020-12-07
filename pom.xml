@@ -150,6 +150,11 @@
 			<artifactId>osm</artifactId>
 			<version>${matsim.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>emissions</artifactId>
+			<version>${matsim.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
