@@ -10,9 +10,11 @@
 	</module>
 
 	<module name="strategy">
-		<!-- We focus only on DynAgents. "Standard" agents do not change their behaviour -->
 		<param name="maxAgentPlanMemorySize" value="1"/>
-		<param name="ModuleProbability_1" value="1.0"/>
-		<param name="Module_1" value="KeepLastSelected"/>
+		<!-- We focus only on DynAgents. "Standard" agents do not change their behaviour -->
+		<parameterset type="strategysettings" >
+			<param name="weight" value="1.0"/>
+			<param name="strategyName" value="KeepLastSelected"/>
+		</parameterset>
 	</module>
 </config>
