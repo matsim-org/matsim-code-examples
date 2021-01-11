@@ -92,12 +92,6 @@
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<type>test-jar</type>
-			<exclusions>
-				<exclusion>
-					<artifactId>guava</artifactId>
-					<groupId>com.google.guava</groupId>
-				</exclusion>
-			</exclusions>
 			<version>${matsim.version}</version>
 			<scope>test</scope>
 		</dependency>
