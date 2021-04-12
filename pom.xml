@@ -11,15 +11,15 @@
 
 	<properties>
 		<!--release:-->
-		<matsim.version>13.0</matsim.version>
+<!--		<matsim.version>13.0</matsim.version>-->
 
 		<!--weekly "release" (recommended):-->
-<!--		<matsim.version>13.0-2021w07-SNAPSHOT</matsim.version>-->
+		<matsim.version>14.0-2021w15-SNAPSHOT</matsim.version>
 
 <!--		I think we should leave this at a weekly build for better stability.  Please pull up every time you see this.  kai, dec'20 -->
 
 		<!--development head:-->
-<!--		<matsim.version>13.0-SNAPSHOT</matsim.version>-->
+<!--		<matsim.version>14.0-SNAPSHOT</matsim.version>-->
 
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
@@ -35,7 +35,7 @@
 			<url>https://repo.osgeo.org/repository/release/</url>
 		</repository>
 		<repository>
-			<!-- For MATSim releases: -->
+			<!-- For MATSim releases and snapshots: -->
 			<id>matsim</id>
 			<url>https://repo.matsim.org/repository/matsim/</url>
 		</repository>
