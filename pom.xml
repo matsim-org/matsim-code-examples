@@ -14,12 +14,15 @@
 		<matsim.version>13.0</matsim.version>
 
 		<!--weekly "release" (recommended):-->
-<!--		<matsim.version>13.0-2021w07-SNAPSHOT</matsim.version>-->
+<!--		<matsim.version>14.0-2021w16-SNAPSHOT</matsim.version>-->
 
 <!--		I think we should leave this at a weekly build for better stability.  Please pull up every time you see this.  kai, dec'20 -->
 
 		<!--development head:-->
-<!--		<matsim.version>13.0-SNAPSHOT</matsim.version>-->
+<!--		<matsim.version>14.0-SNAPSHOT</matsim.version>-->
+
+<!--		!! matsim-examples is currently on a more modern version since I want to modernize some things there. kai, apr'21 !!-->
+		<matsim-examples.version>14.0-SNAPSHOT</matsim-examples.version>
 
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
@@ -80,7 +83,7 @@
 		<dependency>
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim-examples</artifactId>
-			<version>${matsim.version}</version>
+			<version>${matsim-examples.version}</version>
 		</dependency>
 
 		<!-- Include some MATSim extensions -->
@@ -127,6 +130,11 @@
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>emissions</artifactId>
+			<version>${matsim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>discrete_mode_choice</artifactId>
 			<version>${matsim.version}</version>
 		</dependency>
 
