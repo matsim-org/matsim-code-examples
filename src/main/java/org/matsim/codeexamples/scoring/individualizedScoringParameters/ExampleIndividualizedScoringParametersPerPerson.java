@@ -37,11 +37,11 @@ public class ExampleIndividualizedScoringParametersPerPerson implements ScoringP
 		ActivityUtilityParameters.Builder actParamsBuilder = new ActivityUtilityParameters.Builder();
 		actParamsBuilder.setType( "h" );
 		actParamsBuilder.setTypicalDuration_s( 8 * 3600. );
-		builder.setActivityParameters( "h", actParamsBuilder );
+		builder.setActivityParameters( "h", actParamsBuilder.build() );
 
 		ModeUtilityParameters.Builder modeParamsBuilder = new ModeUtilityParameters.Builder();
 		modeParamsBuilder.setMarginalUtilityOfTraveling_s( -6./3600. );
-		builder.setModeParameters( "car", modeParamsBuilder );
+		builder.setModeParameters( "car", modeParamsBuilder.build() );
 
 		// the design of the above has changed with Tilmanns re-design of the income-dependent activity parameters; there does not seem to be
 		// a formulation that works both for 13.0 and the current head.  kai, jun'21
