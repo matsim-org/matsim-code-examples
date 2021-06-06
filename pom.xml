@@ -14,7 +14,7 @@
 <!--		<matsim.version>13.0</matsim.version>-->
 
 		<!--weekly "release" (recommended):-->
-		<matsim.version>14.0-2021w15-SNAPSHOT</matsim.version>
+<!--		<matsim.version>13.0-2021w07-SNAPSHOT</matsim.version>-->
 
 <!--		I think we should leave this at a weekly build for better stability.  Please pull up every time you see this.  kai, dec'20 -->
 
@@ -35,7 +35,7 @@
 			<url>https://repo.osgeo.org/repository/release/</url>
 		</repository>
 		<repository>
-			<!-- For MATSim releases and snapshots: -->
+			<!-- For MATSim releases: -->
 			<id>matsim</id>
 			<url>https://repo.matsim.org/repository/matsim/</url>
 		</repository>
