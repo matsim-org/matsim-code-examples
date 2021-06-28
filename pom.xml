@@ -11,10 +11,10 @@
 
 	<properties>
 		<!--release:-->
-		<matsim.version>13.0</matsim.version>
+<!--		<matsim.version>13.0</matsim.version>-->
 
 <!--		in IDE for a possible 13.1-->
-<!--		<matsim.version>13.1-SNAPSHOT</matsim.version>-->
+		<matsim.version>13.1-SNAPSHOT</matsim.version>
 
 		<!--weekly "release" (recommended):-->
 <!--		<matsim.version>14.0-2021w16-SNAPSHOT</matsim.version>-->
