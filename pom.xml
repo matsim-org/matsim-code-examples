@@ -13,7 +13,7 @@
 		<!--release:-->
 <!--		<matsim.version>13.0</matsim.version>-->
 
-		<!--stable build  (recommended):-->
+		<!--stable build based on pull request (recommended):-->
 		<matsim.version>14.0-PR1528</matsim.version>
 
 <!--		I think we should leave this at a weekly build for better stability.  Please pull up every time you see this.  kai, dec'20 -->
