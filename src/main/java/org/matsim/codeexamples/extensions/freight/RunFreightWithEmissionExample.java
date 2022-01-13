@@ -56,7 +56,7 @@ public class RunFreightWithEmissionExample {
 		config.plans().setInputFile( null ); // remove passenger input
 
 		//more general settings
-		config.controler().setOutputDirectory("./output/freight" );
+		config.controler().setOutputDirectory("./output/freightWEmissions" );
 		config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
 
 		config.controler().setLastIteration(0 );		// yyyyyy iterations currently do not work; needs to be fixed.
