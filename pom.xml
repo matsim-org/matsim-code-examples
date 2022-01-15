@@ -14,12 +14,12 @@
 <!--		<matsim.version>13.0</matsim.version>-->
 
 		<!--stable build based on pull request (recommended):-->
-		<matsim.version>14.0-PR1528</matsim.version>
+<!--		<matsim.version>14.0-PR1528</matsim.version>-->
 
 <!--		I think we should leave this at a weekly build for better stability.  Please pull up every time you see this.  kai, dec'20 -->
 
 		<!--development head:-->
-<!--		<matsim.version>14.0-SNAPSHOT</matsim.version>-->
+		<matsim.version>14.0-SNAPSHOT</matsim.version>
 
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
