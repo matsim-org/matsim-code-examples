@@ -14,15 +14,15 @@
 <!--		<matsim.version>13.0</matsim.version>-->
 
 		<!--stable build based on pull request (recommended):-->
-		<matsim.version>14.0-PR1849</matsim.version>
-
-<!--		I think we should leave this at a weekly build for better stability.  Please pull up every time you see this.  kai, dec'20 -->
+		<matsim.version>14.0</matsim.version>
 
 		<!--development head:-->
 <!--		<matsim.version>14.0-SNAPSHOT</matsim.version>-->
 
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<repositories>
@@ -31,7 +31,6 @@
 			<!-- Geotools is not on Maven central -->
 			<id>osgeo</id>
 			<name>Geotools repository</name>
-			<!--<url>http://download.osgeo.org/webdav/geotools</url>-->
 			<url>https://repo.osgeo.org/repository/release/</url>
 		</repository>
 		<repository>
@@ -59,12 +58,6 @@
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<version>${matsim.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>guava</artifactId>
-					<groupId>com.google.guava</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<!-- to get MatsimTestUtils -->
@@ -138,7 +131,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
-			<version>1.6</version>
+			<version>1.9.0</version>
 		</dependency>
 
 		<dependency>
@@ -151,7 +144,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.1</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -162,133 +155,51 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.10</version>
 				<configuration>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<archive>
-						<manifest>
-							<mainClass>org.matsim.codeexamples.gui.MATSimGUI</mainClass>
-
-							<!--	https://stackoverflow.com/questions/7051603/jai-vendorname-null-->
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-						</manifest>
-						<manifestEntries>
-							<!--	https://stackoverflow.com/questions/7051603/jai-vendorname-null-->
-							<Specification-Vendor>org.matsim</Specification-Vendor>
-							<Implementation-Vendor>org.matsim</Implementation-Vendor>
-						</manifestEntries>
-					</archive>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.3.0</version>
 				<executions>
 					<execution>
-						<id>make-assembly</id>
 						<phase>package</phase>
 						<goals>
-							<goal>single</goal>
+							<goal>shade</goal>
 						</goals>
+						<configuration>
+							<outputFile>${project.basedir}/${project.build.finalName}.jar</outputFile>
+							<transformers>
+								<!-- This bit sets the main class for the executable jar as you otherwise would with the assembly plugin -->
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<manifestEntries>
+										<Main-Class>org.matsim.codeexamples.gui.MATSimGUI</Main-Class>
+										<Specification-Vendor>org.matsim</Specification-Vendor>
+										<Implementation-Vendor>org.matsim</Implementation-Vendor>
+										<Implementation-Version>${project.version}</Implementation-Version>
+									</manifestEntries>
+								</transformer>
+								<!-- This bit merges the various GeoTools META-INF/services files         -->
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+							</transformers>
+							<filters>
+								<filter>
+									<artifact>*:*</artifact>
+									<excludes>
+										<exclude>META-INF/*.RSA</exclude>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<executions>
-					<execution>
-						<id>compile</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>testCompile</id>
-						<phase>test-compile</phase>
-						<goals>
-							<goal>testCompile</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<showWarnings>false</showWarnings>
-					<showDeprecation>false</showDeprecation>
-					<encoding>UTF-8</encoding>
-					<!-- configure initial and maximal memory for compiling -->
-					<fork>true</fork>
-					<meminitial>128m</meminitial>
-					<maxmem>512m</maxmem>
-					<compilerArguments>
-						<Xmaxwarns>4000</Xmaxwarns>
-						<Xmaxerrs>100</Xmaxerrs>
-					</compilerArguments>
-				</configuration>
 			</plugin>
 		</plugins>
-
 	</build>
-	<profiles>
-		<profile>
-			<id>java-9+</id>
-			<activation>
-				<jdk>[9</jdk>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>javax.xml.bind</groupId>
-					<artifactId>jaxb-api</artifactId>
-					<version>2.3.1</version>
-				</dependency>
-				<dependency>
-					<groupId>com.sun.xml.bind</groupId>
-					<artifactId>jaxb-core</artifactId>
-					<version>2.3.0.1</version>
-				</dependency>
-				<dependency>
-				<groupId>com.sun.xml.bind</groupId>
-					<artifactId>jaxb-impl</artifactId>
-					<version>2.3.0.1</version>
-					</dependency>
-			</dependencies>
-		</profile>
-<!--		<profile>-->
-<!--			<id>release</id>-->
-<!--			<build>-->
-<!--				<defaultGoal>assembly:assembly</defaultGoal>-->
-<!--				<pluginManagement>-->
-<!--					<plugins>-->
-<!--						<plugin>-->
-<!--							<artifactId>maven-assembly-plugin</artifactId>-->
-<!--							<configuration>-->
-<!--								<descriptors>-->
-<!--									<descriptor>src/main/assembly/assembly-release.xml</descriptor>-->
-<!--								</descriptors>-->
-<!--							</configuration>-->
-<!--						</plugin>-->
-<!--						<plugin>-->
-<!--							<artifactId>maven-jar-plugin</artifactId>-->
-<!--							<configuration>-->
-<!--								<archive>-->
-<!--									<manifest>-->
-<!--										<addClasspath>true</addClasspath>-->
-<!--										<classpathPrefix>libs/</classpathPrefix>-->
-<!--									</manifest>-->
-<!--								</archive>-->
-<!--							</configuration>-->
-<!--						</plugin>-->
-<!--					</plugins>-->
-<!--				</pluginManagement>-->
-<!--			</build>-->
-<!--		</profile>-->
-	</profiles>
 </project>

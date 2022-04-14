@@ -13,6 +13,7 @@
 # Package Files #
 /bin/*.jar
 /target/*.jar
+*.jar
 *.war
 *.ear
 *.zip
@@ -40,3 +41,6 @@ hs_err_pid*
 .settings
 .project
 .DS_Store
+
+# maven build files
+/dependency-reduced-pom.xml
