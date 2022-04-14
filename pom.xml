@@ -29,7 +29,6 @@
 			<!-- Geotools is not on Maven central -->
 			<id>osgeo</id>
 			<name>Geotools repository</name>
-			<!--<url>http://download.osgeo.org/webdav/geotools</url>-->
 			<url>https://repo.osgeo.org/repository/release/</url>
 		</repository>
 		<repository>
@@ -57,12 +56,6 @@
 			<groupId>org.matsim</groupId>
 			<artifactId>matsim</artifactId>
 			<version>${matsim.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>guava</artifactId>
-					<groupId>com.google.guava</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<!-- to get MatsimTestUtils -->
@@ -235,58 +228,4 @@
 		</plugins>
 
 	</build>
-	<profiles>
-		<profile>
-			<id>java-9+</id>
-			<activation>
-				<jdk>[9</jdk>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>javax.xml.bind</groupId>
-					<artifactId>jaxb-api</artifactId>
-					<version>2.3.1</version>
-				</dependency>
-				<dependency>
-					<groupId>com.sun.xml.bind</groupId>
-					<artifactId>jaxb-core</artifactId>
-					<version>2.3.0.1</version>
-				</dependency>
-				<dependency>
-				<groupId>com.sun.xml.bind</groupId>
-					<artifactId>jaxb-impl</artifactId>
-					<version>2.3.0.1</version>
-					</dependency>
-			</dependencies>
-		</profile>
-<!--		<profile>-->
-<!--			<id>release</id>-->
-<!--			<build>-->
-<!--				<defaultGoal>assembly:assembly</defaultGoal>-->
-<!--				<pluginManagement>-->
-<!--					<plugins>-->
-<!--						<plugin>-->
-<!--							<artifactId>maven-assembly-plugin</artifactId>-->
-<!--							<configuration>-->
-<!--								<descriptors>-->
-<!--									<descriptor>src/main/assembly/assembly-release.xml</descriptor>-->
-<!--								</descriptors>-->
-<!--							</configuration>-->
-<!--						</plugin>-->
-<!--						<plugin>-->
-<!--							<artifactId>maven-jar-plugin</artifactId>-->
-<!--							<configuration>-->
-<!--								<archive>-->
-<!--									<manifest>-->
-<!--										<addClasspath>true</addClasspath>-->
-<!--										<classpathPrefix>libs/</classpathPrefix>-->
-<!--									</manifest>-->
-<!--								</archive>-->
-<!--							</configuration>-->
-<!--						</plugin>-->
-<!--					</plugins>-->
-<!--				</pluginManagement>-->
-<!--			</build>-->
-<!--		</profile>-->
-	</profiles>
 </project>
