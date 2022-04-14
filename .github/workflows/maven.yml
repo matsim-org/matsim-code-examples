@@ -22,11 +22,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 11
+    - name: Set up JDK
       uses: actions/setup-java@v3
       with:
         java-version: ${{matrix.java}}
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B install --file pom.xml
+      run: mvn install -B -Dmatsim.preferLocalDtds=true -Dmaven.test.redirectTestOutputToFile
