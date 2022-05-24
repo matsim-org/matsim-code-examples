@@ -61,15 +61,16 @@ public final class RunAverageEmissionToolOfflineExample{
 			config = ConfigUtils.loadConfig( args );
 		}
 
-		config.controler().setOutputDirectory( "output/" );
+		//config.controler().setOutputDirectory( "output/" );
+		config.controler().setOutputDirectory( "test/output/org/matsim/codeexamples/extensions/emissions/RunAverageEmissionToolOfflineExampleTest/testMain/" );
 
 		EmissionsConfigGroup emissionsConfig = ConfigUtils.addOrGetModule( config, EmissionsConfigGroup.class );
 
 //		emissionsConfig.setAverageColdEmissionFactorsFile( "../sample_EFA_ColdStart_vehcat_2005average.txt" );
 //		emissionsConfig.setAverageWarmEmissionFactorsFile( "../sample_EFA_HOT_vehcat_2005average.txt" );
 
-		emissionsConfig.setAverageColdEmissionFactorsFile( "../sample_41_EFA_ColdStart_vehcat_2020average.txt" );
-		emissionsConfig.setAverageWarmEmissionFactorsFile( "../sample_41_EFA_HOT_vehcat_2020average.txt" );
+		emissionsConfig.setAverageColdEmissionFactorsFile( "../EFA_ColdStart_Vehcat_2020_Average_withHGVetc.csv" );
+		emissionsConfig.setAverageWarmEmissionFactorsFile( "../EFA_HOT_Vehcat_2020_Average.csv" );
 
 		emissionsConfig.setDetailedVsAverageLookupBehavior( EmissionsConfigGroup.DetailedVsAverageLookupBehavior.directlyTryAverageTable );
 
