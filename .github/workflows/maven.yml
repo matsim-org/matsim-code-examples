@@ -17,7 +17,6 @@ jobs:
     strategy:
       matrix:
         java:
-          - 11
           - 17
 
     steps:
@@ -29,4 +28,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn install -B -Dmatsim.preferLocalDtds=true -Dmaven.test.redirectTestOutputToFile
+      run: mvn verify -B -Dmatsim.preferLocalDtds=true -Dmaven.test.redirectTestOutputToFile
