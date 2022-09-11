@@ -6,15 +6,15 @@
 	<artifactId>matsim-code-examples</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>MATSim code example</name>
-	<description>MATSim code example</description>
+	<name>MATSim code examples</name>
+	<description>MATSim code examples</description>
 
 	<properties>
 		<!--release:-->
 <!--		<matsim.version>14.0</matsim.version>-->
 
 		<!--stable build based on pull request (recommended):-->
-		<matsim.version>15.0-PR2076</matsim.version>
+		<matsim.version>15.0-PR2173</matsim.version>
 
 <!--		I think we should leave this at PR builds for better stability.  Please pull up every time you see this.  kai, dec'20 -->
 
@@ -138,12 +138,6 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
 			<version>1.9.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-math3</artifactId>
-			<version>3.6.1</version>
 		</dependency>
 
 		<!-- Include the JUnit testing library -->
