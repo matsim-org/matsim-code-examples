@@ -134,12 +134,6 @@
 			<version>${matsim.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-csv</artifactId>
-			<version>1.9.0</version>
-		</dependency>
-
 		<!-- Include the JUnit testing library -->
 		<dependency>
 			<groupId>junit</groupId>
