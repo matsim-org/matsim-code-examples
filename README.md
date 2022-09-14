@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/matsim-org/matsim-code-examples.svg?branch=0.10.x)](https://travis-ci.org/matsim-org/matsim-code-examples)
+[![Java CI with Maven](https://github.com/matsim-org/matsim-code-examples/actions/workflows/maven.yml/badge.svg?branch=14.x)](https://github.com/matsim-org/matsim-code-examples/actions/workflows/maven.yml)
 
 # matsim-code-examples
 A repository containing code examples around MATSim
