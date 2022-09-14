@@ -56,11 +56,9 @@ class CreateDemand {
 	private static final int WORK_END_TIME = 17 * 60 * 60;
 	private static final double SCALE_FACTOR = 0.1;
 	private static final GeometryFactory geometryFactory = new GeometryFactory();
-	private static final CSVFormat csvFormat = CSVFormat.Builder.create()
-			.setDelimiter(';')
-			.setHeader()
-			.setAllowMissingColumnNames(true)
-			.build();
+	private static final CSVFormat csvFormat = CSVFormat.newFormat(';')
+			.withFirstRecordAsHeader()
+			.withAllowMissingColumnNames(true);
 
 	private final Map<String, Geometry> regions;
 	private final EnumeratedDistribution<Geometry> landcover;
