@@ -14,7 +14,7 @@
 <!--		<matsim.version>14.0</matsim.version>-->
 
 		<!--stable build based on pull request (recommended):-->
-		<matsim.version>15.0-2022w40</matsim.version>
+		<matsim.version>15.0-2022w41</matsim.version>
 
 <!--		I think we should leave this at PR builds for better stability.  Please pull up every time you see this.  kai, dec'20 -->
 
