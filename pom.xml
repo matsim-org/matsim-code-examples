@@ -19,7 +19,7 @@
 <!--		I think we should leave this at PR builds for better stability.  Please pull up every time you see this.  kai, dec'20 -->
 
 		<!--development head:-->
-<!--		<matsim.version>15.0-SNAPSHOT</matsim.version>-->
+		<matsim.version>15.0-SNAPSHOT</matsim.version>
 
 		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,6 +49,10 @@
 		<repository>
 			<id>slimjars</id>
 			<url>https://mvn.slimjars.com</url>
+		</repository>
+		<repository>
+			<id>jzy3d</id>
+			<url>https://maven.jzy3d.org/releases/</url>
 		</repository>
 	</repositories>
 
