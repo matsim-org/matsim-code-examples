@@ -17,6 +17,7 @@
 		<matsim.version>15.0-2022w52</matsim.version>
 
 <!--		I think we should leave this at PR builds for better stability.  Please pull up every time you see this.  kai, dec'20 -->
+		<matsim.version>15.0-PR2344</matsim.version>
 
 		<!--development head:-->
 		<matsim.version>15.0-SNAPSHOT</matsim.version>
