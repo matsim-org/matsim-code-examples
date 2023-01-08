@@ -10,17 +10,8 @@
 	<description>MATSim code examples</description>
 
 	<properties>
-		<!--release:-->
-<!--		<matsim.version>14.0</matsim.version>-->
-
-		<!--stable build based on weekly releases (recommended):-->
-		<matsim.version>15.0-2023w01</matsim.version>
-
-<!--		I think we should leave this at PR builds for better stability.  Please pull up every time you see this.  kai, dec'20 -->
+		<!--stable build based on weekly (e.g. 15.0-PR2344), PR-based (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
 		<matsim.version>15.0-PR2344</matsim.version>
-
-		<!--development head:-->
-		<matsim.version>15.0-SNAPSHOT</matsim.version>
 
 		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
