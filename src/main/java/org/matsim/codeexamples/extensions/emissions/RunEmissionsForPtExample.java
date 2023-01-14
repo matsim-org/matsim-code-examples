@@ -4,7 +4,6 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.contrib.emissions.EmissionModule;
 import org.matsim.contrib.emissions.HbefaVehicleCategory;
-import org.matsim.contrib.emissions.example.CreateEmissionConfig;
 import org.matsim.contrib.emissions.utils.EmissionsConfigGroup;
 import org.matsim.contrib.emissions.utils.EmissionsConfigGroup.DetailedVsAverageLookupBehavior;
 import org.matsim.core.config.Config;
@@ -36,7 +35,6 @@ class RunEmissionsForPtExample{
 
 		EmissionsConfigGroup emissionConfig = ConfigUtils.addOrGetModule( config, EmissionsConfigGroup.class );
 		{
-		//default setting seems OK.
 		emissionConfig.setAverageColdEmissionFactorsFile( "/Users/haowu/Documents/TSE/UAM/AMI-AirShuttle/WP3-4/emissions/hBEFA4.1-original/test_pt/EFA_ColdStart_Vehcat_2020_Average_perVehCat_Bln_carOnly.csv" );
 		emissionConfig.setAverageWarmEmissionFactorsFile( "/Users/haowu/Documents/TSE/UAM/AMI-AirShuttle/WP3-4/emissions/hBEFA4.1-original/test_pt/EFA_HOT_Vehcat_2020_Average_perVehCat_Bln_carOnly.csv" );
 		emissionConfig.setHbefaTableConsistencyCheckingLevel(EmissionsConfigGroup.HbefaTableConsistencyCheckingLevel.allCombinations);
@@ -56,7 +54,7 @@ class RunEmissionsForPtExample{
 
 		Scenario scenario = ScenarioUtils.loadScenario( config );
 
-		//feed info for vehicles
+		//feed info of vehicles
 		// non-public transit vehicles should be considered as non-hbefa vehicles
 		System.out.println("vehicles could be handled: " + scenario.getVehicles().getVehicleTypes().values().size());
 		for (VehicleType type : scenario.getVehicles().getVehicleTypes().values()) {
@@ -81,7 +79,6 @@ class RunEmissionsForPtExample{
 			VehicleUtils.setHbefaTechnology( transitVehicleEngineInformation, "average" );
 			VehicleUtils.setHbefaSizeClass( transitVehicleEngineInformation, "average" );
 			VehicleUtils.setHbefaEmissionsConcept( transitVehicleEngineInformation, "average" );
-			// ... define the public transport vehicle types such that there are corresponding lookups in the hbefa files.
 			//TODO: Put some random values for the rail vehicles since there is only information of urban bus for transit vehicles in hbefa 4.1.
 		}
 
