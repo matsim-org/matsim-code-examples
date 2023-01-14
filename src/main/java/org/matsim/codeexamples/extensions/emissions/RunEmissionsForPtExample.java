@@ -1,5 +1,7 @@
 package org.matsim.codeexamples.extensions.emissions;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.contrib.emissions.EmissionModule;
@@ -26,6 +28,8 @@ import org.matsim.vehicles.VehicleUtils;
  */
 class RunEmissionsForPtExample{
 
+	private static final Logger log = LogManager.getLogger(RunEmissionsForPtExample.class );
+
 	public static void main( String [] args ) {
 
 		Config config = ConfigUtils.loadConfig( IOUtils.extendUrl( ExamplesUtils.getTestScenarioURL( "pt-tutorial"), "0.config.xml" ) );
@@ -35,8 +39,8 @@ class RunEmissionsForPtExample{
 
 		EmissionsConfigGroup emissionConfig = ConfigUtils.addOrGetModule( config, EmissionsConfigGroup.class );
 		{
-		emissionConfig.setAverageColdEmissionFactorsFile( "/Users/haowu/Documents/TSE/UAM/AMI-AirShuttle/WP3-4/emissions/hBEFA4.1-original/test_pt/EFA_ColdStart_Vehcat_2020_Average_perVehCat_Bln_carOnly.csv" );
-		emissionConfig.setAverageWarmEmissionFactorsFile( "/Users/haowu/Documents/TSE/UAM/AMI-AirShuttle/WP3-4/emissions/hBEFA4.1-original/test_pt/EFA_HOT_Vehcat_2020_Average_perVehCat_Bln_carOnly.csv" );
+		emissionConfig.setAverageColdEmissionFactorsFile( "../EFA_ColdStart_Vehcat_2020_Average_perVehCat_Bln_carOnly.csv" );
+		emissionConfig.setAverageWarmEmissionFactorsFile( "../EFA_HOT_Vehcat_2020_Average_perVehCat_Bln_carOnly.csv" );
 		emissionConfig.setHbefaTableConsistencyCheckingLevel(EmissionsConfigGroup.HbefaTableConsistencyCheckingLevel.allCombinations);
 		emissionConfig.setHbefaVehicleDescriptionSource(EmissionsConfigGroup.HbefaVehicleDescriptionSource.asEngineInformationAttributes);
 		emissionConfig.setHandlesHighAverageSpeeds(false);
@@ -54,17 +58,17 @@ class RunEmissionsForPtExample{
 
 		Scenario scenario = ScenarioUtils.loadScenario( config );
 
-		//feed info of vehicles
+		// feed info of vehicles
 		// non-public transit vehicles should be considered as non-hbefa vehicles
-		System.out.println("vehicles could be handled: " + scenario.getVehicles().getVehicleTypes().values().size());
 		for (VehicleType type : scenario.getVehicles().getVehicleTypes().values()) {
 			EngineInformation engineInformation = type.getEngineInformation();
 			VehicleUtils.setHbefaVehicleCategory( engineInformation, HbefaVehicleCategory.NON_HBEFA_VEHICLE.toString());
 			VehicleUtils.setHbefaTechnology( engineInformation, "average" );
 			VehicleUtils.setHbefaSizeClass( engineInformation, "average" );
 			VehicleUtils.setHbefaEmissionsConcept( engineInformation, "average" );
-			System.out.println("handled vehicle: " + type.getId());
+			log.info("handled vehicle: " + type.getId());
 		}
+		log.info("vehicles could be handled: " + scenario.getVehicles().getVehicleTypes().values().size());
 		/*		Id<VehicleType> carVehicleTypeId = Id.create("car", VehicleType.class);
 		VehicleType carVehicleType = scenario.getVehicles().getVehicleTypes().get(carVehicleTypeId);
 		EngineInformation carEngineInformation = carVehicleType.getEngineInformation();
