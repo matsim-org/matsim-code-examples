@@ -2,6 +2,7 @@ package org.matsim.codeexamples.extensions.emissions;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.network.Link;
 import org.matsim.contrib.emissions.EmissionModule;
@@ -21,6 +22,9 @@ import org.matsim.vehicles.EngineInformation;
 import org.matsim.vehicles.VehicleType;
 import org.matsim.vehicles.VehicleUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * An example for calculating emissions for transit vehicles while running the matsim scenario.
@@ -29,15 +33,14 @@ import org.matsim.vehicles.VehicleUtils;
  */
 class RunEmissionsForPtOfflineExample {
 	private static final Logger log = LogManager.getLogger(RunEmissionsForPtOfflineExample.class );
-	private static final String eventsFile =  "/output/pt-tutorial/output_events.xml.gz"; // The output event
-	private static final String emissionEventOutputPath = "/output/pt-tutorial/emission.events.offline.xml.gz";
+	private static final String eventsFile =  "output/test_emission4Pt/pt-tutorial_standard/output_events.xml.gz"; // The output event of the standard matsim scenario
+	private static final String emissionEventOutputPath = "output/test_emission4Pt/pt-tutorial_standard/emission.events.offline.xml.gz";
 
 	public static void main( String [] args ) {
 
-		Config config = ConfigUtils.loadConfig( "config.xml" ); // Enter the path of config file with which you run the matsim scenario
-		config.vehicles().setVehiclesFile("/output/pt-tutorial/output_vehicles.xml.gz"); // The output vehicle files which contains the vehicle information which will be used later!
-		config.qsim().setVehiclesSource(QSimConfigGroup.VehiclesSource.modeVehicleTypesFromVehiclesData);
-		config.controler().setLastIteration(3);
+		Config config = ConfigUtils.loadConfig( "../0.config.xml" ); // Enter the path of config file with which you run the matsim scenario
+		config.vehicles().setVehiclesFile("output/test_emission4Pt/pt-tutorial_standard/output_allVehicles.xml.gz"); // The output vehicle files which contains the vehicle information which will be used later!
+		//config.qsim().setVehiclesSource(QSimConfigGroup.VehiclesSource.modeVehicleTypesFromVehiclesData);
 		config.plansCalcRoute().clearTeleportedModeParams();
 
 		EmissionsConfigGroup emissionConfig = ConfigUtils.addOrGetModule( config, EmissionsConfigGroup.class );
@@ -64,31 +67,26 @@ class RunEmissionsForPtOfflineExample {
 
 		// feed info of vehicles
 		// non-public transit vehicles should be considered as non-hbefa vehicles
-		for (VehicleType type : scenario.getVehicles().getVehicleTypes().values()) {
-			EngineInformation engineInformation = type.getEngineInformation();
-			VehicleUtils.setHbefaVehicleCategory( engineInformation, HbefaVehicleCategory.NON_HBEFA_VEHICLE.toString());
-			VehicleUtils.setHbefaTechnology( engineInformation, "average" );
-			VehicleUtils.setHbefaSizeClass( engineInformation, "average" );
-			VehicleUtils.setHbefaEmissionsConcept( engineInformation, "average" );
-			log.info("handled vehicle: " + type.getId());
+		List<Id<VehicleType>> idList = new ArrayList<>();
+		scenario.getTransitVehicles().getVehicleTypes().values().forEach(v -> idList.add(v.getId()));
+		for (VehicleType vehicleType : scenario.getVehicles().getVehicleTypes().values()) {
+			if (idList.contains(vehicleType.getId()) ) {
+				EngineInformation transitVehicleEngineInformation = vehicleType.getEngineInformation();
+				VehicleUtils.setHbefaVehicleCategory( transitVehicleEngineInformation, HbefaVehicleCategory.PASSENGER_CAR.toString() ); // or whatever is in your file; maybe just set it to some truck type first
+				VehicleUtils.setHbefaTechnology( transitVehicleEngineInformation, "average" );
+				VehicleUtils.setHbefaSizeClass( transitVehicleEngineInformation, "average" );
+				VehicleUtils.setHbefaEmissionsConcept( transitVehicleEngineInformation, "average" );
+				//TODO: Put some random values for the rail vehicles since there is only information of urban bus for transit vehicles in hbefa 4.1.
+			} else {
+				EngineInformation engineInformation = vehicleType.getEngineInformation();
+				VehicleUtils.setHbefaVehicleCategory(engineInformation, HbefaVehicleCategory.NON_HBEFA_VEHICLE.toString());
+				VehicleUtils.setHbefaTechnology(engineInformation, "average");
+				VehicleUtils.setHbefaSizeClass(engineInformation, "average");
+				VehicleUtils.setHbefaEmissionsConcept(engineInformation, "average");
+			}
+			log.info("handled vehicle: " + vehicleType.getId());
 		}
 		log.info("the number of vehicles handled: " + scenario.getVehicles().getVehicleTypes().values().size());
-		/*		Id<VehicleType> carVehicleTypeId = Id.create("car", VehicleType.class);
-		VehicleType carVehicleType = scenario.getVehicles().getVehicleTypes().get(carVehicleTypeId);
-		EngineInformation carEngineInformation = carVehicleType.getEngineInformation();
-		VehicleUtils.setHbefaVehicleCategory( carEngineInformation, HbefaVehicleCategory.PASSENGER_CAR.toString());
-		VehicleUtils.setHbefaTechnology( carEngineInformation, "average" );
-		VehicleUtils.setHbefaSizeClass( carEngineInformation, "average" );
-		VehicleUtils.setHbefaEmissionsConcept( carEngineInformation, "average" );*/
-
-		for( VehicleType vehicleType : scenario.getTransitVehicles().getVehicleTypes().values() ){
-			EngineInformation transitVehicleEngineInformation = vehicleType.getEngineInformation();
-			VehicleUtils.setHbefaVehicleCategory( transitVehicleEngineInformation, HbefaVehicleCategory.PASSENGER_CAR.toString() ); // or whatever is in your file; maybe just set it to some truck type first
-			VehicleUtils.setHbefaTechnology( transitVehicleEngineInformation, "average" );
-			VehicleUtils.setHbefaSizeClass( transitVehicleEngineInformation, "average" );
-			VehicleUtils.setHbefaEmissionsConcept( transitVehicleEngineInformation, "average" );
-			//TODO: Put some random values for the rail vehicles since there is only information of urban bus for transit vehicles in hbefa 4.1.
-		}
 
 		// network
 		for (Link link : scenario.getNetwork().getLinks().values()) {

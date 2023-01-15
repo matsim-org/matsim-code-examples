@@ -69,13 +69,6 @@ class RunEmissionsForPtExample{
 			log.info("handled vehicle: " + type.getId());
 		}
 		log.info("vehicles could be handled: " + scenario.getVehicles().getVehicleTypes().values().size());
-		/*		Id<VehicleType> carVehicleTypeId = Id.create("car", VehicleType.class);
-		VehicleType carVehicleType = scenario.getVehicles().getVehicleTypes().get(carVehicleTypeId);
-		EngineInformation carEngineInformation = carVehicleType.getEngineInformation();
-		VehicleUtils.setHbefaVehicleCategory( carEngineInformation, HbefaVehicleCategory.PASSENGER_CAR.toString());
-		VehicleUtils.setHbefaTechnology( carEngineInformation, "average" );
-		VehicleUtils.setHbefaSizeClass( carEngineInformation, "average" );
-		VehicleUtils.setHbefaEmissionsConcept( carEngineInformation, "average" );*/
 
 		for( VehicleType vehicleType : scenario.getTransitVehicles().getVehicleTypes().values() ){
 			EngineInformation transitVehicleEngineInformation = vehicleType.getEngineInformation();
