@@ -11,7 +11,7 @@
 
 	<properties>
 		<!--stable build based on weekly (e.g. 15.0-PR2344), PR-based (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
-		<matsim.version>15.0-2023w02</matsim.version>
+		<matsim.version>15.0-2023w03</matsim.version>
 
 		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
