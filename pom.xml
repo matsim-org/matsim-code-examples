@@ -30,7 +30,7 @@
 		</repository>
 		<repository>
 			<!-- For MATSim releases: -->
-			<id>matsim</id>
+			<id>matsim </id>
 			<url>https://repo.matsim.org/repository/matsim/</url>
 		</repository>
 
