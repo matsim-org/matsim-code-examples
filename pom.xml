@@ -21,11 +21,22 @@
 	<name>MATSim code examples</name>
 	<description>MATSim code examples</description>
 
+	<properties>
+		<!--stable build based on weekly (e.g. 15.0-PR2344), PR-based (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
+		<matsim.version>15.0-2023w03</matsim.version>
+
+<!--		<matsim.version>15.0-PR2369</matsim.version>-->
+<!--		<matsim.version>15.0-SNAPSHOT</matsim.version>-->
+		<maven.compiler.release>17</maven.compiler.release>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
 	<repositories>
 		<!--Note that in general repositories are not transitive, so they need to be repeated at every level where needed.-->
 		<!-- for accessing the parent POM -->
 		<repository>
-			<id>matsim</id>
+			<id>matsim </id>
 			<url>https://repo.matsim.org/repository/matsim</url>
 		</repository>
 		<!-- for dependencies of osm-network-reader -->
