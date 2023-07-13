@@ -21,6 +21,13 @@
 	<name>MATSim code examples</name>
 	<description>MATSim code examples</description>
 
+	<properties>
+		<matsim.version>${project.parent.version}</matsim.version>
+		<maven.compiler.release>17</maven.compiler.release>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
 	<repositories>
 		<!--Note that in general repositories are not transitive, so they need to be repeated at every level where needed.-->
 		<!-- for accessing the parent POM -->
@@ -118,6 +125,11 @@
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>discrete_mode_choice</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>locationchoice</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
