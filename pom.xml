@@ -11,10 +11,10 @@
 		<artifactId>matsim-all</artifactId>
 		<!-- This is where we change the matsim version. Maven does not allow using properties in the parent declaration (like ${matsim.version}).
 		     Therefore we need to use a fixed value here and then refer to the matsim version with ${project.parent.version} -->
-		<!-- Options: stable build based on PR-based (e.g. 15.0-PR2344), weekly (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
-		<!--<version>15.0-2023w15</version>-->
-		<!--<version>15.0-PR2369</version>-->
-		<version>15.0</version>
+		<!-- Options: stable build based on weekly (e.g. 15.0-PR2344), PR-based (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
+		<version>16.0-2023w37</version>
+		<!--<version>16.0-2023w37</version>-->
+		<!--<version>15.0-SNAPSHOT</version>-->
 		<relativePath/>
 	</parent>
 
@@ -22,11 +22,7 @@
 	<description>MATSim code examples</description>
 
 	<properties>
-		<!--stable build based on weekly (e.g. 15.0-PR2344), PR-based (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
-		<matsim.version>15.0-2023w03</matsim.version>
-
-<!--		<matsim.version>15.0-PR2369</matsim.version>-->
-<!--		<matsim.version>15.0-SNAPSHOT</matsim.version>-->
+		<matsim.version>${project.parent.version}</matsim.version>
 		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -36,7 +32,7 @@
 		<!--Note that in general repositories are not transitive, so they need to be repeated at every level where needed.-->
 		<!-- for accessing the parent POM -->
 		<repository>
-			<id>matsim </id>
+			<id>matsim</id>
 			<url>https://repo.matsim.org/repository/matsim</url>
 		</repository>
 		<!-- for dependencies of osm-network-reader -->
@@ -133,6 +129,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.matsim.contrib</groupId>
+			<artifactId>locationchoice</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
 			<artifactId>application</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
@@ -152,7 +153,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.4.1</version>
+				<version>3.5.0</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
