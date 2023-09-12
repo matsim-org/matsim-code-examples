@@ -21,6 +21,7 @@ package org.matsim.codeexamples.extensions.freight;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.contrib.freight.FreightConfigGroup;
+import org.matsim.contrib.freight.analysis.RunFreightAnalysisEventbased;
 import org.matsim.contrib.freight.carrier.Carrier;
 import org.matsim.contrib.freight.carrier.CarrierPlanWriter;
 import org.matsim.contrib.freight.carrier.CarrierUtils;
@@ -34,6 +35,7 @@ import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.scenario.ScenarioUtils;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 
@@ -54,7 +56,7 @@ public class RunFreightFoodRetailingBerlinExample {
 		if ( args==null || args.length==0 || args[0]==null ){
 			config = ConfigUtils.createConfig();
 			config.network().setInputFile("https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/output-berlinv5.5/berlin-v5.5.3-10pct.output_network.xml.gz");
-			config.controler().setOutputDirectory( "./output/freight" );
+			config.controler().setOutputDirectory( "./output/freight3" );
 			config.controler().setLastIteration( 0 );  // no iterations; for iterations see RunFreightWithIterationsExample.  kai, jan'23
 			config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
 			config.global().setCoordinateSystem("EPSG:31468");
@@ -100,6 +102,13 @@ public class RunFreightFoodRetailingBerlinExample {
 
 		// ## Start of the MATSim-Run: ##
 		controler.run();
+
+//		var analysis = new RunFreightAnalysisEventbased(config.controler().getOutputDirectory()+"/", config.controler().getOutputDirectory()+"/analysis", "EPSG:31468");
+//		try {
+//			analysis.runAnalysis();
+//		} catch (IOException e) {
+//			throw new RuntimeException(e);
+//		}
 	}
 
 }
