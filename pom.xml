@@ -12,8 +12,8 @@
 		<!-- This is where we change the matsim version. Maven does not allow using properties in the parent declaration (like ${matsim.version}).
 		     Therefore we need to use a fixed value here and then refer to the matsim version with ${project.parent.version} -->
 		<!-- Options: stable build based on weekly (e.g. 15.0-PR2344), PR-based (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
-		<version>16.0-2023w37</version>
-		<!--<version>16.0-2023w37</version>-->
+		<version>16.0-2023w38</version>
+		<!--<version>16.0-2023w38</version>-->
 		<!--<version>15.0-SNAPSHOT</version>-->
 		<relativePath/>
 	</parent>
