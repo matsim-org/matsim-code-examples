@@ -40,7 +40,7 @@ import java.util.concurrent.ExecutionException;
 public class RunFreightExample {
 
 	public static void main(String[] args) throws ExecutionException, InterruptedException{
-		run(args, true);
+		run(args, false);
 	}
 	public static void run( String[] args, boolean runWithOTFVis ) throws ExecutionException, InterruptedException{
 
@@ -53,7 +53,7 @@ public class RunFreightExample {
 			config.controler().setLastIteration( 0 );  // no iterations; for iterations see RunFreightWithIterationsExample.  kai, jan'23
 
 			FreightConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule( config, FreightConfigGroup.class );
-			freightConfigGroup.setCarriersFile( "singleCarrierFiveActivitiesWithoutRoutes.xml" );
+			freightConfigGroup.setCarriersFile( "singleCarrierFiveActivitiesWithoutRoutes_Shipments.xml" );
 			freightConfigGroup.setCarriersVehicleTypesFile( "vehicleTypes.xml" );
 		} else {
 			config = ConfigUtils.loadConfig( args, new FreightConfigGroup() );
