@@ -53,7 +53,7 @@ public class RunFreightExample {
 			config.controller().setLastIteration( 0 );  // no iterations; for iterations see RunFreightWithIterationsExample.  kai, jan'23
 
 			FreightCarriersConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule( config, FreightCarriersConfigGroup.class );
-      freightConfigGroup.setCarriersFile("singleCarrierFiveActivitiesWithoutRoutes_Shipments.xml\"");
+      freightConfigGroup.setCarriersFile("singleCarrierFiveActivitiesWithoutRoutes_Shipments.xml");
 			freightConfigGroup.setCarriersVehicleTypesFile( "vehicleTypes.xml" );
 		} else {
 			config = ConfigUtils.loadConfig( args, new FreightCarriersConfigGroup() );
