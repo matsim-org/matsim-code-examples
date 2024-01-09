@@ -20,27 +20,26 @@ package org.matsim.codeexamples.extensions.freight;
 
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
-import org.matsim.contrib.freight.FreightConfigGroup;
-import org.matsim.contrib.freight.analysis.RunFreightAnalysisEventbased;
-import org.matsim.contrib.freight.carrier.Carrier;
-import org.matsim.contrib.freight.carrier.CarrierPlanWriter;
-import org.matsim.contrib.freight.carrier.CarrierUtils;
-import org.matsim.contrib.freight.carrier.Carriers;
-import org.matsim.contrib.freight.controler.CarrierModule;
-import org.matsim.contrib.freight.controler.FreightUtils;
+import org.matsim.freight.carriers.Carrier;
+import org.matsim.freight.carriers.FreightCarriersConfigGroup;
+import org.matsim.freight.carriers.CarrierPlanWriter;
+import org.matsim.freight.carriers.controler.CarrierModule;
+import org.matsim.freight.carriers.Carriers;
+import org.matsim.freight.carriers.CarriersUtils;
 import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.freight.carriers.analysis.RunFreightAnalysisEventBased;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 
 /**
- * @see org.matsim.contrib.freight
+ * @see org.matsim.freight.carriers
  */
 public class RunFreightFoodRetailingBerlinExample {
 
@@ -56,40 +55,40 @@ public class RunFreightFoodRetailingBerlinExample {
 		if ( args==null || args.length==0 || args[0]==null ){
 			config = ConfigUtils.createConfig();
 			config.network().setInputFile("https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/output-berlinv5.5/berlin-v5.5.3-10pct.output_network.xml.gz");
-			config.controler().setOutputDirectory( "./output/freight3" );
-			config.controler().setLastIteration( 0 );  // no iterations; for iterations see RunFreightWithIterationsExample.  kai, jan'23
-			config.controler().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
+			config.controller().setOutputDirectory( "./output/freight3" );
+			config.controller().setLastIteration( 0 );  // no iterations; for iterations see RunFreightWithIterationsExample.  kai, jan'23
+			config.controller().setOverwriteFileSetting(OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
 			config.global().setCoordinateSystem("EPSG:31468");
 
-			FreightConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule( config, FreightConfigGroup.class );
+			FreightCarriersConfigGroup freightConfigGroup = ConfigUtils.addOrGetModule( config, FreightCarriersConfigGroup.class );
 			freightConfigGroup.setCarriersFile(  pathToInput + "CarrierLEH_v2_withFleet_Shipment_OneTW_PickupTime_ICEV.xml" );
 			freightConfigGroup.setCarriersVehicleTypesFile( pathToInput + "vehicleTypesBVWP100_DC_noTax.xml" );
 		} else {
-			config = ConfigUtils.loadConfig( args, new FreightConfigGroup() );
+			config = ConfigUtils.loadConfig( args, new FreightCarriersConfigGroup() );
 		}
 
 		// load scenario (this is not loading the freight material):
 		Scenario scenario = ScenarioUtils.loadScenario( config );
 
 		//load carriers according to freight config
-		FreightUtils.loadCarriersAccordingToFreightConfig( scenario );
+		CarriersUtils.loadCarriersAccordingToFreightConfig( scenario );
 
 		//Filter out only one carrier and reduce number of jsprit iteration to 1. Both for computational reasons.
-		Carriers carriers = FreightUtils.getCarriers(scenario);
+		Carriers carriers = CarriersUtils.getCarriers(scenario);
 		var carrier = carriers.getCarriers().get(Id.create("rewe_DISCOUNTER_TROCKEN", Carrier.class));
-		CarrierUtils.setJspritIterations(carrier, 1);
+		CarriersUtils.setJspritIterations(carrier, 1);
 		carriers.getCarriers().clear();
 		carriers.addCarrier(carrier);
 
 		// output before jsprit run (not necessary)
-		new CarrierPlanWriter(FreightUtils.getCarriers( scenario )).write( "output/jsprit_unplannedCarriers.xml" ) ;
+		new CarrierPlanWriter(CarriersUtils.getCarriers( scenario )).write( "output/jsprit_unplannedCarriers.xml" ) ;
 		// (this will go into the standard "output" directory.  note that this may be removed if this is also used as the configured output dir.)
 
 		// Solving the VRP (generate carrier's tour plans)
-		FreightUtils.runJsprit( scenario );
+		CarriersUtils.runJsprit( scenario );
 
 		// Output after jsprit run (not necessary)
-		new CarrierPlanWriter(FreightUtils.getCarriers( scenario )).write( "output/jsprit_plannedCarriers.xml" ) ;
+		new CarrierPlanWriter(CarriersUtils.getCarriers( scenario )).write( "output/jsprit_plannedCarriers.xml" ) ;
 		// (this will go into the standard "output" directory.  note that this may be removed if this is also used as the configured output dir.)
 
 		// ## MATSim configuration:  ##
@@ -103,12 +102,12 @@ public class RunFreightFoodRetailingBerlinExample {
 		// ## Start of the MATSim-Run: ##
 		controler.run();
 
-//		var analysis = new RunFreightAnalysisEventbased(config.controler().getOutputDirectory()+"/", config.controler().getOutputDirectory()+"/analysis", "EPSG:31468");
-//		try {
-//			analysis.runAnalysis();
-//		} catch (IOException e) {
-//			throw new RuntimeException(e);
-//		}
+		var analysis = new RunFreightAnalysisEventBased(config.controller().getOutputDirectory()+"/", config.controller().getOutputDirectory()+"/analysis", "EPSG:31468");
+		try {
+			analysis.runAnalysis();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
