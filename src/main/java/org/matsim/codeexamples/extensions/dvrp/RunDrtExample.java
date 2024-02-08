@@ -5,7 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.events.Event;
+import org.matsim.contrib.drt.optimizer.insertion.DrtInsertionSearchParams;
 import org.matsim.contrib.drt.optimizer.insertion.extensive.ExtensiveInsertionSearchParams;
+import org.matsim.contrib.drt.optimizer.insertion.repeatedselective.RepeatedSelectiveInsertionSearchParams;
 import org.matsim.contrib.drt.routing.DrtRoute;
 import org.matsim.contrib.drt.routing.DrtRouteFactory;
 import org.matsim.contrib.drt.run.DrtConfigGroup;
@@ -84,7 +86,7 @@ class RunDrtExample{
 			drtConfig.rejectRequestIfMaxWaitOrTravelTimeViolated= false ;
 			drtConfig.vehiclesFile="one_shared_taxi_vehicles_A.xml";
 			drtConfig.changeStartLinkToLastLinkInSchedule=true;
-			drtConfig.addParameterSet( new ExtensiveInsertionSearchParams() );
+			drtConfig.setDrtInsertionSearchParams( new ExtensiveInsertionSearchParams() );
 			multiModeDrtCfg.addParameterSet(drtConfig);
 		}
 		{
@@ -97,7 +99,7 @@ class RunDrtExample{
 			drtConfig.rejectRequestIfMaxWaitOrTravelTimeViolated= false ;
 			drtConfig.vehiclesFile="one_shared_taxi_vehicles_B.xml";
 			drtConfig.changeStartLinkToLastLinkInSchedule=true;
-			drtConfig.addParameterSet( new ExtensiveInsertionSearchParams() );
+			drtConfig.setDrtInsertionSearchParams( new ExtensiveInsertionSearchParams() );
 			multiModeDrtCfg.addParameterSet(drtConfig);
 		}
 		{
@@ -110,7 +112,7 @@ class RunDrtExample{
 			drtConfig.rejectRequestIfMaxWaitOrTravelTimeViolated= false ;
 			drtConfig.vehiclesFile="one_shared_taxi_vehicles_C.xml";
 			drtConfig.changeStartLinkToLastLinkInSchedule=true;
-			drtConfig.addParameterSet( new ExtensiveInsertionSearchParams() );
+			drtConfig.setDrtInsertionSearchParams( new ExtensiveInsertionSearchParams() );
 			multiModeDrtCfg.addParameterSet(drtConfig);
 		}
 
