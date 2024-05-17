@@ -50,6 +50,11 @@
 			<id>jzy3d</id>
 			<url>https://maven.jzy3d.org/releases/</url>
 		</repository>
+		<!-- for glugen dependency -->
+		<repository>
+			<id>jogamp</id>
+			<url>https://jogamp.org/deployment/maven</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
