@@ -5,9 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
-import org.matsim.api.core.v01.network.Link;
-import org.matsim.api.core.v01.population.Leg;
-import org.matsim.api.core.v01.population.Plan;
 import org.matsim.contrib.bicycle.BicycleConfigGroup;
 import org.matsim.contrib.bicycle.BicycleModule;
 import org.matsim.contrib.bicycle.BicycleUtils;
@@ -15,21 +12,18 @@ import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.groups.ScoringConfigGroup;
-import org.matsim.core.config.groups.QSimConfigGroup;
-import org.matsim.core.config.groups.ReplanningConfigGroup;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
-import org.matsim.core.router.TripStructureUtils;
 import org.matsim.core.scenario.ScenarioUtils;
-import org.matsim.core.utils.io.IOUtils;
 import org.matsim.examples.ExamplesUtils;
 import org.matsim.vehicles.VehicleType;
 import org.matsim.vehicles.VehicleUtils;
 import org.matsim.vehicles.VehiclesFactory;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
 
-import java.net.URL;
 import java.util.*;
+
+import static org.matsim.core.config.groups.QSimConfigGroup.*;
 
 public final class RunBicycleContribExample{
 	private static final Logger LOG = LogManager.getLogger( RunBicycleContribExample.class );
@@ -46,8 +40,9 @@ public final class RunBicycleContribExample{
 
 			config = ConfigUtils.createConfig( ExamplesUtils.getTestScenarioURL( "bicycle_example" ) );
 
-			config.qsim().setLinkDynamics( QSimConfigGroup.LinkDynamics.PassingQ );
-			config.qsim().setTrafficDynamics( QSimConfigGroup.TrafficDynamics.kinematicWaves );
+			config.qsim().setLinkDynamics( LinkDynamics.PassingQ );
+			config.qsim().setTrafficDynamics( TrafficDynamics.kinematicWaves );
+			config.qsim().setSnapshotStyle( SnapshotStyle.kinematicWaves );
 
 			config.network().setInputFile("network_normal.xml"); // change this to any of the others that are provided
 			config.plans().setInputFile("population_3.xml");
@@ -58,8 +53,8 @@ public final class RunBicycleContribExample{
 			config.scoring().addActivityParams( new ScoringConfigGroup.ActivityParams("home").setTypicalDuration(12*60*60 ) );
 			config.scoring().addActivityParams( new ScoringConfigGroup.ActivityParams("work").setTypicalDuration(8*60*60 ) );
 
-			config.scoring().addModeParams( new ScoringConfigGroup.ModeParams(
-					BICYCLE_MODE ).setConstant(0. ).setMarginalUtilityOfDistance(-0.0004 ).setMarginalUtilityOfTraveling(-6.0 ).setMonetaryDistanceRate(0. ) );
+			config.scoring().addModeParams( new ScoringConfigGroup.ModeParams( BICYCLE_MODE ).setConstant(0.).setMarginalUtilityOfDistance(-0.0004 )
+													 .setMarginalUtilityOfTraveling(-6.0 ).setMonetaryDistanceRate(0. ) );
 
 			config.global().setNumberOfThreads(1 );
 			config.controller().setOverwriteFileSetting( OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists );
@@ -67,8 +62,8 @@ public final class RunBicycleContribExample{
 			config.controller().setLastIteration(0);
 		}
 
-		BicycleConfigGroup bicycleConfig = ConfigUtils.addOrGetModule( config, BicycleConfigGroup.class );
-		bicycleConfig.setBicycleMode( BICYCLE_MODE );
+//		BicycleConfigGroup bicycleConfig = ConfigUtils.addOrGetModule( config, BicycleConfigGroup.class );
+//		bicycleConfig.setBicycleMode( BICYCLE_MODE );
 //		bicycleConfig.setMarginalUtilityOfInfrastructure_m(-0.0002);
 //		bicycleConfig.setMarginalUtilityOfComfort_m(-0.0002);
 //		bicycleConfig.setMarginalUtilityOfGradient_m_100m(-0.02);
@@ -85,7 +80,7 @@ public final class RunBicycleContribExample{
 		Scenario scenario = ScenarioUtils.loadScenario( config );
 
 		// set config such that the mode vehicles come from vehicles data:
-		scenario.getConfig().qsim().setVehiclesSource( QSimConfigGroup.VehiclesSource.modeVehicleTypesFromVehiclesData );
+		scenario.getConfig().qsim().setVehiclesSource( VehiclesSource.modeVehicleTypesFromVehiclesData );
 
 		// now put the mode vehicles into the vehicles data:
 		final VehiclesFactory vf = VehicleUtils.getFactory();
@@ -93,7 +88,8 @@ public final class RunBicycleContribExample{
 		scenario.getVehicles().addVehicleType( vf.createVehicleType(Id.create( BICYCLE_MODE, VehicleType.class ) ).setNetworkMode( BICYCLE_MODE ).setMaximumVelocity(4.16666666 ).setPcuEquivalents(0.25 ) );
 
 //		// create a bicycle expressway
-//		scenario.getNetwork().getLinks().get( Id.createLinkId( 2 ) ).getAttributes().putAttribute( BicycleUtils.BICYCLE_INFRASTRUCTURE_SPEED_FACTOR, 10. );
+		BicycleUtils.setBicycleInfrastructureFactor( scenario.getNetwork().getLinks().get( Id.createLinkId( 2 ) ), 5. );
+		BicycleUtils.setSmoothness( scenario.getNetwork().getLinks().get( Id.createLinkId( 3 ) ), "sand" );
 
 //		// allow cars on all links ... and switch one person to car:
 //		for( Link link : scenario.getNetwork().getLinks().values() ){
