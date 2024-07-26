@@ -2,9 +2,9 @@ package org.matsim.codeexamples.extensions.dvrp;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
-import org.matsim.api.core.v01.events.Event;
 import org.matsim.contrib.drt.optimizer.insertion.extensive.ExtensiveInsertionSearchParams;
 import org.matsim.contrib.drt.routing.DrtRoute;
 import org.matsim.contrib.drt.routing.DrtRouteFactory;
@@ -22,21 +22,25 @@ import org.matsim.core.config.groups.ScoringConfigGroup.ModeParams;
 import org.matsim.core.config.groups.QSimConfigGroup;
 import org.matsim.core.config.groups.QSimConfigGroup.SnapshotStyle;
 import org.matsim.core.config.groups.ReplanningConfigGroup.StrategySettings;
-import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
-import org.matsim.core.events.handler.BasicEventHandler;
-import org.matsim.core.events.handler.EventHandler;
 import org.matsim.core.replanning.strategies.DefaultPlanStrategiesModule.DefaultSelector;
 import org.matsim.core.replanning.strategies.DefaultPlanStrategiesModule.DefaultStrategy;
 import org.matsim.core.scenario.ScenarioUtils;
-import org.matsim.core.utils.io.IOUtils;
-import org.matsim.examples.ExamplesUtils;
+import org.matsim.utils.objectattributes.attributable.Attributes;
+import org.matsim.vehicles.Vehicle;
+import org.matsim.vehicles.VehicleType;
+import org.matsim.vehicles.VehicleUtils;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
+
+import static org.matsim.contrib.dvrp.fleet.DvrpVehicleSpecificationWithMatsimVehicle.*;
 
 class RunDrtExample{
 	// todo:
 	// * have at least one drt use case in the "examples" project, so it can be addressed via ExamplesUtils
+	//    (TS, jul '24: have a look at DrtTestScenario in MATSimApplication. It does ExamplesUtils.getTestScenarioURL("kelheim")
+	//    and then ConfigUtils.loadConfig(IOUtils.extendUrl(context, "config-with-drt.xml")).
+	//    There is also the mielec example and the dvrp-grid example.)
 	// * remove the DrtRoute.class thing; use Attributable instead (Route will have to be made implement Attributable).  If impossible, move the DrtRoute
 	// class thing to the core.
 	// * move consistency checkers into the corresponding config groups.
@@ -108,7 +112,10 @@ class RunDrtExample{
 			drtConfig.maxTravelTimeAlpha = 1.3;
 			drtConfig.maxTravelTimeBeta=10. * 60.;
 			drtConfig.rejectRequestIfMaxWaitOrTravelTimeViolated= false ;
-			drtConfig.vehiclesFile="one_shared_taxi_vehicles_C.xml";
+
+			//we will provide the vehicle via standard MATSim vehicles, see below
+//			drtConfig.vehiclesFile="one_shared_taxi_vehicles_C.xml";
+
 			drtConfig.changeStartLinkToLastLinkInSchedule=true;
 			drtConfig.addParameterSet( new ExtensiveInsertionSearchParams() );
 			multiModeDrtCfg.addParameterSet(drtConfig);
@@ -142,6 +149,22 @@ class RunDrtExample{
 		// yyyy in long run, try to get rid of the route factory thing
 
 		// ===
+
+		//we use the standard vehicle type for DRT_C. you could also create your own vehicle type and e.g. set a different maximum velocity.
+		VehicleType vehicleType = VehicleUtils.getDefaultVehicleType();
+		vehicleType.getCapacity().setSeats(2);
+		scenario.getVehicles().addVehicleType(vehicleType);
+
+		// this is how you can provide DRT vehicles via code (ot within the standard MATSim vehicles (file),
+		// i.e. not from a drt-mode-specific input file
+		Vehicle vehicle_c = VehicleUtils.createVehicle(Id.createVehicleId("taxi_one_C"), vehicleType);
+		Attributes attributes = vehicle_c.getAttributes();
+		attributes.putAttribute(DVRP_MODE, DRT_C);
+		attributes.putAttribute(START_LINK, "215");
+		attributes.putAttribute(SERVICE_BEGIN_TIME, 0d);
+		attributes.putAttribute(SERVICE_END_TIME, 8000d);
+		scenario.getVehicles().addVehicle(vehicle_c);
+
 		Controler controler = new Controler( scenario ) ;
 
 		controler.addOverridingModule( new DvrpModule() ) ;
