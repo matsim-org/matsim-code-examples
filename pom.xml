@@ -12,9 +12,14 @@
 		<!-- This is where we change the matsim version. Maven does not allow using properties in the parent declaration (like ${matsim.version}).
 		     Therefore we need to use a fixed value here and then refer to the matsim version with ${project.parent.version} -->
 		<!-- Options: stable build based on weekly (e.g. 15.0-PR2344), PR-based (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
-<!--		<version>2025.0-2024w21</version>-->
+		<version>2025.0-2024w21</version>
+
 <!--		<version>2025.0-2024w41</version>-->
-		<version>2025.0-PR3411</version>
+<!--		(modified drt config syntax :-( )-->
+
+<!--		<version>2025.0-PR3511</version> -->
+<!--		(Controller instead of Controler)-->
+
 		<relativePath/>
 	</parent>
 
