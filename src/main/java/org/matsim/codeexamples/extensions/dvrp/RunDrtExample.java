@@ -5,6 +5,9 @@ import org.apache.logging.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.contrib.common.zones.systems.grid.square.SquareGridZoneSystemParams;
+import org.matsim.contrib.drt.optimizer.constraints.DefaultDrtOptimizationConstraintsSet;
+import org.matsim.contrib.drt.optimizer.constraints.DrtOptimizationConstraintsParams;
+import org.matsim.contrib.drt.optimizer.constraints.DrtOptimizationConstraintsSet;
 import org.matsim.contrib.drt.optimizer.insertion.extensive.ExtensiveInsertionSearchParams;
 import org.matsim.contrib.drt.routing.DrtRoute;
 import org.matsim.contrib.drt.routing.DrtRouteFactory;
@@ -71,10 +74,26 @@ class RunDrtExample{
 			DrtConfigGroup drtConfig = new DrtConfigGroup();
 			drtConfig.mode = DRT_A;
 			drtConfig.stopDuration = 60.;
-			drtConfig.getDrtOptimizationConstraintsParam().maxWaitTime=900;
-			drtConfig.getDrtOptimizationConstraintsParam().maxTravelTimeAlpha = 1.3;
-			drtConfig.getDrtOptimizationConstraintsParam().maxTravelTimeBeta=10. * 60.;
-			drtConfig.getDrtOptimizationConstraintsParam().rejectRequestIfMaxWaitOrTravelTimeViolated= false ;
+
+			// this does not work any more:
+//			drtConfig.getDrtOptimizationConstraintsParam().maxWaitTime=900;
+//			drtConfig.getDrtOptimizationConstraintsParam().maxTravelTimeAlpha = 1.3;
+//			drtConfig.getDrtOptimizationConstraintsParam().maxTravelTimeBeta=10. * 60.;
+//			drtConfig.getDrtOptimizationConstraintsParam().rejectRequestIfMaxWaitOrTravelTimeViolated= false ;
+
+			// I can see that maybe I should use this here:
+			DrtOptimizationConstraintsSet constraints = drtConfig.addOrGetDrtOptimizationConstraintsParams().addOrGetDefaultDrtOptimizationConstraintsSet();
+
+			// presumably, I should set params that exist:
+			constraints.maxWaitTime = 900;
+			constraints.rejectRequestIfMaxWaitOrTravelTimeViolated = false;
+			// but I don't now how to translate alpha or beta.  But some version of this is necessary
+
+			// Paul says I should cast the constraints variable:
+			DefaultDrtOptimizationConstraintsSet defaultConstraints = (DefaultDrtOptimizationConstraintsSet) constraints;
+			defaultConstraints.maxTravelTimeAlpha = 1.3;
+			defaultConstraints.maxTravelTimeBeta = 10.*60.;
+
 			drtConfig.vehiclesFile="one_shared_taxi_vehicles_A.xml";
 			drtConfig.changeStartLinkToLastLinkInSchedule=true;
 			drtConfig.addParameterSet( new ExtensiveInsertionSearchParams() );
