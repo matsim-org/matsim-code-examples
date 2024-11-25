@@ -1,6 +1,8 @@
 package de.tuberlin.vsp.dataScience;
 
 import org.checkerframework.checker.units.qual.A;
+import org.geotools.renderer.GTRenderer;
+import org.geotools.renderer.lite.StreamingRenderer;
 import tech.tablesaw.aggregate.AggregateFunctions;
 import tech.tablesaw.aggregate.Summarizer;
 import tech.tablesaw.api.Table;
@@ -17,13 +19,34 @@ import java.util.List;
 class Trips{
 
 	public static void main( String[] args ){
+		final String DIFFERENCE_DISTANCE = "difference_distance";
+		final String MAIN_MODE = "main_mode";
 
 		String filename = "../public-svn/matsim/tutorial/datascience2024/matsim_outputs/output-1pct/base/berlin-v6.3.output_trips.csv";
 
 		Table tt = Table.read().usingOptions( CsvReadOptions.builder( filename ).separator( ';' ).build() );
 
-		final String DIFFERENCE_DISTANCE = "difference_distance";
-		final String MAIN_MODE = "main_mode";
+		System.out.println( tt );
+
+		System.exit(-1);
+
+		Table rr = tt.summarize( MAIN_MODE, AggregateFunctions.count ).by( MAIN_MODE );
+
+		System.out.println( rr );
+
+		Layout layout = Layout.builder().barMode( Layout.BarMode.STACK ).build();
+
+		List<Trace> traces = new ArrayList<>();
+		{
+			BarTrace.BarBuilder builder = BarTrace.builder( rr.stringColumn( MAIN_MODE ), rr.numberColumn( "Count [" + MAIN_MODE + "]") );
+			builder.orientation( BarTrace.Orientation.VERTICAL );
+			traces.add( builder.build() );
+		}
+
+		Figure figure = new Figure( layout, traces.toArray(traces.toArray( new Trace[0] ) ) );
+		Plot.show( figure );
+
+		System.exit(-1);
 
 		tt.addColumns( tt.numberColumn( "traveled_distance" ).subtract( tt.numberColumn( "euclidean_distance" ) ).setName( DIFFERENCE_DISTANCE ) );
 //		tt.removeColumns( "dep_time", "trav_time", "wait_time" );
@@ -35,39 +58,45 @@ class Trips{
 		System.out.println( p4.print() );
 		System.exit(-1);
 
-
-
-//		Table rr = tt.summarize( MAIN_MODE, AggregateFunctions.count ).by( MAIN_MODE);
-		Table rr = tt.summarize( MAIN_MODE, AggregateFunctions.count ).apply();
-
-		System.out.println( rr.print() );
-
-		System.exit(-1);
-
-		Layout layout = Layout.builder().barMode( Layout.BarMode.STACK ).build();
-
-		List<Trace> traces = new ArrayList<>();
-		{
-			BarTrace.BarBuilder builder = BarTrace.builder( rr.stringColumn( MAIN_MODE ), rr.numberColumn( "Count [" + MAIN_MODE + "]") );
-			builder.orientation( BarTrace.Orientation.HORIZONTAL );
-			traces.add( builder.build() );
-		}
+//
+//
+////		Table rr = tt.summarize( MAIN_MODE, AggregateFunctions.count ).by( MAIN_MODE);
+//		Table rr = tt.summarize( MAIN_MODE, AggregateFunctions.count ).apply();
+//
+//		System.out.println( rr.print() );
+//
+//		System.exit(-1);
+//
+//		Layout layout = Layout.builder().barMode( Layout.BarMode.STACK ).build();
+//
+//		List<Trace> traces = new ArrayList<>();
 //		{
-//			final String mode = TransportMode.car;
-//			ScatterTrace.ScatterBuilder builder = ScatterTrace.builder( tt.numberColumn( "iteration" ), tt.numberColumn( mode ) )
-//									  .name( mode )
-//									  .mode( ScatterTrace.Mode.MARKERS );
+//			BarTrace.BarBuilder builder = BarTrace.builder( rr.stringColumn( MAIN_MODE ), rr.numberColumn( "Count [" + MAIN_MODE + "]") );
+//			builder.orientation( BarTrace.Orientation.HORIZONTAL );
 //			traces.add( builder.build() );
 //		}
-//		{
-//			final String mode = TransportMode.bike;
-//			ScatterTrace.ScatterBuilder builder = ScatterTrace.builder( tt.numberColumn( "iteration" ), tt.numberColumn( mode ) )
-//									  .name( mode )
-//									  .mode( ScatterTrace.Mode.MARKERS );
-//			traces.add( builder.build() );
-//		}
-		Figure figure = new Figure( layout, traces.toArray(traces.toArray( new Trace[0] ) ) );
-		Plot.show( figure );
+////		{
+////			final String mode = TransportMode.car;
+////			ScatterTrace.ScatterBuilder builder = ScatterTrace.builder( tt.numberColumn( "iteration" ), tt.numberColumn( mode ) )
+////									  .name( mode )
+////									  .mode( ScatterTrace.Mode.MARKERS );
+////			traces.add( builder.build() );
+////		}
+////		{
+////			final String mode = TransportMode.bike;
+////			ScatterTrace.ScatterBuilder builder = ScatterTrace.builder( tt.numberColumn( "iteration" ), tt.numberColumn( mode ) )
+////									  .name( mode )
+////									  .mode( ScatterTrace.Mode.MARKERS );
+////			traces.add( builder.build() );
+////		}
+//		Figure figure = new Figure( layout, traces.toArray(traces.toArray( new Trace[0] ) ) );
+//		Plot.show( figure );
+//
+
+//		GTRenderer draw = new StreamingRenderer();
+//		draw.setMapContent(map);
+//
+//		draw.paint(g2d, outputArea, map.getLayerBounds() );
 
 
 
