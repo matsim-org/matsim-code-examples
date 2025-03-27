@@ -1,7 +1,7 @@
 ---
-name: Please do not submit Issues here.
+name: Please do not submit issues here.
 about: There is a new discussion forum we use for Q&A.
-title: Please do not submit Issues here.
+title: Please do not submit issues here.
 labels: ''
 assignees: ''
 
