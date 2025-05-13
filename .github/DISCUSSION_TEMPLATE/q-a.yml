@@ -61,17 +61,22 @@ body:
       label: Did you build a minimal example to reproduce the issue?
       description: |
         If you are facing an issue, please try to create a minimal example that reproduces the problem. This will help us understand the issue better and provide a more accurate response.
+        
         This means in particular: Provide an example with a minimal population, network and config to start the simulation with one click/command that gives the error message.
       options:
         - label: Yes!
           required: true
-#  - type: checkboxes
-#    id: minimal-example
-#    attributes:
-#      label: Did you build a minimal example to reproduce the issue?
-#      description: |
-#        If you are facing an issue, please try to create a minimal example that reproduces the problem. This will help us understand the issue better and provide a more accurate response.
-#        This means in particular: Provide an example with a minimal population, network and config to start the simulation with one click/command that gives the error message.
-#      options:
-#        - label: Yes
-#        - label: No
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Describe the problem you are facing.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: If possible, provide a link to your minimal example. This might be a GitHub repository.
+  - type: textarea
+    id: background
+    attributes:
+      label: If you want, provide some background information about you and your project. This might help us understand your issue better.
