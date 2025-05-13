@@ -60,9 +60,9 @@ body:
     id: minimal-example
     attributes:
       label: Did you build a minimal example to reproduce the issue?
-      description: |
-        If you are facing an issue, please try to create a minimal example that reproduces the problem. This will help us understand the issue better and provide a more accurate response.
-        This means in particular: Provide an example with a minimal population, network and config to start the simulation with one click/command that gives the error message.
+#      description: |
+#        If you are facing an issue, please try to create a minimal example that reproduces the problem. This will help us understand the issue better and provide a more accurate response.
+#        This means in particular: Provide an example with a minimal population, network and config to start the simulation with one click/command that gives the error message.
       options:
         - label: Yes
         - label: No
