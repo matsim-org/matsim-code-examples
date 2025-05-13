@@ -58,7 +58,7 @@ body:
       required: true
   - type: checkboxes
     attributes:
-      label: Check that box!
+      label: Did you build a minimal example to reproduce the issue?
       options:
         - label: This one!
           required: true
