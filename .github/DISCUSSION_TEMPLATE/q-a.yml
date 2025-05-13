@@ -65,5 +65,3 @@ body:
       options:
         - label: Yes
           required: true
-    validations:
-      required: true
