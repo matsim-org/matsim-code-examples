@@ -57,12 +57,21 @@ body:
     validations:
       required: true
   - type: checkboxes
-    id: minimal-example
+    id: operating-systems
     attributes:
-      label: Did you build a minimal example to reproduce the issue?
+      label: Which operating systems have you used?
+      description: You may select more than one.
+      options:
+        - label: macOS
+        - label: Windows
+        - label: Linux
+#  - type: checkboxes
+#    id: minimal-example
+#    attributes:
+#      label: Did you build a minimal example to reproduce the issue?
 #      description: |
 #        If you are facing an issue, please try to create a minimal example that reproduces the problem. This will help us understand the issue better and provide a more accurate response.
 #        This means in particular: Provide an example with a minimal population, network and config to start the simulation with one click/command that gives the error message.
-      options:
-        - label: Yes
-        - label: No
+#      options:
+#        - label: Yes
+#        - label: No
