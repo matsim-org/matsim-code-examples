@@ -57,6 +57,7 @@ body:
     validations:
       required: true
   - type: checkboxes
+    id: minimal-example
     attributes:
       label: Did you build a minimal example to reproduce the issue?
       description: |
@@ -64,5 +65,4 @@ body:
         This means in particular: Provide an example with a minimal population, network and config to start the simulation with one click/command that gives the error message.
       options:
         - label: Yes
-          required: true
         - label: No
