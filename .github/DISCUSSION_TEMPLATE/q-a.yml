@@ -56,3 +56,14 @@ body:
       label: Provide the MATSim version you are using. You can find the version in the `pom.xml`. E.g. `2025.0`.
     validations:
       required: true
+  - type: checkboxes
+    attributes:
+      label: Did you build a minimal example to reproduce the issue?
+      description: |
+        If you are facing an issue, please try to create a minimal example that reproduces the problem. This will help us understand the issue better and provide a more accurate response.
+        This means in particular: Provide an example with a minimal population, network and config to start the simulation with one click/command that gives the error message.
+      options:
+        - label: Yes
+          required: true
+    validations:
+      required: true
