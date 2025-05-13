@@ -45,55 +45,14 @@ body:
   - type: markdown
     attributes:
       value: |
+        ## General Instructions
         Please fill out the template below to help us understand your issue better. This will help us provide a more accurate and faster response. Try to be as precise as possible.
         Consider the following hints:
         - Never make screenshots of code, but paste the text
         - In case of exceptions, always include the first exception
-  - type: textarea
-    id: improvements
-    attributes:
-      label: Top 3 improvements
-      description: "What are the top 3 improvements we could make to this project?"
-      value: |
-        1.
-        2.
-        3.
-        ...
-      render: bash
-    validations:
-      required: true
-  - type: markdown
-    attributes:
-      value: |
-        ## Markdown header
-        And some more markdown
   - type: input
-    id: has-id
+    id: matsim-version
     attributes:
-      label: Suggestions
-      description: A description about suggestions to help you
+      label: Provide the MATSim version you are using. You can find the version in the `pom.xml`. E.g. `2025.0`.
     validations:
       required: true
-  - type: dropdown
-    id: download
-    attributes:
-      label: Which area of this project could be most improved?
-      options:
-        - Documentation
-        - Pull request review time
-        - Bug fix time
-        - Release cadence
-    validations:
-      required: true
-  - type: checkboxes
-    attributes:
-      label: Check that box!
-      options:
-        - label: This one!
-          required: true
-        - label: I won't stop you if you check this one, too
-  - type: markdown
-    attributes:
-      value: |
-        ### The thrilling conclusion
-        _to our template_
