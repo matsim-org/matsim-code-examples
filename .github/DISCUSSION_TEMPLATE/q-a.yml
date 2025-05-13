@@ -45,7 +45,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        This is text that will show up in the template!
+        Please fill out the template below to help us understand your issue better. This will help us provide a more accurate and faster response. Try to be as precise as possible.
+        Consider the following hints:
+        - Never make screenshots of code, but paste the text
+        - In case of exceptions, always include the first exception
   - type: textarea
     id: improvements
     attributes:
