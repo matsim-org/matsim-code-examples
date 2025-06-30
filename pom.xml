@@ -12,13 +12,9 @@
 		<!-- This is where we change the matsim version. Maven does not allow using properties in the parent declaration (like ${matsim.version}).
 		     Therefore we need to use a fixed value here and then refer to the matsim version with ${project.parent.version} -->
 		<!-- Options: stable build based on weekly (e.g. 15.0-PR2344), PR-based (e.g. 15.0-2023w01) or official (e.g. 14.0) releases -->
-		<version>2025.0-2024w21</version>
 
-<!--		<version>2025.0-2024w41</version>-->
-<!--		(modified drt config syntax :-( )-->
-
-<!--		<version>2025.0-PR3511</version> -->
-<!--		(Controller instead of Controler)-->
+		<version>2026.0-2025w27</version>
+<!--		<version>2026.0-SNAPSHOT</version>-->
 
 		<relativePath/>
 	</parent>
@@ -177,13 +173,13 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.10.2</version>
+			<version>5.13.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.10.2</version>
+			<version>5.13.2</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -201,7 +197,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.5.3</version>
+				<version>3.6.0</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
