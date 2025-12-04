@@ -110,16 +110,19 @@ final class RunMobsimWithMultipleModeVehiclesExample {
 		VehicleType bike = VehicleUtils.getFactory().createVehicleType(Id.create("bike", VehicleType.class));
 		bike.setMaximumVelocity(60.0/3.6);
 		bike.setPcuEquivalents(0.25);
+        bike.setNetworkMode("bike");
 		scenario.getVehicles().addVehicleType(bike);
 
 		VehicleType bicycles = VehicleUtils.getFactory().createVehicleType(Id.create("bicycle", VehicleType.class));
 		bicycles.setMaximumVelocity(15.0/3.6);
 		bicycles.setPcuEquivalents(0.05);
+        bicycles.setNetworkMode("bicycle");
 		scenario.getVehicles().addVehicleType(bicycles);
 
 		VehicleType walks = VehicleUtils.getFactory().createVehicleType(Id.create("walk", VehicleType.class));
 		walks.setMaximumVelocity(1.5);
 		walks.setPcuEquivalents(0.10);  			// assumed pcu for walks is 0.1
+        walks.setNetworkMode("walk");
 		scenario.getVehicles().addVehicleType(walks);
 
 		// prepare the control(l)er:
