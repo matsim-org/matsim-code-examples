@@ -28,9 +28,9 @@ import java.util.Set;
  */
 public class RunCreateNetworkFromOSM {
 
-	private static String UTM32nAsEpsg = "EPSG:25832";
-	private static Path input = Paths.get("/path/to/your/input/data.osm.pbf");
-	private static Path filterShape = Paths.get("/path/to/your/filter/shape-file.shp");
+	private static String UTM32nAsEpsg = "EPSG:32649";
+	private static Path input = Paths.get("E:/MATsim/MatSimShuJu/panyui.osm.pbf");
+	private static Path filterShape = Paths.get("E:/mike urban/数据下载/广州市1：25/boua.shp");
 
 	public static void main(String[] args) throws MalformedURLException {
 		new RunCreateNetworkFromOSM().create();
@@ -54,7 +54,7 @@ public class RunCreateNetworkFromOSM {
 				.setIncludeLinkAtCoordWithHierarchy((coord, hierarchyLevel) -> {
 
 					// take all links which are motorway, trunk, or primary-street regardless of their location
-					if (hierarchyLevel <= LinkProperties.LEVEL_PRIMARY) return true;
+					if (hierarchyLevel <= LinkProperties.LEVEL_RESIDENTIAL) return true;
 
 					// whithin the shape, take all links which are contained in the osm-file
 					return ShpGeometryUtils.isCoordInPreparedGeometries(coord, filterGeometries);
@@ -78,6 +78,6 @@ public class RunCreateNetworkFromOSM {
 		new NetworkCleaner().run(network);
 
 		// write out the network into a file
-		new NetworkWriter(network).write("/path/to/your/output/network.xml.gz");
+		new NetworkWriter(network).write("E:/IDEA/SHUJU/matsim-example-project-2024/scenarios/equil/networkPanYu.xml.gz");
 	}
 }
