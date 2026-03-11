@@ -44,11 +44,13 @@ public class RunCreateNetworkSHP {
 	public static void main(String[] args) {
 
 		Config config = ConfigUtils.createConfig();
-		config.network().setInputFile("network.xml");
+        //此处为网络文件路径，输入你获得的zip文件
+		config.network().setInputFile("E:\\IDEA\\SHUJU\\matsim-example-project-2024\\scenarios\\equil/networkPanYuTest.xml.gz");
 		Scenario scenario = ScenarioUtils.loadScenario(config);
 		Network network = scenario.getNetwork();
 
-		CoordinateReferenceSystem crs = MGC.getCRS("EPSG:21781");    // EPSG Code for Swiss CH1903_LV03 coordinate system
+//        这个是提供一个坐标系，这里为经纬度坐标系，单位为米
+		CoordinateReferenceSystem crs = MGC.getCRS("EPSG:32649");    // EPSG Code for Swiss CH1903_LV03 coordinate system
 
 		Collection<SimpleFeature> features = new ArrayList<>();
 		PolylineFeatureFactory linkFactory = new PolylineFeatureFactory.Builder().
@@ -70,8 +72,8 @@ public class RunCreateNetworkSHP {
 			SimpleFeature ft = linkFactory.createPolyline(new Coordinate[] {fromNodeCoordinate, linkCoordinate, toNodeCoordinate},
 					new Object[]{link.getId().toString(), link.getFromNode().getId().toString(), link.getToNode().getId().toString(), link.getLength(), NetworkUtils.getType(link), link.getCapacity(), link.getFreespeed()}, null);
 			features.add(ft);
-		}   
-		GeoFileWriter.writeGeometries(features, "output/network_links.shp");
+		}
+		GeoFileWriter.writeGeometries(features, "E:\\11721\\Desktop\\MatSimData\\Test/network_linksTest.shp");//输出netwrok中的线数据
 
 		features = new ArrayList<>();
 		PointFeatureFactory nodeFactory = new PointFeatureFactory.Builder().
@@ -84,6 +86,6 @@ public class RunCreateNetworkSHP {
 			SimpleFeature ft = nodeFactory.createPoint(node.getCoord(), new Object[] {node.getId().toString()}, null);
 			features.add(ft);
 		}
-		ShapeFileWriter.writeGeometries(features, "output/network_nodes.shp");
+		ShapeFileWriter.writeGeometries(features, "E:\\11721\\Desktop\\MatSimData\\Test/network_nodesTest.shp");//输出netwrok中的点数据
 	}
 }
