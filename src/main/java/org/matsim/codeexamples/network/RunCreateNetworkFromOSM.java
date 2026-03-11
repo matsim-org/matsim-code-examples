@@ -1,4 +1,4 @@
- package org.matsim.codeexamples.network;
+package org.matsim.codeexamples.network;
 
 import org.locationtech.jts.geom.prep.PreparedGeometry;
 import org.matsim.api.core.v01.TransportMode;
@@ -30,7 +30,7 @@ public class RunCreateNetworkFromOSM {
 
 	private static String UTM32nAsEpsg = "EPSG:32649";
 	private static Path input = Paths.get("E:/MATsim/MatSimShuJu/panyui.osm.pbf");
-	private static Path filterShape = Paths.get("E:\\11721\\Desktop\\MatSimData/bouaPanYu.shp");
+	private static Path filterShape = Paths.get("E:/mike urban/数据下载/广州市1：25/boua.shp");
 
 	public static void main(String[] args) throws MalformedURLException {
 		new RunCreateNetworkFromOSM().create();
@@ -54,20 +54,22 @@ public class RunCreateNetworkFromOSM {
 				.setIncludeLinkAtCoordWithHierarchy((coord, hierarchyLevel) -> {
 
 					// take all links which are motorway, trunk, or primary-street regardless of their location
-					if (hierarchyLevel <= LinkProperties.LEVEL_PRIMARY) return true;//这是一个可以调控保留区域外什么道路的代码
+					if (hierarchyLevel <= LinkProperties.LEVEL_RESIDENTIAL) return true;//这段代码是控制保留区域外的道路等级代码
 
 					// whithin the shape, take all links which are contained in the osm-file
-                    boolean isInPanyu = ShpGeometryUtils.isCoordInPreparedGeometries(coord, filterGeometries);//这一部分是控制保留区域内的道路等级代码
-                    if (isInPanyu) {
-                        // 规则 3：【区域内低等级道路剔除】
-                        // 虽然在番禺区内，但如果是小区道路(RESIDENTIAL)、服务道(SERVICE)等，统统扔掉！
-                        // 这里设置 <= LEVEL_TERTIARY，意思是只保留“支路(TERTIARY)”及以上级别的好路。
-                        return hierarchyLevel <= LinkProperties.LEVEL_TERTIARY;
-                    } else {
-                        // 规则 4：【区域外杂鱼剔除】
-                        // 既不是主干道，又不在番禺区内的小路，毫不留情地删掉。
-                        return false;
-                    }
+					return ShpGeometryUtils.isCoordInPreparedGeometries(coord, filterGeometries);//这段代码和下面的代码二选一，此代码是控制保留区域外的道路等级代码
+//                    boolean isInPanyu = ShpGeometryUtils.isCoordInPreparedGeometries(coord, filterGeometries);//这一部分是控制保留区域内的道路等级代码
+//                    if (isInPanyu) {
+//                        // 规则 3：【区域内低等级道路剔除】
+//                        // 虽然在番禺区内，但如果是小区道路(RESIDENTIAL)、服务道(SERVICE)等，统统扔掉！
+//                        // 这里设置 <= LEVEL_TERTIARY，意思是只保留“支路(TERTIARY)”及以上级别的好路。
+//                        return hierarchyLevel <= LinkProperties.LEVEL_TERTIARY;
+//                    } else {
+//                        // 规则 4：【区域外杂鱼剔除】
+//                        // 既不是主干道，又不在番禺区内的小路，毫不留情地删掉。
+//                        return false;
+//                    }
+                    //
 				})
 				.setAfterLinkCreated((link, osmTags, direction) -> {
 
@@ -78,6 +80,26 @@ public class RunCreateNetworkFromOSM {
 						modes.add(TransportMode.bike);
 						link.setAllowedModes(modes);
 					}
+                    String highwayType = osmTags.get("highway");
+
+                    if (highwayType != null) {
+                        // 如果是主干道 (primary)，且它原本被识别成只有 1 条车道
+                        if (highwayType.equals("primary") && link.getNumberOfLanes() <= 1.0) {
+                            link.setNumberOfLanes(3.0);       // 强行改成 3 车道
+                            link.setCapacity(4500.0);         // 强行扩容为 4500 辆/小时
+                            link.setFreespeed(60.0 / 3.6);    // 限速强行设为 60 km/h
+                        } else if (highwayType.equals("primary")) {
+                            link.setFreespeed(60.0 / 3.6);//强制设置primary的限速
+                        }
+                        // 如果是快速路或高速 (motorway/trunk)，强行改成 3 车道
+                        else if ((highwayType.equals("motorway") || highwayType.equals("trunk")) && link.getNumberOfLanes() <= 2.0) {
+                            link.setNumberOfLanes(3.0);
+                            link.setCapacity(6000.0);
+                            link.setFreespeed(120.0 / 3.6);
+                        }else if((highwayType.equals("motorway") || highwayType.equals("trunk"))){
+                            link.setFreespeed(120.0 / 3.6);
+                        }
+                    }
 				})
 				.build();
 
@@ -88,6 +110,6 @@ public class RunCreateNetworkFromOSM {
 		new NetworkCleaner().run(network);
 
 		// write out the network into a file
-		new NetworkWriter(network).write("E:/IDEA/SHUJU/matsim-example-project-2024/scenarios/equil/networkPanYu-5.xml.gz");
+		new NetworkWriter(network).write("E:/IDEA/SHUJU/matsim-example-project-2024/scenarios/equil/networkPanYuTest.xml.gz");
 	}
 }
