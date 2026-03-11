@@ -1,4 +1,4 @@
-package org.matsim.codeexamples.network;
+ package org.matsim.codeexamples.network;
 
 import org.locationtech.jts.geom.prep.PreparedGeometry;
 import org.matsim.api.core.v01.TransportMode;
@@ -30,7 +30,7 @@ public class RunCreateNetworkFromOSM {
 
 	private static String UTM32nAsEpsg = "EPSG:32649";
 	private static Path input = Paths.get("E:/MATsim/MatSimShuJu/panyui.osm.pbf");
-	private static Path filterShape = Paths.get("E:/mike urban/数据下载/广州市1：25/boua.shp");
+	private static Path filterShape = Paths.get("E:\\11721\\Desktop\\MatSimData/bouaPanYu.shp");
 
 	public static void main(String[] args) throws MalformedURLException {
 		new RunCreateNetworkFromOSM().create();
@@ -54,10 +54,20 @@ public class RunCreateNetworkFromOSM {
 				.setIncludeLinkAtCoordWithHierarchy((coord, hierarchyLevel) -> {
 
 					// take all links which are motorway, trunk, or primary-street regardless of their location
-					if (hierarchyLevel <= LinkProperties.LEVEL_RESIDENTIAL) return true;
+					if (hierarchyLevel <= LinkProperties.LEVEL_PRIMARY) return true;//这是一个可以调控保留区域外什么道路的代码
 
 					// whithin the shape, take all links which are contained in the osm-file
-					return ShpGeometryUtils.isCoordInPreparedGeometries(coord, filterGeometries);
+                    boolean isInPanyu = ShpGeometryUtils.isCoordInPreparedGeometries(coord, filterGeometries);//这一部分是控制保留区域内的道路等级代码
+                    if (isInPanyu) {
+                        // 规则 3：【区域内低等级道路剔除】
+                        // 虽然在番禺区内，但如果是小区道路(RESIDENTIAL)、服务道(SERVICE)等，统统扔掉！
+                        // 这里设置 <= LEVEL_TERTIARY，意思是只保留“支路(TERTIARY)”及以上级别的好路。
+                        return hierarchyLevel <= LinkProperties.LEVEL_TERTIARY;
+                    } else {
+                        // 规则 4：【区域外杂鱼剔除】
+                        // 既不是主干道，又不在番禺区内的小路，毫不留情地删掉。
+                        return false;
+                    }
 				})
 				.setAfterLinkCreated((link, osmTags, direction) -> {
 
@@ -78,6 +88,6 @@ public class RunCreateNetworkFromOSM {
 		new NetworkCleaner().run(network);
 
 		// write out the network into a file
-		new NetworkWriter(network).write("E:/IDEA/SHUJU/matsim-example-project-2024/scenarios/equil/networkPanYu.xml.gz");
+		new NetworkWriter(network).write("E:/IDEA/SHUJU/matsim-example-project-2024/scenarios/equil/networkPanYu-5.xml.gz");
 	}
 }
