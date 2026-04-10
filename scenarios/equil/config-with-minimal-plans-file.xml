@@ -47,6 +47,9 @@
 			<parameterset type="modeParams">
 				<param name="mode" value="pt"/>
 			</parameterset>
+			<parameterset type="modeParams">
+				<param name="mode" value="walk"/>
+			</parameterset>
 
 			<parameterset type="activityParams">
 				<param name="activityType"    value="h" /> <!-- home -->

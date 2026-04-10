@@ -42,9 +42,11 @@
 				<param name="mode" value="car"/>
 				<param name="marginalUtilityOfTraveling_util_hr" value="-6.0" />
 			</parameterset>
-
 			<parameterset type="modeParams">
 				<param name="mode" value="pt"/>
+			</parameterset>
+			<parameterset type="modeParams">
+				<param name="mode" value="walk"/>
 			</parameterset>
 
 		<parameterset type="activityParams" ><!-- home -->

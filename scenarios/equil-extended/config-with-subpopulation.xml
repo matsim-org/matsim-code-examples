@@ -84,6 +84,9 @@
 				<param name="mode" value="car" />
 				<param name="monetaryDistanceRate" value="0.0" />
 			</parameterset>
+			<parameterset type="modeParams" >
+				<param name="mode" value="walk" />
+			</parameterset>
 
 		</parameterset>
 
@@ -131,6 +134,9 @@
 				<param name="mode" value="car" />
 				<param name="monetaryDistanceRate" value="0.0" />
 			</parameterset>
+			<parameterset type="modeParams" >
+				<param name="mode" value="walk" />
+			</parameterset>
 
 		</parameterset>
 
@@ -177,6 +183,10 @@
 				<param name="marginalUtilityOfTraveling_util_hr" value="-6.0" />
 				<param name="mode" value="car" />
 				<param name="monetaryDistanceRate" value="0.0" />
+			</parameterset>
+
+			<parameterset type="modeParams" >
+				<param name="mode" value="walk" />
 			</parameterset>
 
 		</parameterset>
