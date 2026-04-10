@@ -32,6 +32,10 @@
 			<parameterset type="modeParams">
 				<param name="mode" value="pt"/>
 			</parameterset>
+			<parameterset type="modeParams">
+				<param name="mode" value="walk"/>
+			</parameterset>
+
 			<parameterset type="activityParams">
 				<param name="activityType"    value="dummy" /> <!-- home -->
 				<param name="typicalDuration" value="12:00:00" />

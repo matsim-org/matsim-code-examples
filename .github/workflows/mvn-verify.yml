@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: 21
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn verify -B -Dmatsim.preferLocalDtds=true -Dmaven.test.redirectTestOutputToFile
+      - name: Checkout git repo
+        uses: actions/checkout@v6
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: 25
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn verify -B -Dmatsim.preferLocalDtds=true -Dmaven.test.redirectTestOutputToFile
