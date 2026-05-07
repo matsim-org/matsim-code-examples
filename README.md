@@ -1,6 +1,14 @@
 [![mvn-verify](https://github.com/matsim-org/matsim-code-examples/actions/workflows/mvn-verify.yml/badge.svg?branch=dev.x)](https://github.com/matsim-org/matsim-code-examples/actions/workflows/mvn-verify.yml)
 
 # matsim-code-examples
+
+‼️This repository is archived. All the code examples have been transferred
+into [matsim-libs](https://github.com/matsim-org/matsim-libs/tree/main/code-examples) ‼️
+
+Use the discussions [there](https://github.com/orgs/matsim-org/discussions) in case you have any questions.
+
+---
+
 A repository containing code examples around MATSim.
 
 The default branch is `dev.x`. This branch is continuously updated with the latest MATSim development version.
